@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,14 +50,28 @@
         background-color: #009688;
     }
 
-    #main-menu a {
+    #main-menu #btn{
         display: flex;
         padding-left: 50px;
         padding-right: 50px;
         border-left: 1px solid #000;
-        height: 52px;
+        height: 70px;
+        width: 200px;
         justify-content: center;
         align-items: center;
+    }
+
+    .userin4_container{
+        border-left: 1px solid #000;
+        height: 70px;
+        width: 200px;
+        align-items: center;
+    }
+
+    .userin4_container div{
+        padding: 0;
+        margin: 0;
+        height: 0px;
     }
 
     /* Thanh logo và  tìm kiếm */
@@ -143,6 +160,144 @@
         padding-top: 12px;
         padding-bottom: 12px;
     }
+
+    /* Thanh hình ảnh và slide tự động */
+    .img_slide_container {
+        display: flex;
+        height: 505px;
+        width: 110vw;
+        padding: 0;
+        margin: 0;
+    }
+
+    .auto_slide {
+        height: inherit;
+        width: 60%;
+    }
+
+    .img_container {
+        height: inherit;
+        width: 40%;
+    }
+
+    .img_container a img {
+        width: 500px;
+        height: 250px;
+    }
+
+    /* slide tự động */
+    .fade {
+        animation-name: fade;
+        animation-duration: 1s;
+    }
+
+    @keyframes fade {
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    .mySlides {
+        display: none;
+    }
+
+    .img_container a img {
+        padding: 0;
+        margin: 0;
+    }
+
+    /* DANH MỤC */
+    .list_container {
+        background-color: #00F7FF;
+        height: 150px;
+        padding: 15px 15px 15px 15px;
+        margin: 0;
+    }
+
+    .list_name {
+        font-size: 20px;
+        padding-bottom: 15px;
+    }
+
+    .elements_container {
+        display: flex;
+        height: 80px;
+        max-width: inherit;
+        gap: 10px;
+        /* Tạo khoảng cách giữa các items */
+    }
+
+    .element {
+        border: 1px solid #000;
+        border-radius: 5px;
+        height: 80px;
+        width: 100px;
+    }
+
+    .element_icon {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 15px;
+        padding-top: 15px;
+    }
+
+    .element_name {
+        display: flex;
+        justify-content: center;
+    }
+
+    .elements_container a:hover {
+        background-color: #91F0F3;
+        cursor: pointer;
+    }
+
+    /* footer */
+    .footer {
+        justify-content: center;
+        background-color: #58BDFF;
+        margin: 0;
+        padding: 0;
+    }
+
+    .footer-items {
+        display: flex;
+        width: 100%;
+    }
+
+    .contact-us {
+        justify-content: center;
+        text-align: center;
+        width: calc(100%/3);
+    }
+
+    .contact-us i {
+        font-size: 25px;
+        margin-right: 12px;
+        cursor: pointer;
+        transition: var(--sub-color);
+    }
+
+    .about-us {
+        text-align: center;
+        justify-content: center;
+        width: calc(100%/3);
+    }
+
+    .address {
+        text-align: center;
+        width: calc(100%/3);
+    }
+
+    .copy-right {
+        text-align: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+    }
 </style>
 
 <body>
@@ -150,10 +305,22 @@
     <div id="wrapper">
         <nav id="nav-container">
             <ul id="main-menu">
-                <a href="">GIÚP ĐỠ</a>
-                <a href="signup.php">ĐĂNG KÍ</a>
-                <a href="">
-                    <!-- *thông tin KH* -->
+                <a href="" id="btn">GIÚP ĐỠ</a>
+                <a href="" id="btn">ĐẶT TOUR</a>
+                <a href="" class="userin4_container">
+                    <?php
+                    if (isset($_SESSION['user_info'])) {
+                        $userInfo = $_SESSION['user_info'];
+                        // Làm gì đó với $userInfo
+                        $id_user = $userInfo['id_user'];
+                        $hoten = $userInfo['hoten'];
+                        $ecoin = $userInfo['ecoin'];
+
+                        echo '<div>'. $id_user . '</div><br>';
+                        echo '<div>'. $hoten . '</div><br>';
+                        echo '<div>E-coin:'. $ecoin . '</div><br>';
+                    }
+                    ?>
                 </a>
             </ul>
         </nav>
@@ -170,7 +337,108 @@
         </div>
     </div>
 
-    
+    <!-- slide show và hình ảnh -->
+    <div class="img_slide_container">
+        <div class="auto_slide">
+            <div class="mySlides fade">
+                <img src="../img/tourdalat.jpg" style="width:100%; height:500px">
+            </div>
+
+            <div class="mySlides fade">
+                <img src="../img/tourdanang.jpg" style="width:100%; height:500px">
+            </div>
+
+            <div class="mySlides fade">
+                <img src="../img/tourphuquoc.png" style="width:100%; height:500px">
+            </div>
+        </div>
+        <div class="img_container">
+            <a href=""><img src="../img/nhaxethanhbuoi.jpg" alt=""></a>
+            <a href=""><img src="../img/hotel.jpg" alt=""></a>
+        </div>
+    </div>
+
+    <!-- danh mục -->
+    <div class="list_container">
+        <div class="list_name">DANH MỤC</div>
+        <div class="elements_container">
+            <a href="">
+                <div class="element">
+                    <div class="element_icon"><i class="fa-solid fa-flag"></i></div>
+                    <div class="element_name">TOUR</div>
+                </div>
+            </a>
+
+            <a href="">
+                <div class="element">
+                    <div class="element_icon"><i class="fa-solid fa-bus"></i></div>
+                    <div class="element_name">NHÀ XE</div>
+                </div>
+            </a>
+
+            <a href="">
+                <div class="element">
+                    <div class="element_icon"><i class="fa-regular fa-building"></i></div>
+                    <div class="element_name">KHÁCH SẠN</div>
+                </div>
+            </a>
+
+            <a href="">
+                <div class="element">
+                    <div class="element_icon"><i class="fa-solid fa-child-reaching"></i></div>
+                    <div class="element_name">H.DẪN VIÊN</div>
+                </div>
+            </a>
+
+            <a href="destinations.php">
+                <div class="element">
+                    <div class="element_icon"><i class="fa-solid fa-map-location"></i></div>
+                    <div class="element_name">Đ.DU LỊCH</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-items">
+            <div class="address">
+                <h2>Địa chỉ</h2>
+                <p>73 Nguyễn Huệ, phường 2 <br>thành phố Vĩnh Long, tỉnh Vĩnh Long</p>
+            </div>
+
+            <div class="about-us">
+
+            </div>
+
+            <div class="contact-us">
+                <h2>Liên hệ chúng tôi</h2>
+                <p>Website: http://elitastraver.com/ <br>Email: taivt4175@gmail.com</p>
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-youtube"></i>
+                <i class="fab fa-twitter"></i>
+            </div>
+        </div>
+
+        <div class="copy-right">
+            <p>&copy; Copyrights 2024. All rights reserved by Vu Thanh Tai</p>
+        </div>
+    </div>
 </body>
+<script>
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+        slides[slideIndex - 1].style.display = "block";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+</script>
 
 </html>

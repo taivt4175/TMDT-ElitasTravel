@@ -139,7 +139,7 @@
         display: flex;
         height: 500px;
         width: 110vw;
-        */ padding: 0;
+        padding: 0;
         margin: 0;
     }
 
