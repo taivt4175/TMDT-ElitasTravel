@@ -1,5 +1,5 @@
 <?php
-    session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,33 +45,65 @@
         align-items: center;
     } */
 
-    #main-menu a:hover {
+    #main-menu #btn:hover {
         cursor: pointer;
         background-color: #009688;
     }
 
-    #main-menu #btn{
+    #main-menu #btn {
         display: flex;
         padding-left: 50px;
         padding-right: 50px;
         border-left: 1px solid #000;
         height: 70px;
-        width: 200px;
+        width: 100px;
         justify-content: center;
         align-items: center;
     }
 
-    .userin4_container{
+    .userin4_container {
         border-left: 1px solid #000;
         height: 70px;
         width: 200px;
         align-items: center;
+        position: relative;
+        display: inline-block;
     }
 
-    .userin4_container div{
+    .userin4_container:hover {
+        background-color: #009688;
+        cursor: pointer;
+    }
+
+    .userin4_container .info {
         padding: 0;
         margin: 0;
         height: 0px;
+    }
+
+    .dropdown-container {
+        display: none;
+        position: absolute;
+        background-color: white;
+        top: 70px;
+    }
+
+    .userin4_container:hover .dropdown-container {
+        display: flex;
+        /* dàn nội dung theo hàng dọc */
+        flex-direction: column;
+    }
+
+    .dropdown-container a{
+        border-bottom: 1px solid #000;
+        border-left: 1px solid #000;
+        border-right: 1px solid #000;
+        padding: 10px 10px 10px 10px;
+    }
+
+    .dropdown-container a:hover{
+        cursor: pointer;
+        background-color: #009688;
     }
 
     /* Thanh logo và  tìm kiếm */
@@ -307,7 +339,7 @@
             <ul id="main-menu">
                 <a href="" id="btn">GIÚP ĐỠ</a>
                 <a href="" id="btn">ĐẶT TOUR</a>
-                <a href="" class="userin4_container">
+                <div class="userin4_container">
                     <?php
                     if (isset($_SESSION['user_info'])) {
                         $userInfo = $_SESSION['user_info'];
@@ -316,19 +348,23 @@
                         $hoten = $userInfo['hoten'];
                         $ecoin = $userInfo['ecoin'];
 
-                        echo '<div>'. $id_user . '</div><br>';
-                        echo '<div>'. $hoten . '</div><br>';
-                        echo '<div>E-coin:'. $ecoin . '</div><br>';
+                        echo '<div class="info">' . $id_user . '</div><br>';
+                        echo '<div class="info">' . $hoten . '</div><br>';
+                        echo '<div class="info">E-coin:' . $ecoin . '</div><br>';
                     }
                     ?>
-                </a>
+                    <div class="dropdown-container">
+                        <a href="">CHỈNH SỬA HỒ SƠ</a>
+                        <a href="">ĐĂNG XUẤT</a>
+                    </div>
+                </div>
             </ul>
         </nav>
     </div>
 
     <!-- LOGO và THANH TÌM KIẾM -->
     <div id="logo_search_bar_wrapper">
-        <a href="index.php" id="logo"><img src="../img/logo2.jpg" alt=""></a>
+        <a href="../public/index.php" id="logo"><img src="../img/logo2.jpg" alt=""></a>
         <div class="search-container">
             <form action="">
                 <input type="text" placeholder="Bạn muốn tìm gì? VD: 'khach san','nha xe gia re',..." name="search">

@@ -149,6 +149,13 @@
         height: 40px;
         width: 200px;
     }
+
+    .quanhuyen-filter{
+        font-size: 20px;
+        height: 40px;
+        width: 200px;
+        margin: 0px 0px 0px 10px;
+    }
 </style>
 
 <body>
@@ -175,7 +182,7 @@
     <!-- thanh filter -->
     <div class="filter-bar">
         <div>Lọc:</div>
-        <select name="" id="" class="tinh-filter">
+        <select name="" id="tinh-filter" class="tinh-filter" onchange="updateHuyen()">
             <option value="">Tỉnh</option>
             <option value="vl">Vĩnh Long</option>
             <option value="cm">Cà Mau</option>
@@ -184,9 +191,11 @@
             <option value="kg">Kiên Giang</option>
             <option value="tv">Trà Vinh</option>
         </select>
-        <!-- <select name="" id="" class="quanhuyen-filter"></select> -->
+        <select name="" id="quanhuyen-filter" class="quanhuyen-filter">
+            <option value="">Quận/huyện</option>
+        </select>
     </div>
 
 </body>
-
+<script src="../js/destination.js"></script>
 </html>
