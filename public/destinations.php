@@ -182,20 +182,17 @@
     <!-- thanh filter -->
     <div class="filter-bar">
         <div>Lọc:</div>
-        <select name="" id="tinh-filter" class="tinh-filter" onchange="updateHuyen()">
-            <option value="">Tỉnh</option>
-            <option value="vl">Vĩnh Long</option>
-            <option value="cm">Cà Mau</option>
-            <option value="ct">Cần Thơ</option>
-            <option value="bl">Bạc Liêu</option>
-            <option value="kg">Kiên Giang</option>
-            <option value="tv">Trà Vinh</option>
+        <select name="tinh-filter" id="tinh-filter" class="tinh-filter" onchange="updateHuyen()">
+            <?php
+                require('../pscript/des_filter_event1.php');
+            ?>
         </select>
-        <select name="" id="quanhuyen-filter" class="quanhuyen-filter">
-            <option value="">Quận/huyện</option>
+        <select name="quanhuyen-filter" id="quanhuyen-filter" class="quanhuyen-filter">
+            <?php
+                require('../pscript/des_filter_event2.php');
+            ?>
         </select>
     </div>
-
+    <script src="../js/destination.js"></script>
 </body>
-<script src="../js/destination.js"></script>
 </html>
