@@ -25,7 +25,7 @@
         border: 1px solid #000000;
         border-radius: 10px;
         width: 250px;
-        height: 500px;
+        height: 750px;
         margin: 10px 0px 0px 10px;
     }
 
@@ -33,7 +33,7 @@
         border: 1px solid #000000;
         border-radius: 10px;
         width: 1205px;
-        height: 500px;
+        height: 750px;
         margin: 10px 0px 0px 10px;
         overflow: auto;
     }
