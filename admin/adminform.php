@@ -47,36 +47,34 @@
         /* padding: 20px 0px 0px 20px; */
     }
 
-    .function-menu .qlkh:hover {
+    .function-menu a:hover {
         border-radius: 10px;
         cursor: pointer;
         background-color: #91F0F3;
     }
 
-    .dropdown-container {
+    .dropdown-content {
         display: none;
         position: absolute;
-        background-color: white;
-        top: 160px;
-        left: 120px;
-    }
-
-    .qlkh:hover .dropdown-container {
-        display: flex;
-        /* dàn nội dung theo hàng dọc */
         flex-direction: column;
+        top: auto;
+        left: 120px;
+        border: 1px solid #000000;
+        border-radius: 10px;
     }
 
-    .dropdown-container a {
-        border-bottom: 1px solid #000;
-        border-left: 1px solid #000;
-        border-right: 1px solid #000;
-        padding: 10px 10px 10px 10px;
+    .dropdown-content a {
+        color: black;
+        padding: 0px 20px 0px 20px;
+        height: 50px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
     }
 
-    .dropdown-container a:hover {
-        cursor: pointer;
-        background-color: #009688;
+    .dropdown:hover .dropdown-content {
+        display: flex;
+        background-color: white;
     }
 </style>
 
@@ -87,25 +85,59 @@
 
     <div class="functions-container">
         <div class="function-menu">
-            <a href="" id="qlkh" class="qlkh">
-                Quản lí khách hàng
-                <div class="dropdown-container">
-                    <a href="" id="add_customer">Thêm Khách Hàng</a>
-                    <a href="">Chỉnh sửa khách hàng</a>
+            <div class="dropdown">
+                <a href="#" id="qlkh" class="qlkh">Quản lí khách hàng</a>
+                <div class="dropdown-content">
+                    <a href="#" id="add_customer">Thêm khách hàng</a>
+                    <a href="#" id="mod_customer">Chỉnh sửa thông tin khách hàng</a>
+                    <a href="#" id="addd_service">Thêm dịch vụ</a>
+                    <a href="#" id="mod_service">Dịch vụ sử dụng</a>
                 </div>
-            </a>
-            <a href="">
-                <div class="item">Quản lí hướng dẫn viên</div>
-            </a>
-            <a href="">
-                <div class="item">Quản lí nhà xe</div>
-            </a>
-            <a href="">
-                <div class="item">Quản lí điểm du lịch</div>
-            </a>
-            <a href="">
-                <div class="item">Quản lí điểm nhà hàng</div>
-            </a>
+            </div>
+            
+            <div class="dropdown">
+                <a href="#" id="qlhdv" class="qlhdv">Quản lí hướng dẫn viên</a>
+                <div class="dropdown-content">
+                    <a href="#" id="add_customer">Thêm hướng dẫn viên</a>
+                    <a href="#" id="mod_customer">Chỉnh sửa thông tin hướng dẫn viên</a>
+                    <a href="#" id="mod_customer">Lịch trình hướng dẫn viên</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="#" id="qlkh" class="qlkh">Quản lí nhân viên</a>
+                <div class="dropdown-content">
+                    <a href="#" id="add_customer">Thêm nhân viên</a>
+                    <a href="#" id="mod_customer">Chỉnh sửa thông tin nhân viên</a>
+                    <a href="#" id="mod_customer">Phát lương</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="#" id="qlkh" class="qlkh">Quản lí khách sạn</a>
+                <div class="dropdown-content">
+                    <a href="#" id="add_customer">Thêm khách sạn</a>
+                    <a href="#" id="mod_customer">Chỉnh sửa thông tin khách sạn</a>
+                    <a href="#" id="mod_customer">Đặt khách sạn</a>
+                    <a href="#" id="mod_customer">Khách sạn đã đặt</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="#" id="qlkh" class="qlkh">Quản lí nhà hàng</a>
+                <div class="dropdown-content">
+                    <a href="#" id="add_customer">Thêm khách hàng</a>
+                    <a href="#" id="mod_customer">Chỉnh sửa thông tin khách hàng</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="#" id="qlkh" class="qlkh">Quản lí tour</a>
+                <div class="dropdown-content">
+                    <a href="#" id="add_customer">Thêm khách hàng</a>
+                    <a href="#" id="mod_customer">Chỉnh sửa thông tin khách hàng</a>
+                </div>
+            </div>
         </div>
 
         <div class="function-view" id="function-view">

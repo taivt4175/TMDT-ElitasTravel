@@ -34,7 +34,7 @@ function initializeFormScript() {
     document.head.appendChild(script);
 }
 
-document.getElementById('qlkh').addEventListener('click', function (event) {
+document.getElementById('add_customer').addEventListener('click', function (event) {
     event.preventDefault();  // Ngăn chặn trình duyệt theo liên kết
     loadFormAndInitializeScript();  // Gọi hàm để tải form và khởi tạo script
 });
