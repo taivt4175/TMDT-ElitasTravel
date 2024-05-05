@@ -47,10 +47,36 @@
         /* padding: 20px 0px 0px 20px; */
     }
 
-    .function-menu a:hover {
+    .function-menu .qlkh:hover {
         border-radius: 10px;
         cursor: pointer;
         background-color: #91F0F3;
+    }
+
+    .dropdown-container {
+        display: none;
+        position: absolute;
+        background-color: white;
+        top: 160px;
+        left: 120px;
+    }
+
+    .qlkh:hover .dropdown-container {
+        display: flex;
+        /* dàn nội dung theo hàng dọc */
+        flex-direction: column;
+    }
+
+    .dropdown-container a {
+        border-bottom: 1px solid #000;
+        border-left: 1px solid #000;
+        border-right: 1px solid #000;
+        padding: 10px 10px 10px 10px;
+    }
+
+    .dropdown-container a:hover {
+        cursor: pointer;
+        background-color: #009688;
     }
 </style>
 
@@ -61,8 +87,12 @@
 
     <div class="functions-container">
         <div class="function-menu">
-            <a href="" id="qlkh">
-                <div class="item">Quản lí khách hàng</div>
+            <a href="" id="qlkh" class="qlkh">
+                Quản lí khách hàng
+                <div class="dropdown-container">
+                    <a href="" id="add_customer">Thêm Khách Hàng</a>
+                    <a href="">Chỉnh sửa khách hàng</a>
+                </div>
             </a>
             <a href="">
                 <div class="item">Quản lí hướng dẫn viên</div>
@@ -79,9 +109,14 @@
         </div>
 
         <div class="function-view" id="function-view">
+            <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                require ('../pscript/signup_event.php');
+            }
+            ?>
         </div>
     </div>
-    <script src="../js/adminform.js"></script>
 </body>
 
 </html>
+<script src="../js/adminform.js"></script>

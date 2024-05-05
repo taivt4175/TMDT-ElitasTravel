@@ -113,7 +113,6 @@
             </form>
         </div>
     </div>
-    <script src="js/signup-daybirth.js"></script>
     <script src="../js/signup-daybirth.js"></script>
 </body>
 </html>
