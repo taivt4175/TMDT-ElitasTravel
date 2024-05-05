@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/reset1.css">
+    <link rel="stylesheet" href="../css/reset1.css">
     <title>Admin</title>
 </head>
 <style>
@@ -35,6 +35,7 @@
         width: 1205px;
         height: 500px;
         margin: 10px 0px 0px 10px;
+        overflow: auto;
     }
 
     .function-menu a {
@@ -46,22 +47,16 @@
         /* padding: 20px 0px 0px 20px; */
     }
 
-    .function-menu a:hover{
+    .function-menu a:hover {
         border-radius: 10px;
         cursor: pointer;
         background-color: #91F0F3;
     }
-
-    #qlkh{
-
-    }
-
-    /* menu */
 </style>
 
 <body>
     <div class="logo-container">
-        <div><img src="img/logo2.jpg" alt=""></div>
+        <div><img src="../img/logo2.jpg" alt=""></div>
     </div>
 
     <div class="functions-container">
@@ -86,27 +81,7 @@
         <div class="function-view" id="function-view">
         </div>
     </div>
-    <script>
-        // gọi form
-        function loadForm() {
-            var xhr = new XMLHttpRequest();
-            xhr.onload = function () {
-                if (xhr.status >= 200 && xhr.status < 300) {
-                    // Hiển thị form mới trong container cụ thể trên trang
-                    document.getElementById('function-view').innerHTML = xhr.responseText;
-                }
-            };
-            xhr.open('GET', 'admin/quanlikh.php');
-            xhr.send();
-        }
-
-        document.getElementById('qlkh').addEventListener('click', function (event) {
-            // Bạn có thể ngăn chặn hành vi mặc định của liên kết nếu muốn
-            event.preventDefault();
-            loadForm();
-            // Mã để xử lý sự kiện click ở đây
-        });
-    </script>
+    <script src="../js/adminform.js"></script>
 </body>
 
 </html>

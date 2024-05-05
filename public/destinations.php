@@ -131,26 +131,26 @@
 
     /* thanh filter */
     .filter-bar {
-        display:flex;
+        display: flex;
         text-align: center;
         align-items: center;
-        background-color: #00D4FF ;
+        background-color: #00D4FF;
         height: 80px;
     }
 
-    .filter-bar div{
+    .filter-bar div {
         font-size: 20px;
         padding-right: 10px;
         padding-left: 10px
     }
 
-    .tinh-filter{
+    .tinh-filter {
         font-size: 20px;
         height: 40px;
         width: 200px;
     }
 
-    .quanhuyen-filter{
+    .quanhuyen-filter {
         font-size: 20px;
         height: 40px;
         width: 200px;
@@ -184,15 +184,37 @@
         <div>Lọc:</div>
         <select name="tinh-filter" id="tinh-filter" class="tinh-filter" onchange="updateHuyen()">
             <?php
-                require('../pscript/des_filter_event1.php');
+            require ('../pscript/des_filter_event1.php');
             ?>
         </select>
         <select name="quanhuyen-filter" id="quanhuyen-filter" class="quanhuyen-filter">
             <?php
-                require('../pscript/des_filter_event2.php');
+            require ('../pscript/des_filter_event2.php');
             ?>
         </select>
     </div>
-    <script src="../js/destination.js"></script>
+    <!-- <script src="../js/destination.js"></script> -->
+    <script>
+        function updateHuyen() {
+            var tinhId = document.getElementById('tinh-filter').value;
+            var huyenSelect = document.getElementById('quanhuyen-filter');
+            print(tinhId);
+            // huyenSelect.innerHTML = '<option value="">Chọn Quận/Huyện</option>'; // Xóa huyện cũ
+
+            // if (tinhId) {
+            //     // Gửi yêu cầu AJAX đến server để lấy danh sách huyện
+            //     fetch('../public/destinations.php?tinhId=' + tinhId)
+            //     .then(response => response.json())
+            //     .then(data => {
+            //         data.forEach(function(huyen) {
+            //             var option = new Option(huyen.tenqh, huyen.id_qh);
+            //             huyenSelect.add(option);
+            //         });
+            //     })
+            //     .catch(error => console.error('Error:', error));
+            // }
+        }
+    </script>
 </body>
+
 </html>

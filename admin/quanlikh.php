@@ -8,19 +8,20 @@
     <title>Quản lí khách hàng</title>
 </head>
 <style>
-    .function-view {
-        border: 1px solid #000000;
-        border-radius: 10px;
+    .form-qlkh {
+        /* border: 1px solid #000000;
+        border-radius: 10px;  */
         width: 1205px;
         height: 500px;
+        margin: 10px 0px 0px 10px;
     }
 </style>
 
 <body>
-    <div class="function-view">
+    <form class="form-qlkh">
         <h1>Quản lí khách hàng</h1>
         <input type="text" name="" id="" placeholder="Nhập mã khách hàng">
-    </div>
+    </form>
 </body>
 
 </html>

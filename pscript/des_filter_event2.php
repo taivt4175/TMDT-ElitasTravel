@@ -1,6 +1,8 @@
 <?php
     $tinhId = $_GET['tinhId'];
 
+    print_r($_GET);
+
     require("../connector/connect.php");
 
     $sql = "SELECT id_qh, tenqh FROM quanhuyen WHERE id_tinh = '$tinhId'";
