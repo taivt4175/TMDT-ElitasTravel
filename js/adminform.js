@@ -1,5 +1,5 @@
 // Loadform add_customer
-function loadFormAndInitializeScript() {
+function loadFormAndInitializeScript_add_customer() {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'add_customer.php', true);  // Yêu cầu tải 'add_customer.php'
 
@@ -9,7 +9,7 @@ function loadFormAndInitializeScript() {
             document.getElementById('function-view').innerHTML = xhr.responseText;
 
             // Sau khi nội dung được tải, khởi tạo script cần thiết
-            initializeFormScript();
+            initializeFormScript_add_customer();
         } else {
             // Xử lý lỗi tải trang hoặc trả về lỗi từ server
             console.error('Failed to load the form:', xhr.statusText);
@@ -24,20 +24,19 @@ function loadFormAndInitializeScript() {
     xhr.send();  // Gửi yêu cầu
 }
 
-function initializeFormScript() {
-    // Đảm bảo script 'signup_daybirth.js' chỉ thực thi sau khi form được tải
+function initializeFormScript_add_customer() {
     var script = document.createElement('script');
-    script.src = '../js/signup-daybirth.js';  // Đảm bảo đường dẫn đến script đúng
+    script.src = '../js/signup2.js';  // Đảm bảo đường dẫn đến script đúng
     script.onload = function () {
         // Các hàm trong signup_daybirth.js sẽ được gọi ở đây nếu cần
-        console.log('signup-daybirth.js has been loaded and initialized');
+        console.log('signup2.js has been loaded and initialized');
     };
     document.head.appendChild(script);
 }
 
 document.getElementById('add_customer').addEventListener('click', function (event) {
     event.preventDefault();  // Ngăn chặn trình duyệt theo liên kết
-    loadFormAndInitializeScript();  // Gọi hàm để tải form và khởi tạo script
+    loadFormAndInitializeScript_add_customer();  // Gọi hàm để tải form và khởi tạo script
 });
 
 // loadform mod_customer
@@ -69,10 +68,10 @@ function loadFormAndInitializeScript_mod_customer() {
 function initializeFormScript_mod_customer() {
     // Đảm bảo script 'signup_daybirth.js' chỉ thực thi sau khi form được tải
     var script = document.createElement('script');
-    script.src = '../js/signup-daybirth.js';  // Đảm bảo đường dẫn đến script đúng
+    script.src = '../js/delete_user.js';  // Đảm bảo đường dẫn đến script đúng
     script.onload = function () {
         // Các hàm trong signup_daybirth.js sẽ được gọi ở đây nếu cần
-        console.log('signup-daybirth.js has been loaded and initialized');
+        console.log('delete_user.js has been loaded and initialized');
     };
     document.head.appendChild(script);
 }

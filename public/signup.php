@@ -141,7 +141,7 @@
         </div>
 
         <h5>Email:</h5>
-        <input type="text" name="input-signup-username" class="input-signup-username" required />
+        <input type="text" name="email" class="email" required />
 
         <h5>Số Điện Thoại:</h5>
         <input type="tel" name="input-signup-phone" class="input-signup-phone" required />
@@ -158,18 +158,13 @@
         <div><a href="../public/login.php" class="signup_registerButton">Bạn đã có tài khoản</a></div>
 
         <div style="text-align: center;">
-          <input type="submit" value="Đăng kí" class="signup_signInButton">
+          <button value="Đăng kí" class="signup_signInButton" onclick="sign_up()"></button>
         </div>
-        <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-          require('../pscript/signup_event.php');
-        }
-        ?>
       </form>
     </div>
   </div>
   <!-- <script src="../js/signup.js"></script> -->
-  <script src="../js/signup-daybirth.js"></script>
+  <script src="../js/signup2.js"></script>
   <?php
   // print_r($_POST);
   ?>

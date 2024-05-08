@@ -14,7 +14,7 @@ if (!$conn) {
 $hoten = $conn->real_escape_string($_POST['input-signup-name']);
 $ngaysinh = $conn->real_escape_string($_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day']);
 $gioitinh = $conn->real_escape_string($_POST['gender'] === 'Nam' ? 1 : 0); // Giả định Nam là 1, Nữ là 0
-$email = $conn->real_escape_string($_POST['input-signup-username']);
+$email = $conn->real_escape_string($_POST['email']);
 $sdt = $conn->real_escape_string($_POST['input-signup-phone']);
 $username = $conn->real_escape_string($_POST['username']);
 $password = $conn->real_escape_string($_POST['password']);
@@ -27,8 +27,9 @@ if ($password !== $cf_password) {
     // Mã hóa mật khẩu bằng MD5
     $password_md5 = md5($password);
     $sql_check = "SELECT * FROM user WHERE sdt = '$sdt'";
-    $sql_check_username = "SELECT * FROM user WHERE username = '$username'";
     $result_check = $conn->query($sql_check);
+    $sql_check_username = "SELECT * FROM user WHERE username = '$username'";
+    $result_check_username = $conn->query($sql_check_username);
 
     if ($result_check->num_rows > 0) {
         echo "Số điện thoại đã được sử dụng!";
@@ -42,8 +43,8 @@ if ($password !== $cf_password) {
             $newUserId = 'KH' . $row['new_id'];
 
             // Thêm vào bảng user
-            $stmt = $conn->prepare("INSERT INTO user (id_user, hoten, gioitinh, ngaysinh, sdt, username, password) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssssss", $newUserId, $hoten, $gioitinh, $ngaysinh, $sdt, $username, $password_md5);
+            $stmt = $conn->prepare("INSERT INTO user (id_user, hoten, gioitinh, ngaysinh, sdt, username, password, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssssss", $newUserId, $hoten, $gioitinh, $ngaysinh, $sdt, $username, $password_md5, $email);
             if ($stmt->execute()) {
                 // Thêm vào bảng chitietkh
                 $stmt2 = $conn->prepare("INSERT INTO chitietkh (id_user) VALUES (?)");

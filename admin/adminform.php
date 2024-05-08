@@ -94,7 +94,7 @@
                     <a href="#" id="mod_service">Dịch vụ sử dụng</a>
                 </div>
             </div>
-            
+
             <div class="dropdown">
                 <a href="#" id="qlhdv" class="qlhdv">Quản lí hướng dẫn viên</a>
                 <div class="dropdown-content">
@@ -141,14 +141,8 @@
         </div>
 
         <div class="function-view" id="function-view">
-            <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                require ('../pscript/signup_event.php');
-            }
-            ?>
         </div>
     </div>
 </body>
-
-</html>
 <script src="../js/adminform.js"></script>
+</html>

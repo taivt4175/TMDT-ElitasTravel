@@ -57,7 +57,7 @@
 </style>
 
 <body>
-    <form action="" method="post" class="function-view-2">
+    <form action="" method="post" class="function-view-2" style="overflow: auto; ">
         <h1>Danh sách khách hàng</h1>
 
         <div class="filter">
@@ -81,6 +81,7 @@
                 <th>Nạp lần đầu</th>
                 <th>Tên đăng nhập</th>
                 <th>Mật khẩu</th>
+                <th>Chức năng</th>
             </tr>
             <?php
             require ('../pscript/show_customerlist_event.php');
@@ -88,5 +89,5 @@
         </table>
     </form>
 </body>
-
+<script> src="../js/delete_user.js"></script>
 </html>
