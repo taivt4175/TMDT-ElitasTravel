@@ -29,7 +29,8 @@
     }
 
     /* Định dạng cho các ô tiêu đề và các ô trong bảng */
-    th, td {
+    th,
+    td {
         width: auto;
         /* Cho phép các cột tự động điều chỉnh chiều rộng */
         min-width: 120px;
@@ -87,7 +88,26 @@
             require ('../pscript/show_customerlist_event.php');
             ?>
         </table>
-    </form>
 </body>
-<script> src="../js/delete_user.js"></script>
+<script>
+    function deleteCustomer(id) {
+        if (confirm('Bạn có chắc chắn muốn xóa khách hàng ' + id + ' này không?')) {
+            // Gửi yêu cầu AJAX để xóa khách hàng
+            fetch('../pscript/delete_user.php', {
+                method: 'POST', // Phương thức POST
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded', // Loại nội dung
+                },
+                body: 'id=' + id  // Dữ liệu gửi đi
+            })
+                .then(response => response.text())  // Xử lý phản hồi từ máy chủ
+                .then(data => {
+                    alert(data);  // Hiển thị thông báo phản hồi
+                    window.location.reload();  // Tải lại trang để cập nhật danh sách
+                })
+                .catch(error => console.error('Error:', error));  // Xử lý lỗi
+        }
+    }
+</script>
+
 </html>

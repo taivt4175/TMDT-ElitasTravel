@@ -8,7 +8,7 @@ function confirmDelete(id) {
 
 function deleteCustomer(id) {
     // Gửi yêu cầu xóa tới server
-    fetch('delete_user.php', {
+    fetch('../pscript/delete_user.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

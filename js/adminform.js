@@ -66,11 +66,9 @@ function loadFormAndInitializeScript_mod_customer() {
 }
 
 function initializeFormScript_mod_customer() {
-    // Đảm bảo script 'signup_daybirth.js' chỉ thực thi sau khi form được tải
     var script = document.createElement('script');
     script.src = '../js/delete_user.js';  // Đảm bảo đường dẫn đến script đúng
     script.onload = function () {
-        // Các hàm trong signup_daybirth.js sẽ được gọi ở đây nếu cần
         console.log('delete_user.js has been loaded and initialized');
     };
     document.head.appendChild(script);
@@ -80,3 +78,4 @@ document.getElementById('mod_customer').addEventListener('click', function (even
     event.preventDefault();  // Ngăn chặn trình duyệt theo liên kết
     loadFormAndInitializeScript_mod_customer();  // Gọi hàm để tải form và khởi tạo script
 });
+
