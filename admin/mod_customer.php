@@ -89,7 +89,6 @@
                 <th>STK MOMO</th>
                 <th>STK BIDV</th>
                 <th>STK MasterCard</th>
-                <th>Tên Khách Hàng</th>
                 <th>Nạp lần đầu</th>
                 <th>Tên đăng nhập</th>
                 <th>Mật khẩu</th>
@@ -101,24 +100,6 @@
         </table>
 </body>
 <script>
-    function deleteCustomer(id) {
-        if (confirm('Bạn có chắc chắn muốn xóa khách hàng ' + id + ' này không?')) {
-            // Gửi yêu cầu AJAX để xóa khách hàng
-            fetch('../pscript/delete_user.php', {
-                method: 'POST', // Phương thức POST
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded', // Loại nội dung
-                },
-                body: 'id=' + id  // Dữ liệu gửi đi
-            })
-                .then(response => response.text())  // Xử lý phản hồi từ máy chủ
-                .then(data => {
-                    alert(data);  // Hiển thị thông báo phản hồi
-                    window.location.reload();  // Tải lại trang để cập nhật danh sách
-                })
-                .catch(error => console.error('Error:', error));  // Xử lý lỗi
-        }
-    }
 </script>
 
 </html>

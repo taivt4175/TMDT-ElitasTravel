@@ -106,7 +106,8 @@
             </form>
         </div>
     </div>
-    <script src="../js/signup3.js"></script>
+    <script src="../js/signup2.js"></script>
+    <script src="../js/add_tourguide.js"></script>
 </body>
 
 </html>

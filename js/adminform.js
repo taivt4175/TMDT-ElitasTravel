@@ -30,15 +30,33 @@ function callmodCustomer() {
     };
     xhr.send();  // Gửi yêu cầu
 }
-
+// Gọi add_tourguide.php để hiển thị form thêm hdv
 function calladdtourguide() {
     var xhr = new XMLHttpRequest();  // Tạo đối tượng XMLHttpRequest
     xhr.open('GET', 'add_tourguide.php', true);  // Mở một yêu cầu GET đến 'mod_customer.php'
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             document.getElementById('function-view').innerHTML = xhr.responseText;  // Đặt nội dung phản hồi vào div
+            var script1 = document.createElement('script');
+            script1.src = '../js/add_tourguide.js';
+            document.head.appendChild(script1);
+            var script2 = document.createElement('script'); //Gọi JS xử lí tạo user
+            script2.src = '../js/signup2.js';
+            document.head.appendChild(script2);
+        }
+    };
+    xhr.send();  // Gửi yêu cầu
+}
+// Gọi mod_tourguide.php để hiển thị form danh sách hdv
+function callmodtourguide() {
+    var xhr = new XMLHttpRequest();  // Tạo đối tượng XMLHttpRequest
+    xhr.open('GET', 'mod_tourguide.php', true);  // Mở một yêu cầu GET đến 'mod_customer.php'
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById('function-view').innerHTML = xhr.responseText;  // Đặt nội dung phản hồi vào div
+            var script1 = document.createElement('script');
             var script = document.createElement('script');
-            script.src = '../js/signup2.js';
+            script.src = '../js/delete_user.js';
             document.head.appendChild(script);
         }
     };

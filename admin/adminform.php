@@ -99,7 +99,7 @@
                 <a href="#" id="qlhdv" class="qlhdv">Quản lí hướng dẫn viên</a>
                 <div class="dropdown-content">
                     <a href="#" id="add_customer" onclick="calladdtourguide()">Thêm hướng dẫn viên</a>
-                    <a href="#" id="mod_customer">Chỉnh sửa thông tin hướng dẫn viên</a>
+                    <a href="#" id="mod_customer" onclick="callmodtourguide()">Chỉnh sửa thông tin hướng dẫn viên</a>
                     <a href="#" id="mod_customer">Lịch trình hướng dẫn viên</a>
                 </div>
             </div>

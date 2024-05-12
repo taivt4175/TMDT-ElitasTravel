@@ -1,4 +1,5 @@
 <?php
+require ('../connector/connect.php');
 $hoten = $conn->real_escape_string($_POST['input-signup-name']);
 $ngaysinh = $conn->real_escape_string($_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day']);
 $gioitinh = $conn->real_escape_string($_POST['gender'] === 'Nam' ? 1 : 0); // Giả định Nam là 1, Nữ là 0
@@ -12,7 +13,6 @@ if (empty($hoten) || empty($ngaysinh) || empty($gioitinh) || empty($email) || em
     echo "Vui lòng điền đầy đủ thông tin!";
     exit();
 } else {
-    require ('../connector/connect.php');
     // Kiểm tra password và confirm password
     if ($password !== $cf_password) {
         echo "Mật khẩu và xác nhận mật khẩu không khớp.";
@@ -36,13 +36,22 @@ if (empty($hoten) || empty($ngaysinh) || empty($gioitinh) || empty($email) || em
                 $newUserId = 'TG' . $row['new_id'];
 
                 // Thêm vào bảng user
-
-                
-                
-                // Thêm vào bảng chitiettourguide
-
-                $stmt2->close();
-                $stmt->close();
+                $stmt = $conn->prepare("INSERT INTO user (id_user, hoten, gioitinh, ngaysinh, sdt, username, password, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->bind_param("ssssssss", $newUserId, $hoten, $gioitinh, $ngaysinh, $sdt, $username, $password_md5, $email);
+                if ($stmt->execute()) {
+                    // Thêm vào bảng chitiettourguide
+                    $stmt2 = $conn->prepare("INSERT INTO chitiethdv (id_user) VALUES (?)");
+                    $stmt2->bind_param("s", $newUserId);
+                    if ($stmt2->execute()) {
+                        echo "Thêm thành hướng dẫn viên thành công!";
+                    } else {
+                        echo "Lỗi khi thêm vào bảng chi tiết hdv: " . $conn->error;
+                    }
+                    $stmt2->close();
+                    $stmt->close();
+                } else {
+                    echo "Lỗi khi thêm vào bảng User: " . $conn->error;
+                }
                 $conn->close();
             }
         }
