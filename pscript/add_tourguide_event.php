@@ -1,16 +1,4 @@
 <?php
-// Lấy dữ liệu từ form
-// Kết nối cơ sở dữ liệu MySQL
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'webdulich';
-
-$conn = mysqli_connect($host, $username, $password, $database);
-// Kiểm tra kết nối
-if (!$conn) {
-    die('Kết nối không thành công: ' . mysqli_connect_error());
-}
 $hoten = $conn->real_escape_string($_POST['input-signup-name']);
 $ngaysinh = $conn->real_escape_string($_POST['year'] . '-' . $_POST['month'] . '-' . $_POST['day']);
 $gioitinh = $conn->real_escape_string($_POST['gender'] === 'Nam' ? 1 : 0); // Giả định Nam là 1, Nữ là 0
@@ -24,6 +12,7 @@ if (empty($hoten) || empty($ngaysinh) || empty($gioitinh) || empty($email) || em
     echo "Vui lòng điền đầy đủ thông tin!";
     exit();
 } else {
+    require ('../connector/connect.php');
     // Kiểm tra password và confirm password
     if ($password !== $cf_password) {
         echo "Mật khẩu và xác nhận mật khẩu không khớp.";
@@ -41,28 +30,19 @@ if (empty($hoten) || empty($ngaysinh) || empty($gioitinh) || empty($email) || em
             if ($result_check_username->num_rows > 0) {
                 echo "Username đã được sử dụng!";
             } else {
-                // Tạo id_user mới
+                // Tạo id_user mới cho HDV
                 $result = $conn->query("SELECT LPAD(IFNULL(MAX(SUBSTRING(id_user, 3)), 0) + 1, 5, '0') AS new_id FROM user");
                 $row = $result->fetch_assoc();
-                $newUserId = 'KH' . $row['new_id'];
+                $newUserId = 'TG' . $row['new_id'];
 
                 // Thêm vào bảng user
-                $stmt = $conn->prepare("INSERT INTO user (id_user, hoten, gioitinh, ngaysinh, sdt, username, password, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-                $stmt->bind_param("ssssssss", $newUserId, $hoten, $gioitinh, $ngaysinh, $sdt, $username, $password_md5, $email);
-                if ($stmt->execute()) {
-                    // Thêm vào bảng chitietkh
-                    $stmt2 = $conn->prepare("INSERT INTO chitietkh (id_user) VALUES (?)");
-                    $stmt2->bind_param("s", $newUserId);
-                    if ($stmt2->execute()) {
-                        echo "Đăng ký thành công!";
-                    } else {
-                        echo "Lỗi khi thêm vào bảng chitietkh: " . $conn->error;
-                    }
-                    $stmt2->close();
-                    $stmt->close();
-                } else {
-                    echo "Lỗi khi thêm vào bảng user: " . $conn->error;
-                }
+
+                
+                
+                // Thêm vào bảng chitiettourguide
+
+                $stmt2->close();
+                $stmt->close();
                 $conn->close();
             }
         }

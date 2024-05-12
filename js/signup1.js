@@ -39,9 +39,9 @@ btnRegister.addEventListener("click", (e) => {
     return;
   }
 
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)[^\s]{6,}$/; // At least 6 chars, 1 digit, 1 lowercase, 1 uppercase, 1 special char, no whitespace
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)[^\s]{8,}$/; // At least 8 chars, 1 digit, 1 lowercase, 1 uppercase, 1 special char, no whitespace
   if (!passwordRegex.test(inputPasswordRegister.value)) {
-    alert("Mật khẩu phải có ít nhất 6 ký tự, bao gồm chữ số, chữ cái thường, chữ cái hoa và ký tự đặc biệt.");
+    alert("Mật khẩu phải có ít nhất 8 ký tự, bao gồm chữ số, chữ cái thường, chữ cái hoa và ký tự đặc biệt.");
     return;
   }
 

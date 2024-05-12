@@ -25,7 +25,7 @@
         border: 1px solid #000000;
         border-radius: 10px;
         width: 250px;
-        height: 750px;
+        height: 500px;
         margin: 10px 0px 0px 10px;
     }
 
@@ -33,7 +33,7 @@
         border: 1px solid #000000;
         border-radius: 10px;
         width: 1205px;
-        height: 750px;
+        height: 500px;
         margin: 10px 0px 0px 10px;
         overflow: auto;
     }
@@ -88,8 +88,8 @@
             <div class="dropdown">
                 <a href="#" id="qlkh" class="qlkh">Quản lí khách hàng</a>
                 <div class="dropdown-content">
-                    <a href="#" id="add_customer">Thêm khách hàng</a>
-                    <a href="#" id="mod_customer">Chỉnh sửa thông tin khách hàng</a>
+                    <a href="#" id="add_customer" onclick="calladdCustomer()">Thêm khách hàng</a>
+                    <a href="#" id="mod_customer" onclick="callmodCustomer()">Chỉnh sửa thông tin khách hàng</a>
                     <a href="#" id="addd_service">Thêm dịch vụ</a>
                     <a href="#" id="mod_service">Dịch vụ sử dụng</a>
                 </div>
@@ -98,7 +98,7 @@
             <div class="dropdown">
                 <a href="#" id="qlhdv" class="qlhdv">Quản lí hướng dẫn viên</a>
                 <div class="dropdown-content">
-                    <a href="#" id="add_customer">Thêm hướng dẫn viên</a>
+                    <a href="#" id="add_customer" onclick="calladdtourguide()">Thêm hướng dẫn viên</a>
                     <a href="#" id="mod_customer">Chỉnh sửa thông tin hướng dẫn viên</a>
                     <a href="#" id="mod_customer">Lịch trình hướng dẫn viên</a>
                 </div>
@@ -145,4 +145,5 @@
     </div>
 </body>
 <script src="../js/adminform.js"></script>
+
 </html>

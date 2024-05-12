@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/reset1.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
-    <title>Thêm khách hàng</title>
+    <title>Thêm hướng dẫn viên</title>
 </head>
 <style>
     .signup {
@@ -56,7 +56,7 @@
         <div class="signup-container">
 
             <form class="signup-form" action="" method="POST">
-                <h1>Thêm khách hàng</h1>
+                <h1>Thêm hướng dẫn viên</h1>
 
                 <h5>Họ và Tên:</h5>
                 <input type="text" name="input-signup-name" class="input-signup-name" required />
@@ -101,7 +101,7 @@
                 <input type="password" name="cf-password" class="input-signup-password" required />
 
                 <div style="text-align: center;">
-                    <button onclick="sign_up()" class="signup_signInButton">Tạo</button>
+                    <button onclick="add_tourguide()" class="signup_signInButton">Tạo</button>
                 </div>
             </form>
         </div>

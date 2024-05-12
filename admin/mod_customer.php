@@ -62,7 +62,18 @@
         <h1>Danh sách khách hàng</h1>
 
         <div class="filter">
-            <select name="id_filter" id="filter"></select>
+            <label for="">Lọc: </label>
+
+            <input type="text" name="name_filter" id="name-filter" placeholder="Họ tên">
+
+            <input type="number" name="sdt_filter" id="sdt_filter" placeholder="Số điện thoại">
+
+            <input type="text" name="email_filter" id="email_filter" placeholder="Email">
+
+            <input type="text" name="cccd_filter" id="cccd_filter" placeholder="CCCD/Hộ chiếu">
+
+            <button name="btn_filter" id="btn_filter" onclick="filter()">Xác nhận</button>
+            <button name="btn_refresh" id="btn_refresh" onclick="refresh()">Làm mới</button>
         </div>
 
         <table>
