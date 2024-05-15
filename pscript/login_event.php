@@ -6,9 +6,8 @@ $password = $conn->real_escape_string($_POST['password']);
 
 $password_md5 = md5($password);
 
-$sql_check = "SELECT u.id_user, u.hoten, k.sl_ecoin FROM user u
-                INNER JOIN chitietkh k ON u.id_user = k.id_user
-                WHERE u.username = '$username' and u.password = '$password_md5'";
+$sql_check = "SELECT * FROM user
+                WHERE username = '$username' and password = '$password_md5'";
 $result_check = $conn->query($sql_check);
 
 if ($result_check->num_rows > 0) {
@@ -23,7 +22,6 @@ if ($result_check->num_rows > 0) {
             $userInfo = [
                 'id_user' => $row['id_user'],
                 'hoten' => $row['hoten'],
-                'ecoin' => $row['sl_ecoin']
             ];
             // Lưu vào session
             $_SESSION['user_info'] = $userInfo;
@@ -37,6 +35,7 @@ if ($result_check->num_rows > 0) {
             break;
         case 'AD':
             echo "Người dùng là Admin";
+            header('Location: ../admin/adminform.php');
             // Thực hiện các hành động cho Admin
             break;
         case 'NV':

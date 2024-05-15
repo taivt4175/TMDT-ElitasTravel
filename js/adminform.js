@@ -62,3 +62,18 @@ function callmodtourguide() {
     };
     xhr.send();  // Gửi yêu cầu
 }
+
+// Gọi add_tour.php để hiển thị form thêm tour
+function calladdtour() {
+    var xhr = new XMLHttpRequest();  // Tạo đối tượng XMLHttpRequest
+    xhr.open('GET', 'add_tour.php', true);  // Mở một yêu cầu GET đến 'add_tour.php'
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById('function-view').innerHTML = xhr.responseText;  // Đặt nội dung phản hồi vào div
+            var script1 = document.createElement('script');
+            script1.src = '../js/addtour_check.js';
+            document.head.appendChild(script1);
+        }
+    };
+    xhr.send();  // Gửi yêu cầu
+}

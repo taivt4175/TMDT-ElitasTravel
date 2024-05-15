@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row['password'] . "</td>";
         echo "<td>
                 <button onclick='editCustomer(\"" . $row['id_user'] . "\")'>Edit</button>
-                <button onclick='deleteCustomer(\"" . $row['id_user'] . "\")'>Delete</button> 
+                <button onclick='confirmDelete(\"" . $row['id_user'] . "\")'>Delete</button> 
               </td>";
         echo "</tr>";
     }

@@ -158,7 +158,7 @@
         <div><a href="../public/login.php" class="signup_registerButton">Bạn đã có tài khoản</a></div>
 
         <div style="text-align: center;">
-          <button value="Đăng kí" class="signup_signInButton" onclick="sign_up()"></button>
+          <button value="Đăng kí" class="signup_signInButton" onclick="sign_up()">Đăng kí</button>
         </div>
       </form>
     </div>

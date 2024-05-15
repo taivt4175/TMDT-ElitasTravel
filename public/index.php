@@ -109,7 +109,7 @@
         background-color: #58BDFF;
     }
 
-    #main-menu {
+    .main-menu {
         width: inherit;
         display: inline-flex;
         justify-content: flex-end;
@@ -119,7 +119,7 @@
         /* để các phần tử sát phải */
     }
 
-    #main-menu li {
+    .main-menu .btn {
         display: flex;
         padding-left: 50px;
         padding-right: 50px;
@@ -129,7 +129,7 @@
         align-items: center;
     }
 
-    #main-menu li:hover{    
+    .main-menu li:hover {
         cursor: pointer;
         background-color: #009688;
     }
@@ -222,18 +222,19 @@
         background-color: #91F0F3;
         cursor: pointer;
     }
+
     /* footer */
-    .footer{
+    .footer {
         justify-content: center;
         background-color: #58BDFF;
     }
 
-    .footer-items{
+    .footer-items {
         display: flex;
         width: 100%;
     }
 
-    .contact-us{
+    .contact-us {
         justify-content: center;
         text-align: center;
         width: calc(100%/3);
@@ -246,20 +247,54 @@
         transition: var(--sub-color);
     }
 
-    .about-us{
+    .about-us {
         text-align: center;
         justify-content: center;
         width: calc(100%/3);
     }
 
-    .address{
+    .address {
         text-align: center;
         width: calc(100%/3);
     }
 
-    .copy-right{
+    .copy-right {
         text-align: center;
         justify-content: center;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        flex-direction: column;
+        top: 53px;
+        right: 50px;
+        border: 1px solid #000000;
+        z-index: 1000;
+        background-color: white;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 0px 20px 0px 20px;
+        height: 50px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .sign-up:hover .dropdown-content {
+        display: flex;
+    }
+
+    .main-menu .sign-up {
+        display: flex;
+        padding-left: 50px;
+        padding-right: 50px;
+        border: 1px solid #000;
+        height: 52px;
+        justify-content: center;
+        align-items: center;
     }
 </style>
 
@@ -267,10 +302,17 @@
     <!-- THANH BẢNG CHỌN -->
     <div id="wrapper">
         <nav id="nav-container">
-            <ul id="main-menu">
-                <li><a href="">GIÚP ĐỠ</a></li>
-                <li><a href="signup.php">ĐĂNG KÍ</a></li>
-                <li><a href="login.php">ĐĂNG NHẬP</a></li>
+            <ul class="main-menu">
+                <li class="btn"><a href="">GIÚP ĐỠ</a></li>
+                <li class="sign-up">
+                    <a href="">ĐĂNG KÍ</a>
+                    <div class="dropdown-content">
+                        <a href="#" id="">TÀI KHOẢN DOANH NGHIỆP</a>
+                        <a href="#" id="">TÀI KHOẢN HƯỚNG DẪN VIÊN</a>
+                        <a href="#" id="">TÀI KHOẢN KHÁCH HÀNG</a>
+                    </div>
+                </li>
+                <li class="btn"><a href="login.php">ĐĂNG NHẬP</a></li>
             </ul>
         </nav>
     </div>
@@ -365,7 +407,9 @@
             </div>
         </div>
 
-        <div class="copy-right"><p>&copy; Copyrights 2024. All rights reserved by Vu Thanh Tai</p></div>
+        <div class="copy-right">
+            <p>&copy; Copyrights 2024. All rights reserved by Vu Thanh Tai</p>
+        </div>
     </div>
 </body>
 <script>

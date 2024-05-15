@@ -1,6 +1,6 @@
 function confirmDelete(id) {
     // Hiển thị hộp thoại xác nhận
-    if (confirm('Bạn có chắc chắn muốn xóa khách hàng này không?')) {
+    if (confirm('Bạn có chắc chắn muốn xóa user này không?')) {
         deleteCustomer(id);  // Gọi hàm xóa nếu người dùng xác nhận
     }
     // Nếu người dùng nhấn "Không", không làm gì cả
@@ -18,9 +18,10 @@ function deleteCustomer(id) {
     .then(response => response.text())
     .then(data => {
         alert('Xóa thành công!');
-        window.location.reload();  // Tải lại trang để cập nhật danh sách
+        callmodCustomer();  // Tải lại trang để cập nhật danh sách
     })
     .catch(error => {
         console.error('Error:', error);
+        callmodCustomer();  // Tải lại trang để cập nhật danh sách
     });
 }

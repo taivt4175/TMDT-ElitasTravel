@@ -346,11 +346,9 @@ session_start();
                         // Làm gì đó với $userInfo
                         $id_user = $userInfo['id_user'];
                         $hoten = $userInfo['hoten'];
-                        $ecoin = $userInfo['ecoin'];
 
                         echo '<div class="info">' . $id_user . '</div><br>';
                         echo '<div class="info">' . $hoten . '</div><br>';
-                        echo '<div class="info">E-coin:' . $ecoin . '</div><br>';
                     }
                     ?>
                     <div class="dropdown-container">

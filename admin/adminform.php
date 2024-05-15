@@ -134,10 +134,12 @@
             <div class="dropdown">
                 <a href="#" id="qlkh" class="qlkh">Quản lí tour</a>
                 <div class="dropdown-content">
-                    <a href="#" id="add_customer">Thêm khách hàng</a>
-                    <a href="#" id="mod_customer">Chỉnh sửa thông tin khách hàng</a>
+                    <a href="#" id="add_tour" onclick="calladdtour()">Thêm Tour</a>
+                    <a href="#" id="mod_tour">Chỉnh Tour</a>
+                    <a href="#" id="request-list">Danh sách đặt tour</a>
                 </div>
             </div>
+
         </div>
 
         <div class="function-view" id="function-view">
