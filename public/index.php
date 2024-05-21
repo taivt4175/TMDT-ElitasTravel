@@ -296,6 +296,10 @@
         justify-content: center;
         align-items: center;
     }
+
+    .dropdown-content a:hover {
+        background-color: #009688;
+    }
 </style>
 
 <body>
@@ -307,9 +311,9 @@
                 <li class="sign-up">
                     <a href="">ĐĂNG KÍ</a>
                     <div class="dropdown-content">
-                        <a href="#" id="">TÀI KHOẢN DOANH NGHIỆP</a>
-                        <a href="#" id="">TÀI KHOẢN HƯỚNG DẪN VIÊN</a>
-                        <a href="#" id="">TÀI KHOẢN KHÁCH HÀNG</a>
+                        <a href="company-signup.php" id="">TÀI KHOẢN DOANH NGHIỆP</a>
+                        <a href="" id="">TÀI KHOẢN HƯỚNG DẪN VIÊN</a>
+                        <a href="signup.php" id="">TÀI KHOẢN KHÁCH HÀNG</a>
                     </div>
                 </li>
                 <li class="btn"><a href="login.php">ĐĂNG NHẬP</a></li>

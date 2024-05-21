@@ -124,8 +124,8 @@
     <div class="login_container">
       <form class="login-form" action="login.php" method="POST">
         <h1>ĐĂNG NHẬP</h1>
-        <h5>Username</h5>
-        <input type="text" class="input-login-username" name="username" />
+        <h5>Email:</h5>
+        <input type="text" class="input-login-username" name="email" />
         <h5>Password:</h5>
         <input type="password" class="input-login-password" name="password" />
         <p></p>

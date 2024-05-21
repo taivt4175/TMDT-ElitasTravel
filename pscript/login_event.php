@@ -1,13 +1,13 @@
 <?php
 session_start();
 require ('../connector/connect.php');
-$username = $conn->real_escape_string($_POST['username']);
+$email = $conn->real_escape_string($_POST['email']);
 $password = $conn->real_escape_string($_POST['password']);
 
 $password_md5 = md5($password);
 
 $sql_check = "SELECT * FROM user
-                WHERE username = '$username' and password = '$password_md5'";
+                WHERE email = '$email' and password = '$password_md5'";
 $result_check = $conn->query($sql_check);
 
 if ($result_check->num_rows > 0) {
