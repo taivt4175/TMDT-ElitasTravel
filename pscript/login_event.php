@@ -38,9 +38,24 @@ if ($result_check->num_rows > 0) {
             header('Location: ../admin/adminform.php');
             // Thực hiện các hành động cho Admin
             break;
-        case 'NV':
-            echo "Người dùng là Nhân viên";
-            // Thực hiện các hành động cho Nhân viên
+        case 'KS':
+            echo "Người dùng là KS";
+            $userInfo = [
+                'id_user' => $row['id_user'],
+                'hoten' => $row['hoten'],
+            ];
+            // Lưu vào session
+            $_SESSION['user_info'] = $userInfo;
+            header('Location: ../customer/index_company.php');
+            break;
+        case 'CT':
+            echo "Người dùng là Công ty";
+            break;
+        case 'NH':
+            echo "Người dùng là Nha hàng";
+            break;
+        case 'NX':
+            echo "Người dùng là Nhà xe";
             break;
         default:
             echo "Không xác định được loại người dùng";

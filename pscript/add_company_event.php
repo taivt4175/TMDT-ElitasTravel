@@ -33,7 +33,7 @@ if (mysqli_num_rows($result) > 0) {
     $madoanhnghiep = $com_type . $row['new_id'];
     // Thêm vào bảng user
     $stmt = $conn->prepare("INSERT INTO user (id_user, hoten, sdt, password, email) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssss", $madoanhnghiep, $company_name, $company_phone, $company_password, $company_email);
+    $stmt->bind_param("sssss", $madoanhnghiep, $company_name, $company_phone, md5($company_password), $company_email);
     if ($stmt->execute()) {
         // Thêm vào bảng chitietkh
         $com_type = $conn->real_escape_string($com_type);

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +22,7 @@
     #nav-container {
         display: flex;
         width: inherit;
+        height: inherit;
         background-color: #58BDFF;
     }
 
@@ -53,7 +57,7 @@
         padding-left: 50px;
         padding-right: 50px;
         border-left: 1px solid #000;
-        height: 70px;
+        height: inherit;
         width: 100px;
         justify-content: center;
         align-items: center;
@@ -61,7 +65,7 @@
 
     .userin4_container {
         border-left: 1px solid #000;
-        height: 70px;
+        height: inherit;
         width: 200px;
         align-items: center;
         position: relative;
@@ -80,7 +84,7 @@
     }
 
     .dropdown-container {
-        display: none;
+        display: NONE;
         position: absolute;
         background-color: white;
         top: 70px;
@@ -91,6 +95,7 @@
         display: flex;
         /* dàn nội dung theo hàng dọc */
         flex-direction: column;
+
     }
 
     .dropdown-container a {
@@ -109,6 +114,66 @@
         text-decoration: none;
     }
 
+    .functions-container {
+        display: flex;
+        width: 100%;
+    }
+
+    .function-menu {
+        border: 1px solid #000000;
+        border-radius: 10px;
+        width: 250px;
+        height: 500px;
+        margin: 10px 0px 0px 10px;
+    }
+
+    .function-view {
+        border: 1px solid #000000;
+        border-radius: 10px;
+        width: 1205px;
+        height: 500px;
+        margin: 10px 0px 0px 10px;
+        overflow: auto;
+    }
+
+    .function-menu a {
+        display: flex;
+        padding: 0px 0px 0px 20px;
+        align-items: center;
+        text-decoration: 0;
+        height: 50px;
+        /* padding: 20px 0px 0px 20px; */
+    }
+
+    .function-menu a:hover {
+        border-radius: 10px;
+        cursor: pointer;
+        background-color: #91F0F3;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        flex-direction: column;
+        top: auto;
+        left: 120px;
+        border: 1px solid #000000;
+        border-radius: 10px;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 0px 20px 0px 20px;
+        height: 50px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: flex;
+        background-color: white;
+    }
 </style>
 
 <body>
@@ -117,29 +182,68 @@
         <a href="../public/index.php" id="logo"><img src="../img/logo2.jpg" alt=""></a>
         <nav id="nav-container">
             <ul id="main-menu">
-                <a href="" id="btn">GIÚP ĐỠ</a>
-                <a href="" id="btn"><div style="margin: 0px 0px 0px 0px;">DỊCH VỤ CỦA TÔI</div></a>
+                <a href="" id="btn">HỖ TRỢ</a>
                 <div class="userin4_container">
-                    <div class="dropdown-container">
-                        <a href="">CHỈNH SỬA HỒ SƠ</a>
-                        <a href="">ĐĂNG XUẤT</a>
+                    <div class="userin4_container">
+                        <?php
+                        if (isset($_SESSION['user_info'])) {
+                            $userInfo = $_SESSION['user_info'];
+                            // Làm gì đó với $userInfo
+                            $id_user = $userInfo['id_user'];
+                            $hoten = $userInfo['hoten'];
+
+                            echo '<div class="info" id="id_user">' . $id_user . '</div><br>';
+                            echo '<div class="info" id="hoten">' . $hoten . '</div><br>';
+                        } else {
+                            echo '<div class="info" id="info">User không xác định!</div>';
+                        }
+                        ?>
+                        <div class="dropdown-container">
+                            <a href="">CHỈNH SỬA HỒ SƠ</a>
+                            <a href="#" onclick="logout()">ĐĂNG XUẤT</a>
+                        </div>
                     </div>
-                </div>
             </ul>
         </nav>
     </div>
 
-    <div class="container">
-        <h1>Chào mừng bạn đến với trang quản lý của công ty</h1>
-        <h2>Chọn chức năng bạn muốn thực hiện</h2>
-        <a href="index_company.php">Xem thông tin cá nhân</a>
-        <a href="index_company.php">Xem thông tin khách hàng</a>
-        <a href="index_company.php">Xem thông tin nhân viên</a>
-        <a href="index_company.php">Xem thông tin sản phẩm</a>
-        <a href="index_company.php">Xem thông tin đơn hàng</a>
-        <a href="index_company.php">Xem thông tin hóa đơn</a>
-        <a href="index_company.php">Xem thông tin chi phí</a>
-        <a href="index_company.php">Xem thông tin doanh thu</a>
-</body>
+    <div class="functions-container">
+        <div class="function-menu">
+            <div class="dropdown">
+                <a href="#" id="service_managerment" class="service_managerment">Quản lí dịch vụ của tôi</a>
+                <div class="dropdown-content">
+                    <a href="#" id="add_service" onclick="add_service();">Đăng tải dịch vụ</a>
+                    <a href="#" id="mod_service">Chỉnh sửa dịch vụ</a>
+                    <a href="#" id="service_request">Yêu cầu dịch vụ</a>
+                    <a href="#" id="service_rate">Đánh giá từ khách hàng</a>
+                </div>
+            </div>
 
-</html>
+            <div class="dropdown">
+                <a href="#" id="more" class="more">Khác</a>
+                <div class="dropdown-content">
+                    <a href="#" id="customer_list">Danh sách khách hàng</a>
+                    <a href="#" id="voucher">Voucher</a>
+                    <a href="#" id="statistic">Thống kê</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="function-view" id="function-view">
+        </div>
+    </div>
+</body>
+<script>
+    function add_service() {
+        var function_view = document.getElementById('function-view');
+        // Tải form add_service.php vào trong div function-view
+        function_view.innerHTML = '<iframe src="add_service.php" width="100%" height="100%"></iframe>';
+    }
+
+    function logout() {
+        // Xóa session
+        // Chuyển hướng về trang login
+        window.location.href = '../public/index.php';
+    }
+</script>
+</html >

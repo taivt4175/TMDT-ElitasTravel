@@ -307,7 +307,7 @@
     <div id="wrapper">
         <nav id="nav-container">
             <ul class="main-menu">
-                <li class="btn"><a href="">GIÚP ĐỠ</a></li>
+                <li class="btn"><a href="">HỖ TRỢ</a></li>
                 <li class="sign-up">
                     <a href="">ĐĂNG KÍ</a>
                     <div class="dropdown-content">
@@ -368,7 +368,7 @@
                 </div>
             </a>
 
-            <a href="">
+            <a href="product_bookhotel.php">
                 <div class="element">
                     <div class="element_icon"><i class="fa-regular fa-building"></i></div>
                     <div class="element_name">KHÁCH SẠN</div>
@@ -382,7 +382,7 @@
                 </div>
             </a>
 
-            <a href="destinations.php">
+            <a href="#">
                 <div class="element">
                     <div class="element_icon"><i class="fa-solid fa-map-location"></i></div>
                     <div class="element_name">Đ.DU LỊCH</div>
