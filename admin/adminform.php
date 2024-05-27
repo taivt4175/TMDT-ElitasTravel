@@ -105,15 +105,6 @@
             </div>
 
             <div class="dropdown">
-                <a href="#" id="qlkh" class="qlkh">Quản lí nhân viên</a>
-                <div class="dropdown-content">
-                    <a href="#" id="add_customer">Thêm nhân viên</a>
-                    <a href="#" id="mod_customer">Chỉnh sửa thông tin nhân viên</a>
-                    <a href="#" id="mod_customer">Phát lương</a>
-                </div>
-            </div>
-
-            <div class="dropdown">
                 <a href="#" id="qlkh" class="qlkh">Quản lí khách sạn</a>
                 <div class="dropdown-content">
                     <a href="#" id="add_customer">Thêm khách sạn</a>
@@ -137,6 +128,15 @@
                     <a href="#" id="add_tour" onclick="calladdtour()">Thêm Tour</a>
                     <a href="#" id="mod_tour">Chỉnh Tour</a>
                     <a href="#" id="request-list">Danh sách đặt tour</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <a href="#" id="qlkh" class="qlkh">Quản lí nhân viên</a>
+                <div class="dropdown-content">
+                    <a href="#" id="add_customer">Thêm nhân viên</a>
+                    <a href="#" id="mod_customer">Chỉnh sửa thông tin nhân viên</a>
+                    <a href="#" id="mod_customer">Phát lương</a>
                 </div>
             </div>
 

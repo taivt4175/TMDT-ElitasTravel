@@ -352,6 +352,7 @@ session_start();
                     }
                     ?>
                     <div class="dropdown-container">
+                        <a href="<?php echo ('request-list.php?id_user=' . $id_user); ?>" onclick="my_request_form()">YÊU CẦU CỦA TÔI</a>
                         <a href="">CHỈNH SỬA HỒ SƠ</a>
                         <a href="">ĐĂNG XUẤT</a>
                     </div>

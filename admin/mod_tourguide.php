@@ -89,7 +89,6 @@
                 <th>Lương cơ bản</th>
                 <th>Hệ số</th>
                 <th>Thưởng thêm</th>
-                <th>Tên đăng nhập</th>
                 <th>Mật khẩu</th>
                 <th>Chức năng</th>
             </tr>

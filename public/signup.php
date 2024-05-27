@@ -109,12 +109,11 @@
 
   <div class="signup">
     <div class="signup-container">
-
       <form class="signup-form" action="" method="POST">
         <h1>Đăng Ký</h1>
 
         <h5>Họ và Tên:</h5>
-        <input type="text" name="input-signup-name" class="input-signup-name" required />
+        <input type="text" name="name" class="input-signup-name" required />
 
         <h5>Ngày Sinh:</h5>
         <label for="day">Ngày:</label>
@@ -144,10 +143,7 @@
         <input type="text" name="email" class="email" required />
 
         <h5>Số Điện Thoại:</h5>
-        <input type="tel" name="input-signup-phone" class="input-signup-phone" required />
-
-        <h5>Tên tài khoản</h5>
-        <input type="text" class="username" name="username" required />
+        <input type="tel" name="tel" class="input-signup-phone" required />
 
         <h5>Password:</h5>
         <input type="password" name="password" class="input-signup-password" required />
@@ -158,16 +154,55 @@
         <div><a href="../public/login.php" class="signup_registerButton">Bạn đã có tài khoản</a></div>
 
         <div style="text-align: center;">
-          <button value="Đăng kí" class="signup_signInButton" onclick="sign_up()">Đăng kí</button>
+          <button value="Đăng kí" class="signup_signInButton" onclick="sign_up_z()">Đăng kí</button>
         </div>
       </form>
     </div>
   </div>
   <!-- <script src="../js/signup.js"></script> -->
   <script src="../js/signup2.js"></script>
-  <?php
-  // print_r($_POST);
-  ?>
+  <script>
+    function sign_up_z() {
+      // Lấy giá trị từ các trường input
+      var name = document.querySelector('.input-signup-name').value;
+      var day = document.querySelector('#day').value;
+      var month = document.querySelector('#month').value;
+      var year = document.querySelector('#year').value;
+      var gender = document.querySelector('input[name="gender"]:checked').value;
+      var email = document.querySelector('.email').value;
+      var tel = document.querySelector('.input-signup-phone').value;
+      var password = document.querySelector('.input-signup-password').value;
+      var cfPassword = document.querySelector('.input-signup-password').value;
+      var daybirth = year + '-' + month + '-' + day;
+
+      // Tạo một mảng data chứa các giá trị
+      var data = {
+        name: name,
+        daybirth: daybirth,
+        gender: gender,
+        email: email,
+        tel: tel,
+        password: password,
+        cfPassword: cfPassword
+      };
+
+      // Gửi request đến server
+      fetch('../pscript/signup_event.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then(response => response.text())
+        .then(data => {
+          alert(data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }
+  </script>
   <footer>
     <p>&copy; Copyrights 2024. All rights reserved by Vu Thanh Tai</p>
   </footer>

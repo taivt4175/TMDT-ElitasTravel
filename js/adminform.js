@@ -26,6 +26,9 @@ function callmodCustomer() {
             var script = document.createElement('script');
             script.src = '../js/delete_user.js';
             document.head.appendChild(script);
+            var script1 = document.createElement('script');
+            script1.src = '../js/edit_customer.js';
+            document.head.appendChild(script1);
         }
     };
     xhr.send();  // Gửi yêu cầu
@@ -54,10 +57,12 @@ function callmodtourguide() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             document.getElementById('function-view').innerHTML = xhr.responseText;  // Đặt nội dung phản hồi vào div
-            var script1 = document.createElement('script');
             var script = document.createElement('script');
             script.src = '../js/delete_user.js';
             document.head.appendChild(script);
+            var script1 = document.createElement('script');
+            script1.src = '../js/edit_tourguide.js';
+            document.head.appendChild(script1);
         }
     };
     xhr.send();  // Gửi yêu cầu

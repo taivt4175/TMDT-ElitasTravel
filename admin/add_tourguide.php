@@ -91,9 +91,6 @@
                 <h5>Số Điện Thoại:</h5>
                 <input type="tel" name="input-signup-phone" class="input-signup-phone" required />
 
-                <h5>Tên tài khoản</h5>
-                <input type="text" class="username" name="username" required />
-
                 <h5>Password:</h5>
                 <input type="password" name="password" class="input-signup-password" required />
 

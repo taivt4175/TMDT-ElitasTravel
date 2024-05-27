@@ -1,6 +1,6 @@
 <?php
 require ('../connector/connect.php');
-$sql = "SELECT u.id_user, u.hoten, u.gioitinh, u.ngaysinh, u.sdt, u.cccd, u.username, u.password, u.email
+$sql = "SELECT u.id_user, u.hoten, u.gioitinh, u.ngaysinh, u.sdt, u.cccd, u.password, u.email
             ,k.sl_ecoin, k.stk_momo, k.stk_bidv, k.mastercard, k.first
             FROM user u
             INNER JOIN chitietkh k ON u.id_user = k.id_user
@@ -18,21 +18,20 @@ if ($result->num_rows > 0) {
         $mastercard = $row['mastercard'] == 0 ? 'Chưa thiết lập' : $row['mastercard'];
         $cccd_display = $row['cccd'] == 0 ? 'Chưa thiết lập' : $row['cccd'];
         $first = $row['first'] == 0 ? 'Chưa' : 'Rồi';
-        echo "<tr>";
+        echo "<tr data-id='" . $row['id_user'] . "'>";
         echo "<td>" . $row['id_user'] . "</td>";
-        echo "<td>" . $row['hoten'] . "</td>";
-        echo "<td>" . $row['ngaysinh'] . "</td>";
-        echo "<td>" . $gender_display . "</td>";
-        echo "<td>" . $row['sdt'] . "</td>";
-        echo "<td>" . $row['email'] . "</td>";
-        echo "<td>" . $cccd_display . "</td>";
-        echo "<td>" . $row['sl_ecoin'] . "</td>";
-        echo "<td>" . $stkmomo_display . "</td>";
-        echo "<td>" . $stkbidv_display . "</td>";
-        echo "<td>" . $mastercard . "</td>";
-        echo "<td>" . $first . "</td>";
-        echo "<td>" . $row['username'] . "</td>";
-        echo "<td>" . $row['password'] . "</td>";
+        echo "<td contenteditable='true'>" . $row['hoten'] . "</td>";
+        echo "<td contenteditable='true'>" . $row['ngaysinh'] . "</td>";
+        echo "<td contenteditable='true'>" . $gender_display . "</td>";
+        echo "<td contenteditable='true'>" . $row['sdt'] . "</td>";
+        echo "<td contenteditable='true'>" . $row['email'] . "</td>";
+        echo "<td contenteditable='true'>" . $cccd_display . "</td>";
+        echo "<td contenteditable='true'>" . $row['sl_ecoin'] . "</td>";
+        echo "<td contenteditable='true'>" . $stkmomo_display . "</td>";
+        echo "<td contenteditable='true'>" . $stkbidv_display . "</td>";
+        echo "<td contenteditable='true'>" . $mastercard . "</td>";
+        echo "<td contenteditable='true'>" . $first . "</td>";
+        echo "<td contenteditable='true'>" . $row['password'] . "</td>";
         echo "<td>
                 <button onclick='editCustomer(\"" . $row['id_user'] . "\")'>Edit</button>
                 <button onclick='confirmDelete(\"" . $row['id_user'] . "\")'>Delete</button> 
