@@ -1,18 +1,16 @@
-<?php
-session_start();
+<?php 
+session_start(); 
 ?>
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/reset1.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>Customer Index</title>
-</head>
-<style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/reset1.css">
+        <title>Điểm du lịch</title>
+    </head>
+    <style>
     #wrapper {
         display: flex;
         width: 100%;
@@ -33,17 +31,6 @@ session_start();
         /* bỏ đi các dấu chấm */
         /* để các phần tử sát phải */
     }
-
-    /* 
-    #main-menu li {
-        display: flex;
-        padding-left: 50px;
-        padding-right: 50px;
-        border: 1px solid #000;
-        height: 52px;
-        justify-content: center;
-        align-items: center;
-    } */
 
     #main-menu #btn:hover {
         cursor: pointer;
@@ -94,14 +81,14 @@ session_start();
         flex-direction: column;
     }
 
-    .dropdown-container a{
+    .dropdown-container a {
         border-bottom: 1px solid #000;
         border-left: 1px solid #000;
         border-right: 1px solid #000;
         padding: 10px 10px 10px 10px;
     }
 
-    .dropdown-container a:hover{
+    .dropdown-container a:hover {
         cursor: pointer;
         background-color: #009688;
     }
@@ -330,150 +317,134 @@ session_start();
         padding: 0;
         margin: 0;
     }
-</style>
 
-<body>
-    <!-- THANH BẢNG CHỌN -->
-    <div id="wrapper">
-        <nav id="nav-container">
-            <ul id="main-menu">
-                <a href="" id="btn">GIÚP ĐỠ</a>
-                <a href="" id="btn">ĐẶT TOUR</a>
-                <div class="userin4_container">
-                    <?php
-                    if (isset($_SESSION['user_info'])) {
-                        $userInfo = $_SESSION['user_info'];
-                        // Làm gì đó với $userInfo
-                        $id_user = $userInfo['id_user'];
-                        $hoten = $userInfo['hoten'];
-
-                        echo '<div class="info">' . $id_user . '</div><br>';
-                        echo '<div class="info">' . $hoten . '</div><br>';
-                    }
-                    ?>
-                    <div class="dropdown-container">
-                        <a href="<?php echo ('request-list.php?id_user=' . $id_user); ?>" onclick="my_request_form()">YÊU CẦU CỦA TÔI</a>
-                        <a href="">CHỈNH SỬA HỒ SƠ</a>
-                        <a href="">ĐĂNG XUẤT</a>
-                    </div>
-                </div>
-            </ul>
-        </nav>
-    </div>
-
-    <!-- LOGO và THANH TÌM KIẾM -->
-    <div id="logo_search_bar_wrapper">
-        <a href="../public/index.php" id="logo"><img src="../img/logo2.jpg" alt=""></a>
-        <div class="search-container">
-            <form action="">
-                <input type="text" placeholder="Bạn muốn tìm gì? VD: 'khach san','nha xe gia re',..." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-    </div>
-
-    <!-- slide show và hình ảnh -->
-    <div class="img_slide_container">
-        <div class="auto_slide">
-            <div class="mySlides fade">
-                <img src="../img/tourdalat.jpg" style="width:100%; height:500px">
-            </div>
-
-            <div class="mySlides fade">
-                <img src="../img/tourdanang.jpg" style="width:100%; height:500px">
-            </div>
-
-            <div class="mySlides fade">
-                <img src="../img/tourphuquoc.png" style="width:100%; height:500px">
-            </div>
-        </div>
-        <div class="img_container">
-            <a href=""><img src="../img/nhaxethanhbuoi.jpg" alt=""></a>
-            <a href=""><img src="../img/hotel.jpg" alt=""></a>
-        </div>
-    </div>
-
-    <!-- danh mục -->
-    <div class="list_container">
-        <div class="list_name">DANH MỤC</div>
-        <div class="elements_container">
-            <a href="">
-                <div class="element">
-                    <div class="element_icon"><i class="fa-solid fa-flag"></i></div>
-                    <div class="element_name">TOUR</div>
-                </div>
-            </a>
-
-            <a href="">
-                <div class="element">
-                    <div class="element_icon"><i class="fa-solid fa-bus"></i></div>
-                    <div class="element_name">NHÀ XE</div>
-                </div>
-            </a>
-
-            <a href="">
-                <div class="element">
-                    <div class="element_icon"><i class="fa-regular fa-building"></i></div>
-                    <div class="element_name">KHÁCH SẠN</div>
-                </div>
-            </a>
-
-            <a href="">
-                <div class="element">
-                    <div class="element_icon"><i class="fa-solid fa-child-reaching"></i></div>
-                    <div class="element_name">H.DẪN VIÊN</div>
-                </div>
-            </a>
-
-            <a href="destinations.php">
-                <div class="element">
-                    <div class="element_icon"><i class="fa-solid fa-map-location"></i></div>
-                    <div class="element_name">Đ.DU LỊCH</div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="footer">
-        <div class="footer-items">
-            <div class="address">
-                <h2>Địa chỉ</h2>
-                <p>73 Nguyễn Huệ, phường 2 <br>thành phố Vĩnh Long, tỉnh Vĩnh Long</p>
-            </div>
-
-            <div class="about-us">
-
-            </div>
-
-            <div class="contact-us">
-                <h2>Liên hệ chúng tôi</h2>
-                <p>Website: http://elitastraver.com/ <br>Email: taivt4175@gmail.com</p>
-                <i class="fab fa-facebook"></i>
-                <i class="fab fa-youtube"></i>
-                <i class="fab fa-twitter"></i>
-            </div>
-        </div>
-
-        <div class="copy-right">
-            <p>&copy; Copyrights 2024. All rights reserved by Vu Thanh Tai</p>
-        </div>
-    </div>
-</body>
-<script>
-    var slideIndex = 0;
-    showSlides();
-
-    function showSlides() {
-        var i;
-        var slides = document.getElementsByClassName("mySlides");
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        slideIndex++;
-        if (slideIndex > slides.length) { slideIndex = 1 }
-        slides[slideIndex - 1].style.display = "block";
-        setTimeout(showSlides, 2000); // Change image every 2 seconds
+    .filter-bar {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        background-color: #00D4FF;
+        height: 80px;
     }
-</script>
 
-</html>
+    .filter-bar div {
+        font-size: 20px;
+        padding-right: 10px;
+        padding-left: 10px
+    }
+
+    .tinh-filter {
+        font-size: 20px;
+        height: 40px;
+        width: 200px;
+    }
+
+    .quanhuyen-filter {
+        font-size: 20px;
+        height: 40px;
+        width: 200px;
+        margin: 0px 0px 0px 10px;
+    }
+
+    .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    img {
+        width: 500px;
+        height: 300px;
+    }
+    </style>
+
+    <body>
+        <!-- THANH BẢNG CHỌN -->
+        <div id="wrapper">
+            <nav id="nav-container">
+                <ul id="main-menu">
+                    <a href="" id="btn">GIÚP ĐỠ</a>
+                    <a href="" id="btn">ĐẶT TOUR</a>
+                    <div class="userin4_container">
+                        <?php
+                        if (isset($_SESSION['user_info'])) {
+                            $userInfo = $_SESSION['user_info'];
+                            // Làm gì đó với $userInfo
+                            $id_user = $userInfo['id_user'];
+                            $hoten = $userInfo['hoten'];
+
+                            echo '<div class="info">' . $id_user . '</div><br>';
+                            echo '<div class="info">' . $hoten . '</div><br>';
+                            echo '
+                            <div class="dropdown-container">
+                                <a href="request-list.php"
+                                onclick="my_request_form()">YÊU CẦU CỦA TÔI</a>
+                                <a href="">CHỈNH SỬA HỒ SƠ</a>
+                                <a href="">ĐĂNG XUẤT</a>
+                            </div>
+                            ';
+                        } else {
+                            echo '<div class="info">Chưa đăng nhập</div>';
+                        }
+                        ?>
+
+                    </div>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- thanh filter -->
+        <div class="filter-bar">
+            <!-- <div>Lọc:</div>
+        <select name="tinh-filter" id="tinh-filter" class="tinh-filter" onchange="updateHuyen()">
+            <?php
+            // require ('../pscript/des_filter_event1.php');
+            ?>
+        </select>
+        <select name="quanhuyen-filter" id="quanhuyen-filter" class="quanhuyen-filter">
+            <?php
+            // require ('../pscript/des_filter_event2.php');
+            ?>
+        </select> -->
+        </div>
+
+        <div class="destination-info">
+            <h1>VĂN THÁNH MIẾU</h1>
+            <div class="image-container">
+                <img src="../img/VanThanhMieu.jpg" alt="">
+            </div>
+            <div class="destination-content">
+                Văn Thánh miếu Vĩnh Long tọa lạc trên một sở đất rộng, cặp bến bờ sông Long Hồ thuộc làng Long Hồ, Tỉnh
+                Long An, huyện Vĩnh Bình (nay thuộc phường 4, thành phố Vĩnh Long).
+
+                Người chủ xướng xây dựng công trình này là Kinh lược sứ Nam Kỳ Phan Thanh Giản và Đốc học Nguyễn Thông.
+                Căn cứ văn bia do Phan Thanh Giản soạn, thì:
+
+                Năm Kỷ Mùi, Tự Đức thứ 12 (1859), Gia Định, Biên Hòa, Định Tường nổi nhau thất thủ, sĩ phu ba tỉnh tỵ
+                địa qua bản tỉnh (ý nói Vĩnh Long) và các hạt An Giang, Hà Tiên. Lúc bấy giờ binh mã bận rộn, sĩ tử mang
+                bút tòng quân, việc học bỏ bê. Năm Tự Đức thứ 15 (1862), đốc học Nguyễn Thông họp các thân hào nhân sĩ
+                bàn việc ấy, chọn đất ở địa phận thôn Long Hồ, cách tỉnh thành hơn 2 dặm về hướng Đông Nam, phía trước
+                sông dài, phía sau là gò cao, hai bên vườn tược... Tháng 11 năm Tự Đức thứ 17 (Giáp Tý [1864]) khởi
+                công, tháng 9 năm nay hoàn thành (năm Bính Dần, 1866)[1]
+                Tuy trên danh nghĩa là đền Nho giáo, nhưng thực chất đây là một tụ điểm hoạt động văn hóa để cao các bậc
+                tiền hiền và giáo dục lòng yêu nước. Thế nhưng chỉ có mấy tháng sau, quân Pháp lại đem chiến thuyền uy
+                hiếp và chiếm thành Vĩnh Long lần thứ hai, Phan Thanh Giản tuẫn tiết, Nguyễn Thông tỵ địa ra Bình Thuận,
+                Pháp lấy cớ thiếu gỗ xây dựng đình thần Long Hồ (đình tỉnh trưởng) cố ý định phá bỏ Văn Thánh miếu. Lúc
+                đó ông Bá hộ Trương Ngọc Lang (tức Bá hộ Nộn-người Minh Hương) được đồng bào ở đây ra ngăn cản. Nhờ vậy
+                công trình văn hóa này mới tồn tại đến hôm nay.
+            </div>
+            <div><button>Xem tour liên quan đến điểm du lịch này</button></div>
+        </div>
+    </body>
+    <script>
+    function addTabToContent() {
+        const content = document.querySelector('.destination-content').innerHTML;
+        const lines = content.split('\n');
+        const indentedLines = lines.map(line => '\t' + line);
+        document.querySelector('.destination-content').innerHTML = indentedLines.join('\n');
+    }
+
+    // Gọi hàm để thêm tab vào nội dung
+    addTabToContent();
+    </script>
+
+    </html>

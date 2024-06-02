@@ -25,7 +25,7 @@ if ($result_check->num_rows > 0) {
             ];
             // Lưu vào session
             $_SESSION['user_info'] = $userInfo;
-            header('Location: ../customer/index_customer.php');
+            header('Location: index.php');
             // print_r($userInfo);
             // Thực hiện các hành động cho Khách hàng
             break;

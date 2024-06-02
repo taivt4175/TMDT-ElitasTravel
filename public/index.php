@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -125,6 +128,7 @@
         padding-right: 50px;
         border: 1px solid #000;
         height: 52px;
+        width: 100px;
         justify-content: center;
         align-items: center;
     }
@@ -263,18 +267,18 @@
         justify-content: center;
     }
 
-    .dropdown-content {
+    .dropdown-container {
         display: none;
         position: absolute;
         flex-direction: column;
-        top: 53px;
-        right: 50px;
+        top: 50px;
+        right: 60px;
         border: 1px solid #000000;
         z-index: 1000;
         background-color: white;
     }
 
-    .dropdown-content a {
+    .dropdown-container a {
         color: black;
         padding: 0px 20px 0px 20px;
         height: 50px;
@@ -283,40 +287,92 @@
         align-items: center;
     }
 
-    .sign-up:hover .dropdown-content {
-        display: flex;
-    }
-
-    .main-menu .sign-up {
+    .main-menu .signup {
         display: flex;
         padding-left: 50px;
         padding-right: 50px;
         border: 1px solid #000;
         height: 52px;
+        width: 100px;
         justify-content: center;
         align-items: center;
     }
 
-    .dropdown-content a:hover {
+    .signup:hover .dropdown-container {
+        display: flex;
+        /* dàn nội dung theo hàng dọc */
+        flex-direction: column;
+    }
+
+    .dropdown-container a:hover {
         background-color: #009688;
+    }
+
+    .userin4_container {
+        border-left: 1px solid #000;
+        height: 52px;
+        width: 240px;
+        align-items: center;
+        position: relative;
+        display: inline-block;
+    }
+
+    .userin4_container:hover {
+        background-color: #009688;
+        cursor: pointer;
+    }
+
+    .userin4_container .info {
+        padding: 0;
+        margin: 0;
+        height: 0px;
+    }
+
+    .userin4_container:hover .dropdown-container {
+        display: flex;
+        /* dàn nội dung theo hàng dọc */
+        flex-direction: column;
     }
 </style>
 
 <body>
-    <!-- THANH BẢNG CHỌN -->
     <div id="wrapper">
         <nav id="nav-container">
+            <a href="index.php" id="logo"><img src="img/logo2.jpg" alt=""></a>
             <ul class="main-menu">
-                <li class="btn"><a href="">HỖ TRỢ</a></li>
-                <li class="sign-up">
-                    <a href="">ĐĂNG KÍ</a>
-                    <div class="dropdown-content">
-                        <a href="company-signup.php" id="">TÀI KHOẢN DOANH NGHIỆP</a>
-                        <a href="" id="">TÀI KHOẢN HƯỚNG DẪN VIÊN</a>
-                        <a href="signup.php" id="">TÀI KHOẢN KHÁCH HÀNG</a>
+                <?php
+                if (isset($_SESSION['user_info'])) {
+                    $userInfo = $_SESSION['user_info'];
+                    // Làm gì đó với $userInfo
+                    $id_user = $userInfo['id_user'];
+                    $hoten = $userInfo['hoten'];
+                    echo '
+                    <li class="btn"><a href="">HỖ TRỢ</a></li>
+                    <a href="" class="btn">ĐẶT TOUR</a>
+                    ';
+                    echo '<div class="userin4_container">';
+                    echo '<div class="info">' . $id_user . '</div><br>';
+                    echo '<div class="info">' . $hoten . '</div><br>';
+                    echo '
+                    <div class="dropdown-container">
+                        <a href="request-list.php"
+                        onclick="my_request_form()">YÊU CẦU CỦA TÔI</a>
+                        <a href="">CHỈNH SỬA HỒ SƠ</a>
+                        <a href="" class="logout" onclick="log_out()">ĐĂNG XUẤT</a>
                     </div>
-                </li>
-                <li class="btn"><a href="login.php">ĐĂNG NHẬP</a></li>
+                    ';
+                } else {
+                    echo '<li class="btn"><a href="">HỖ TRỢ</a></li>';
+                    echo '<li class="signup"><a href="">ĐĂNG KÍ</a>
+                                <div class="dropdown-container">
+                                    <a href="company-signup.php" id="">TÀI KHOẢN DOANH NGHIỆP</a>
+                                    <a href="" id="">TÀI KHOẢN HƯỚNG DẪN VIÊN</a>
+                                    <a href="signup.php" id="">TÀI KHOẢN KHÁCH HÀNG</a>
+                                </div>
+                            </li>';
+                    echo '<li class="btn"><a href="login.php">ĐĂNG NHẬP</a></li>';
+                }
+                ?>
             </ul>
         </nav>
     </div>
@@ -382,7 +438,7 @@
                 </div>
             </a>
 
-            <a href="#">
+            <a href="destination.php">
                 <div class="element">
                     <div class="element_icon"><i class="fa-solid fa-map-location"></i></div>
                     <div class="element_name">Đ.DU LỊCH</div>
@@ -430,6 +486,17 @@
         if (slideIndex > slides.length) { slideIndex = 1 }
         slides[slideIndex - 1].style.display = "block";
         setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+
+    function log_out() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '../pscript/destroy_session.php', true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                alert(xhr.responseText);
+            }
+        };
+        xhr.send();
     }
 </script>
 
