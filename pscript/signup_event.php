@@ -34,6 +34,8 @@ if ($result_check->num_rows > 0) {
         $stmt2 = $conn->prepare("INSERT INTO chitietkh (id_user) VALUES (?)");
         $stmt2->bind_param("s", $newUserId);
         if ($stmt2->execute()) {
+            $sql4 = "INSERT INTO gioyeucau(id_user) VALUES ('$newUserId')";
+            $conn->query($sql4);
             echo "Đăng ký thành công!";
         } else {
             echo "Lỗi khi thêm vào bảng chitietkh: " . $conn->error;

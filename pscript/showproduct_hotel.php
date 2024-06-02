@@ -22,12 +22,13 @@
                             }
                         ?>
                     </div>
+                    <h2 class="product-name"><?php echo $row['madichvu']; ?></h2>
                     <h2 class="product-name"><?php echo $row['tendichvu']; ?></h2>
                     <div class="product-price">Giá: <?php echo $row['gia']; ?> VNĐ/<?php echo $row['donvitinh']; ?></div>
                     <div class="product-description"><?php echo $row['motadichvu']; ?></div>
                     <div class="product-button">
-                        <button>Xem chi tiết</button>
-                        <button>Thêm vào danh sách yêu cầu</button>
+                        <a href="chitietdichvu.php?id=<?php echo $row['madichvu']; ?>"><button>Xem chi tiết</button></a>
+                        <a href=""><button>Thêm vào danh sách yêu cầu</button></a>
                     </div>
                 </div>
             </div>

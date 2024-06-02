@@ -320,31 +320,15 @@ session_start();
         margin: 0;
     }
 
-    .filter-bar {
+    .image-container {
         display: flex;
-        text-align: center;
+        justify-content: center;
         align-items: center;
-        background-color: #00D4FF;
-        height: 80px;
     }
 
-    .filter-bar div {
-        font-size: 20px;
-        padding-right: 10px;
-        padding-left: 10px
-    }
-
-    .tinh-filter {
-        font-size: 20px;
-        height: 40px;
-        width: 200px;
-    }
-
-    .quanhuyen-filter {
-        font-size: 20px;
-        height: 40px;
-        width: 200px;
-        margin: 0px 0px 0px 10px;
+    .image-container img {
+        width: 500px;
+        height: 300px;
     }
 </style>
 
@@ -383,22 +367,35 @@ session_start();
         </nav>
     </div>
 
-    <!-- thanh filter -->
-    <div class="filter-bar">
-        <!-- <div>Lọc:</div>
-        <select name="tinh-filter" id="tinh-filter" class="tinh-filter" onchange="updateHuyen()">
-            <?php
-            // require ('../pscript/des_filter_event1.php');
-            ?>
-        </select>
-        <select name="quanhuyen-filter" id="quanhuyen-filter" class="quanhuyen-filter">
-            <?php
-            // require ('../pscript/des_filter_event2.php');
-            ?>
-        </select> -->
+    <?php
+    require ('../connector/connect.php');
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM dichvu WHERE madichvu = $id";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
+    ?>
+
+    <div class="image-container">
+        <img src="<?php echo $row['hinhanh']; ?>" alt="">
+    </div>
+    <div class="destination-content">
+        <?php
+        echo $row['motachitiet'];
+        ?>
+    </div>
+    <div>Đặt Ngay</div>
     </div>
 
-    
+
+    <form action="" method="post" enctype="multipart/form-data">
+        Select image to upload:
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload Image" name="submit">
+        <?php
+        require ('../img/upload.php');
+        ?>
+    </form>
+
 </body>
 
 </html>
