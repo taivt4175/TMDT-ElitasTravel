@@ -170,7 +170,7 @@ session_start();
     <!-- THANH BẢNG CHỌN -->
     <div id="wrapper">
         <nav id="nav-container">
-            <a href="index.php" id="logo"><img src="img/logo2.jpg" alt=""></a>
+            <a href="index.php" id="logo"><img src="../img/logo2.jpg" alt=""></a>
             <ul class="main-menu">
                 <?php
                 if (isset($_SESSION['user_info'])) {
@@ -187,14 +187,14 @@ session_start();
                     echo '<div class="info">' . $hoten . '</div><br>';
                     echo '
                     <div class="dropdown-container">
-                        <a href="request-list.php"
-                        onclick="my_request_form()">YÊU CẦU CỦA TÔI</a>
+                        <a href="../customer/request-list.php">YÊU CẦU CỦA TÔI</a>
                         <a href="">CHỈNH SỬA HỒ SƠ</a>
                         <a href="" class="logout" onclick="log_out()">ĐĂNG XUẤT</a>
                     </div>
                     ';
                     echo '</div>';
                 } else {
+                    echo '<li><a href="">HỖ TRỢ</a></li>';
                     echo '<li><a href="signup.php">ĐĂNG KÍ</a></li>';
                     echo '<li><a href="login.php">ĐĂNG NHẬP</a></li>';
                 }

@@ -336,6 +336,7 @@ session_start();
     <!-- THANH BẢNG CHỌN -->
     <div id="wrapper">
         <nav id="nav-container">
+            <a href="index.php" id="logo"><img src="../img/logo2.jpg" alt=""></a>
             <ul id="main-menu">
                 <a href="" id="btn">GIÚP ĐỠ</a>
                 <a href="" id="btn">ĐẶT TOUR</a>
@@ -358,7 +359,9 @@ session_start();
                             </div>
                             ';
                     } else {
-                        echo '<div class="info">Chưa đăng nhập</div>';
+                        echo '<li><a href="">HỖ TRỢ</a></li>';
+                        echo '<li><a href="signup.php">ĐĂNG KÍ</a></li>';
+                        echo '<li><a href="login.php">ĐĂNG NHẬP</a></li>';
                     }
                     ?>
 
@@ -383,19 +386,8 @@ session_start();
         echo $row['motachitiet'];
         ?>
     </div>
-    <div>Đặt Ngay</div>
+    <div><button>Đặt Ngay</button></div>
     </div>
-
-
-    <form action="" method="post" enctype="multipart/form-data">
-        Select image to upload:
-        <input type="file" name="fileToUpload" id="fileToUpload">
-        <input type="submit" value="Upload Image" name="submit">
-        <?php
-        require ('../img/upload.php');
-        ?>
-    </form>
-
 </body>
 
 </html>

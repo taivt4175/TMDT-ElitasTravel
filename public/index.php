@@ -355,7 +355,7 @@ session_start();
                     echo '<div class="info">' . $hoten . '</div><br>';
                     echo '
                     <div class="dropdown-container">
-                        <a href="request-list.php"
+                        <a href="../customer/request-list.php"
                         onclick="my_request_form()">YÊU CẦU CỦA TÔI</a>
                         <a href="">CHỈNH SỬA HỒ SƠ</a>
                         <a href="" class="logout" onclick="log_out()">ĐĂNG XUẤT</a>
