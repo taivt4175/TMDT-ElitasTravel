@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,90 +39,68 @@ session_start();
         margin: 0px 0px 0px 10px;
     }
 
-    /* product */
-    .product-container {
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .most-dest-wrapper {
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+        padding: 5px 5px 5px 5px;
+        margin: 5px 5px 5px 5px;
+        width: 100%;
+        overflow: auto;
+        border: 1px solid #000;
+    }
+
+    .destination-container {
         display: flex;
         flex-wrap: wrap;
-        flex-direction: column;
-        margin: 20px;
-        overflow: auto;
+        /* justify-content: center; */
     }
 
-    .product {
-        display: flex;
-        border: 1px solid #000;
-        border-radius: 10px;
-        margin: 10px;
-
-    }
-
-    .product-image {
-        width: 200px;
-        height: 200px;
-        border-radius: 10px;
-    }
-
-    .product-info {
-        padding: 10px;
-    }
-
-    /* chỗ để user info */
-    .userin4_container {
-        border-left: 1px solid #000;
-        height: 70px;
-        width: 200px;
-        align-items: center;
-        position: relative;
+    .destination {
         display: inline-block;
-    }
-
-    .userin4_container:hover {
-        background-color: #009688;
-        cursor: pointer;
-    }
-
-    .userin4_container .info {
-        padding: 0;
-        margin: 0;
-        height: 0px;
-    }
-
-    .dropdown-container {
-        display: none;
-        position: absolute;
-        background-color: white;
-        top: 70px;
-    }
-
-
-    .dropdown-container a {
-        border-bottom: 1px solid #000;
-        border-left: 1px solid #000;
-        border-right: 1px solid #000;
-        padding: 10px 10px 10px 10px;
-    }
-
-    .dropdown-container a:hover {
-        cursor: pointer;
-        background-color: #009688;
-    }
-
-    .userin4_container:hover .dropdown-container {
-        display: flex;
-        /* dàn nội dung theo hàng dọc */
         flex-direction: column;
+        border: 1px solid #000;
+        align-items: center;
+        margin: 5px;
+        width: auto;
+        font-size: 20px;
+        font-weight: bold;
     }
 
-    .product-container {
-        overflow-y: auto;
+    .des-info{
+        margin: 5px 5px 5px 5px;
+    }
+
+    .des-img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 230px;
+        height: 200px;
+        border: 1px solid #000;
+        margin: 5px 5px 10px 5px;
+    }
+
+    .des-img img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .des-info {
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
     }
 </style>
 
 <body>
-    <!-- THANH BẢNG CHỌN -->
     <div id="wrapper">
         <nav id="nav-container">
-            <a href="index.php" id="logo"><img src="../img/logoglobal.jpg" alt=""></a>
             <ul class="main-menu">
             <?php
                 if (isset($_SESSION['user_info'])) {
@@ -164,7 +139,7 @@ session_start();
             </ul>
         </nav>
     </div>
-    <!-- thanh filter -->
+    <!-- filter-bar -->
     <div class="filter-bar">
         <div>Lọc:</div>
         <select name="tinh-filter" id="tinh-filter" class="tinh-filter" onchange="updateHuyen()">
@@ -178,24 +153,37 @@ session_start();
             ?>
         </select>
     </div>
-    <!-- <script src="../js/destination.js"></script> -->
-    <div class="product-container">
-        <?php
-        require ('../pscript/showproduct_hotel.php');
-        ?>
+
+    <div class="most-dest-wrapper">
+        <h1>Xem nhiều nhất</h1>
+        <div class="destination-container">
+            <a href="" class="destination">
+                <div class="des-img">
+                    <img src="../img/uploads/phuquoc.jpg" alt="">
+                </div>
+                <div class="des-info">
+                    <div class="des-id"><i class="fa-solid fa-barcode"></i>: PQ0033</div>
+                    <div class="des-name"><i class="fa-solid fa-location-dot"></i> : Phú Quốc</div>
+                    <div class="seen"><i class="fa-solid fa-eye"></i>: 233</div>
+                </div>
+            </a>
+
+            <a href="" class="destination">
+                <div class="des-img">
+                    <img src="../img/uploads/vinhsang.jpg" alt="">
+                </div>
+                <div class="des-info">
+                    <div class="des-id"><i class="fa-solid fa-barcode"></i> : VLD0127</div>
+                    <div class="des-name"><i class="fa-solid fa-location-dot"></i> : KDL Vinh Sang</div>
+                    <div class="seen"><i class="fa-solid fa-eye"></i>: 349</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="des-container">
+        <h1>ĐIỂM DU LỊCH</h1>
     </div>
 </body>
-<script>
-    function log_out() {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', '../pscript/destroy_session.php', true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                alert(xhr.responseText);
-            }
-        };
-        xhr.send();
-    }
-</script>
 
 </html>

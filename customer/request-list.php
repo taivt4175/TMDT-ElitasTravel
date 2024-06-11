@@ -174,7 +174,7 @@
     <!-- THANH BẢNG CHỌN -->
     <div id="wrapper">
         <nav id="nav-container">
-            <a href="index.php" id="logo"><img src="../img/logo2.jpg" alt=""></a>
+            <a href="../public/index.php" id="logo"><img src="../img/logo2.jpg" alt=""></a>
             <ul class="main-menu">
                 <?php
                 if (isset($_SESSION['user_info'])) {
@@ -218,9 +218,15 @@
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
+            if ($row["daxacnhan"] == 0) {
+                $row["daxacnhan"] = "Chưa thanh toán";
+            } else {
+                $row["daxacnhan"] = "Đã thanh toán";
+            }
             echo "<div class='request-container'>";
-            echo "Mã dịch vụ: " . $row["madichvu"] . " - Số lượng: " . $row['sl'] . "- Ngày yêu cầu: " . $row["ngayyeucau"] . "<br/>";
-            echo "Ngày bắt đầu: " . $row["ngaybatdau"] . "-Ngày kết thúc: " . $row['ngayketthuc'] . "<br>";
+            echo "<h5>Trạng thái: " . $row["daxacnhan"] . "</h5>";
+            echo "Mã dịch vụ: " . $row["madichvu"] . "<br/>- Số lượng: " . $row['sl'] . "<br/>- Ngày yêu cầu: " . $row["ngayyeucau"] . "<br/>";
+            echo "- Ngày bắt đầu: " . $row["ngaybatdau"] . "<br/>- Ngày kết thúc: " . $row['ngayketthuc'] . "<br>";
             echo '<a href="../public/chitietdichvu.php?id=' . $row["madichvu"] . '">Xem chi tiết</a>';
             echo "</div>";
         }

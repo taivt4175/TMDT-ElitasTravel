@@ -1,8 +1,8 @@
 function updateHuyen() {
     var tinhId = document.getElementById('tinh-filter').value;
     var huyenSelect = document.getElementById('quanhuyen-filter');
-    print(tinhId);
-    // huyenSelect.innerHTML = '<option value="">Chọn Quận/Huyện</option>'; // Xóa huyện cũ
+    alert(tinhId);
+    huyenSelect.innerHTML = '<option value="">Chọn Quận/Huyện</option>'; // Xóa huyện cũ
 
     // if (tinhId) {
     //     // Gửi yêu cầu AJAX đến server để lấy danh sách huyện

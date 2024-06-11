@@ -13,7 +13,7 @@
   .logo_search_bar_wrapper {
     display: flex;
     width: 100vw;
-    background-color: #00F7FF;
+    background-color: #FFBF78;
     padding-top: 12px;
     padding-bottom: 12px;
     justify-content: space-between;
@@ -103,7 +103,7 @@
 <body>
   <!-- LOGO và THANH TÌM KIẾM -->
   <div class="logo_search_bar_wrapper">
-    <a href="index.php" class="logo"><img src="../img/logo2.jpg" alt=""></a>
+    <a href="index.php" class="logo"><img src="../img/logoglobal.jpg" alt=""></a>
     <a class="btn-back" href="index.php">QUAY LẠI</a>
   </div>
 

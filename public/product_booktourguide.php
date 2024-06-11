@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +9,7 @@ session_start();
     <link rel="stylesheet" href="../css/loginbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>Điểm du lịch</title>
+    <title>Hướng dẫn viên</title>
 </head>
 <style>
     /* thanh filter */
@@ -42,91 +40,60 @@ session_start();
         margin: 0px 0px 0px 10px;
     }
 
-    /* product */
-    .product-container {
+    .tourguide-container {
         display: flex;
-        flex-wrap: wrap;
         flex-direction: column;
-        margin: 20px;
+        /* flex-wrap: wrap; */
+        padding: 5px 5px 5px 5px;
+        margin: 5px 5px 5px 5px;
+        width: 100%;
         overflow: auto;
-    }
-
-    .product {
-        display: flex;
         border: 1px solid #000;
-        border-radius: 10px;
-        margin: 10px;
-
     }
 
-    .product-image {
-        width: 200px;
-        height: 200px;
-        border-radius: 10px;
-    }
-
-    .product-info {
-        padding: 10px;
-    }
-
-    /* chỗ để user info */
-    .userin4_container {
-        border-left: 1px solid #000;
-        height: 70px;
-        width: 200px;
-        align-items: center;
-        position: relative;
-        display: inline-block;
-    }
-
-    .userin4_container:hover {
-        background-color: #009688;
-        cursor: pointer;
-    }
-
-    .userin4_container .info {
-        padding: 0;
-        margin: 0;
-        height: 0px;
-    }
-
-    .dropdown-container {
-        display: none;
-        position: absolute;
-        background-color: white;
-        top: 70px;
-    }
-
-
-    .dropdown-container a {
-        border-bottom: 1px solid #000;
-        border-left: 1px solid #000;
-        border-right: 1px solid #000;
-        padding: 10px 10px 10px 10px;
-    }
-
-    .dropdown-container a:hover {
-        cursor: pointer;
-        background-color: #009688;
-    }
-
-    .userin4_container:hover .dropdown-container {
+    .autoscroll {
         display: flex;
-        /* dàn nội dung theo hàng dọc */
-        flex-direction: column;
+        flex-direction: row;
+        white-space: nowrap;
+        /* Ngăn các phần tử xuống dòng */
+        width: 100%;
     }
 
-    .product-container {
-        overflow-y: auto;
+    .tourguide {
+        display: inline-block;
+        flex-direction: column;
+        border: 1px solid #000;
+        align-items: center;
+        margin: 5px;
+        width: auto;
+    }
+
+    .tourguide-img {
+        width: 250px;
+        height: 200px;
+        border: 1px solid #000;
+        margin: 5px 5px 10px 5px;
+    }
+
+    .tourguide-img img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .tourguide-info {
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        padding: 5px;
+        font-size: 20px;
+        font-weight: bold;
     }
 </style>
 
 <body>
-    <!-- THANH BẢNG CHỌN -->
-    <div id="wrapper">
+<div id="wrapper">
         <nav id="nav-container">
-            <a href="index.php" id="logo"><img src="../img/logoglobal.jpg" alt=""></a>
-            <ul class="main-menu">
+            <div class="main-menu">
             <?php
                 if (isset($_SESSION['user_info'])) {
                     $userInfo = $_SESSION['user_info'];
@@ -161,10 +128,10 @@ session_start();
                     echo '<a href="login.php" class="btn">ĐĂNG NHẬP</a>';
                 }
                 ?>
-            </ul>
+            </div>
         </nav>
     </div>
-    <!-- thanh filter -->
+    <!-- filter-bar -->
     <div class="filter-bar">
         <div>Lọc:</div>
         <select name="tinh-filter" id="tinh-filter" class="tinh-filter" onchange="updateHuyen()">
@@ -178,24 +145,49 @@ session_start();
             ?>
         </select>
     </div>
-    <!-- <script src="../js/destination.js"></script> -->
-    <div class="product-container">
-        <?php
-        require ('../pscript/showproduct_hotel.php');
-        ?>
+    <!-- tourguide-container -->
+    <div class="tourguide-container">
+        <h1>BOOK NHIỀU NHẤT</h1>
+        <div class="autoscroll" behavior="scroll" direction="left" onmouseover="this.stop();"
+            onmouseout="this.start();">
+            <!-- vòng lặp đặt tại đây  -->
+            <div class="tourguide">
+                <div class="tourguide-img"><img src="../img/uploads/trung.jpg" alt=""></div>
+                <div class="tourguide-info">
+                    <div class="tourguide-name">Lưu Đinh Quốc Trung</div>
+                    <div class="tourguide-phone"><i class="fa-solid fa-mobile"></i>: 0123456789</div>
+                    <div class="bookingtime"><i class="fa-solid fa-chart-simple"></i>: 29</div>
+                    <div class="booking-price"><i class="fa-solid fa-dollar-sign"></i>: Thương lượng</div>
+                    <div class="action">
+                        <a class="action4tourguide" href="">
+                            <div>Xem chi tiết</div>
+                        </a>
+                        <a class="action4tourguide" href="">
+                            <div>Book ngay</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tourguide">
+                <div class="tourguide-img"><img src="../img/uploads/nam.png" alt=""></div>
+                <div class="tourguide-info">
+                    <div class="tourguide-name">Nguyễn Hải Nam</div>
+                    <div class="tourguide-phone"><i class="fa-solid fa-mobile"></i>: 0123456789</div>
+                    <div class="bookingtime"><i class="fa-solid fa-chart-simple"></i>: 32</div>
+                    <div class="booking-price"><i class="fa-solid fa-dollar-sign"></i>: Thương lượng</div>
+                    <div class="action">
+                        <a class="action4tourguide" href="">
+                            <div>Xem chi tiết</div>
+                        </a>
+                        <a class="action4tourguide" href="">
+                            <div>Book ngay</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
-<script>
-    function log_out() {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', '../pscript/destroy_session.php', true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                alert(xhr.responseText);
-            }
-        };
-        xhr.send();
-    }
-</script>
 
 </html>

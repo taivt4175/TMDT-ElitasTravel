@@ -116,7 +116,7 @@
 <body>
   <!-- LOGO và THANH TÌM KIẾM -->
   <div id="logo_search_bar_wrapper">
-    <a href="index.php" id="logo"><img src="../img/logo2.jpg" alt=""></a>
+    <a href="index.php" id="logo"><img src="../img/logoglobal.jpg" alt=""></a>
     <button class="btn-back">QUAY LẠI</button>
   </div>
   <!-- from login -->

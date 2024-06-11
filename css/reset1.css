@@ -14,7 +14,8 @@
     line-height: 1.15; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */
     width: 100%;
-    overflow-x: hidden; /* Ngăn chặn scrollbar ngang nếu không cần thiết */
+    overflow-x: hidden;
+     /* Ngăn chặn scrollbar ngang nếu không cần thiết */
   }
   
   /* Sections
@@ -28,7 +29,9 @@
     margin: 0;
     padding: 0;
     width: 100%;
-    overflow-x: hidden; /* Ngăn chặn scrollbar ngang nếu không cần thiết */
+    /* Ngăn chặn scrollbar ngang nếu không cần thiết */
+    overflow-x: hidden; 
+    overflow-y: hidden;
   }
   
   /**

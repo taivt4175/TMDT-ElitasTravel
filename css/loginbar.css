@@ -1,0 +1,113 @@
+/* Thanh bảng chọn */
+#wrapper {
+    display: flex;
+    width: 100vw;
+}
+
+#nav-container {
+    display: flex;
+    width: inherit;
+    background-color: #3572EF;
+}
+
+.main-menu {
+    width: inherit;
+    display: inline-flex;
+    justify-content: flex-end;
+    list-style: none;
+    margin: 0;
+    /* bỏ đi các dấu chấm */
+    /* để các phần tử sát phải */
+}
+
+.main-menu .btn {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    padding-left: 50px;
+    padding-right: 50px;
+    height: 52px;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-menu .btn:hover {
+    cursor: pointer;
+    background-color: #050C9C;
+}
+
+.dropdown-container {
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    top: 50px;
+    right: 60px;
+    border: 1px solid #000000;
+    z-index: 1000;
+    background-color: #3572EF;
+}
+
+.dropdown-container a {
+    color: white;
+    padding: 0px 20px 0px 20px;
+    height: 50px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.main-menu .signup {
+    display: flex;
+    padding-left: 50px;
+    padding-right: 50px;
+    height: 52px;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.signup:hover {
+    background-color: #050C9C;
+    cursor: pointer;
+}
+
+.signup:hover .dropdown-container {
+    display: flex;
+    /* dàn nội dung theo hàng dọc */
+    flex-direction: column;
+}
+
+.dropdown-container a:hover {
+    background-color: #050C9C;
+}
+
+.userin4_container {
+    border-left: 1px solid #000;
+    height: 52px;
+    width: 240px;
+    align-items: center;
+    position: relative;
+    display: inline-block;
+}
+
+.userin4_container:hover {
+    background-color: #050C9C;
+    cursor: pointer;
+}
+
+.userin4_container .info {
+    padding: 0;
+    margin: 0;
+    height: 0px;
+}
+
+.userin4_container:hover .dropdown-container {
+    display: flex;
+    /* dàn nội dung theo hàng dọc */
+    flex-direction: column;
+}

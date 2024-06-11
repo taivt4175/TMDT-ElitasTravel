@@ -3,14 +3,14 @@
     $sql = "SELECT * FROM dichvu WHERE id_user LIKE 'KS%'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) { ?>
+        while ($row = $result->fetch_assoc()) {
+            echo '
             <div class="product">
                 <div class="product-image">
                     <img src="../img/phongks.jpg" alt="" style="width: 200px; height: 200px;">
                 </div>
                 <div class="product-info">
-                    <div class="company-name">Khách sạn:
-                        <?php
+                    <div class="company-name">Khách sạn:';
                             $sql1 = "SELECT * FROM user WHERE id_user = '".$row['id_user']."'";
                             $result1 = $conn->query($sql1);
                             if ($result1->num_rows > 0) {
@@ -20,19 +20,17 @@
                             } else {
                                 echo "0 results";
                             }
-                        ?>
-                    </div>
-                    <h2 class="product-name"><?php echo $row['madichvu']; ?></h2>
-                    <h2 class="product-name"><?php echo $row['tendichvu']; ?></h2>
-                    <div class="product-price">Giá: <?php echo $row['gia']; ?> VNĐ/<?php echo $row['donvitinh']; ?></div>
-                    <div class="product-description"><?php echo $row['motadichvu']; ?></div>
-                    <div class="product-button">
-                        <a href="chitietdichvu.php?id=<?php echo $row['madichvu']; ?>"><button>Xem chi tiết</button></a>
-                        <a href=""><button>Thêm vào danh sách yêu cầu</button></a>
-                    </div>
-                </div>
-            </div>
-        <?php }
+                echo '</div>';
+                echo '<h2 class="product-name">'. $row['tendichvu'].'</h2>';
+                echo '<div class="product-price">Giá:'.$row['gia'].'VNĐ/'.$row['donvitinh'].'</div>';
+                echo '<div class="product-description">'.$row['motadichvu'].'</div>';
+                echo '<div class="product-button">';
+                echo '<a href="chitietdichvu.php?id='.$row['madichvu'].'"<button>Xem chi tiết</button></a>';
+                echo '<a href=""><button>Thêm vào danh sách yêu cầu</button></a>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+        }
     } else {
         echo "0 results";
     }

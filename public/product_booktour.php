@@ -1,4 +1,4 @@
-<?php
+<a?php
 session_start();
 ?>
 <!DOCTYPE html>
@@ -11,7 +11,7 @@ session_start();
     <link rel="stylesheet" href="../css/loginbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>Điểm du lịch</title>
+    <title>Tour</title>
 </head>
 <style>
     /* thanh filter */
@@ -42,90 +42,66 @@ session_start();
         margin: 0px 0px 0px 10px;
     }
 
-    /* product */
-    .product-container {
+    .mostbook-container {
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+        border: 1px solid #000;
+        border-radius: 5px;
+        margin: 5px 5px 5px 5px;
+    }
+
+    .mostbook-container h1 {
+        margin: 5px 5px 5px 5px;
+    }
+
+    .tours-container {
         display: flex;
         flex-wrap: wrap;
-        flex-direction: column;
-        margin: 20px;
-        overflow: auto;
-    }
-
-    .product {
-        display: flex;
-        border: 1px solid #000;
-        border-radius: 10px;
-        margin: 10px;
-
-    }
-
-    .product-image {
-        width: 200px;
-        height: 200px;
-        border-radius: 10px;
-    }
-
-    .product-info {
-        padding: 10px;
-    }
-
-    /* chỗ để user info */
-    .userin4_container {
-        border-left: 1px solid #000;
-        height: 70px;
-        width: 200px;
-        align-items: center;
-        position: relative;
-        display: inline-block;
-    }
-
-    .userin4_container:hover {
-        background-color: #009688;
-        cursor: pointer;
-    }
-
-    .userin4_container .info {
-        padding: 0;
-        margin: 0;
-        height: 0px;
-    }
-
-    .dropdown-container {
-        display: none;
-        position: absolute;
-        background-color: white;
-        top: 70px;
-    }
-
-
-    .dropdown-container a {
-        border-bottom: 1px solid #000;
-        border-left: 1px solid #000;
-        border-right: 1px solid #000;
-        padding: 10px 10px 10px 10px;
-    }
-
-    .dropdown-container a:hover {
-        cursor: pointer;
-        background-color: #009688;
-    }
-
-    .userin4_container:hover .dropdown-container {
-        display: flex;
-        /* dàn nội dung theo hàng dọc */
-        flex-direction: column;
-    }
-
-    .product-container {
+        padding: 5px 5px 5px 5px;
+        margin: 5px 5px 5px 5px;
+        width: 100%;
         overflow-y: auto;
+    }
+
+    .tour {
+        display: flex;
+        flex-direction: column;
+        margin: 5px 5px 5px 5px;
+        width: auto;
+        border: 1px solid #000;
+        border-radius: 5px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .tour-img {
+        width: 250px;
+        height: 200px;
+        border: 1px solid #000;
+        margin: 5px 5px 10px 5px;
+    }
+
+    .tour-img img {
+        width: 100%;
+        height: 100%;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .tour-info {
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        padding: 5px;
     }
 </style>
 
 <body>
-    <!-- THANH BẢNG CHỌN -->
     <div id="wrapper">
         <nav id="nav-container">
-            <a href="index.php" id="logo"><img src="../img/logoglobal.jpg" alt=""></a>
             <ul class="main-menu">
             <?php
                 if (isset($_SESSION['user_info'])) {
@@ -164,38 +140,33 @@ session_start();
             </ul>
         </nav>
     </div>
-    <!-- thanh filter -->
-    <div class="filter-bar">
-        <div>Lọc:</div>
-        <select name="tinh-filter" id="tinh-filter" class="tinh-filter" onchange="updateHuyen()">
-            <?php
-            require ('../pscript/des_filter_event1.php');
-            ?>
-        </select>
-        <select name="quanhuyen-filter" id="quanhuyen-filter" class="quanhuyen-filter">
-            <?php
-            require ('../pscript/des_filter_event2.php');
-            ?>
-        </select>
-    </div>
-    <!-- <script src="../js/destination.js"></script> -->
-    <div class="product-container">
-        <?php
-        require ('../pscript/showproduct_hotel.php');
-        ?>
+    <!-- sản phẩm -->
+    <div class="mostbook-container">
+        <h1>Đặt nhiều nhất</h1>
+        <div class="tours-container">
+            <a href="" class="tour">
+                <div class="tour-img">
+                    <img src="../img/tourdalat.jpg" alt="">
+                </div>
+                <div class="tour-info">
+                    <div class="tour-id"><i class="fa-solid fa-barcode"></i>: VLDL0003</div>
+                    <div class="tour-name"><i class="fa-solid fa-location-dot"></i>: Vĩnh Long - Đà Lạt</div>
+                    <div class="tour-price"><i class="fa-solid fa-dollar-sign"></i>: 1000000</div>
+                </div>
+            </a>
+
+            <a href="" class="tour">
+                <div class="tour-img">
+                    <img src="../img/tourphuquoc.png" alt="">
+                </div>
+                <div class="tour-info">
+                    <div class="tour-id"><i class="fa-solid fa-barcode"></i>: VLPQ0033</div>
+                    <div class="tour-name"><i class="fa-solid fa-location-dot"></i>: Vĩnh Long - Phú Quốc</div>
+                    <div class="tour-price"><i class="fa-solid fa-dollar-sign"></i>: 2000000</div>
+                </div>
+            </a>
+        </div>
     </div>
 </body>
-<script>
-    function log_out() {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', '../pscript/destroy_session.php', true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                alert(xhr.responseText);
-            }
-        };
-        xhr.send();
-    }
-</script>
 
 </html>

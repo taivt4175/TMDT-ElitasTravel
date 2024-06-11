@@ -13,9 +13,63 @@ session_start();
     <title>Trang chủ</title>
 </head>
 <style>
+    /* Thanh bảng chọn */
+    #wrapper {
+        display: flex;
+        width: 100vw;
+    }
+
+    #nav-container {
+        display: flex;
+        width: inherit;
+        background-color: #3572EF;
+    }
+
+    .main-menu {
+        width: inherit;
+        display: inline-flex;
+        justify-content: flex-end;
+        list-style: none;
+        margin: 0;
+        /* bỏ đi các dấu chấm */
+        /* để các phần tử sát phải */
+    }
+
+    .main-menu .btn {
+        display: flex;
+        padding-left: 50px;
+        padding-right: 50px;
+        height: 52px;
+        width: 100px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main-menu .btn:hover {
+        cursor: pointer;
+        background-color: #050C9C;
+    }
+
     /* Thanh logo và  tìm kiếm */
+    #logo_search_bar_wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        background-color: #3ABEF9;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    #logo_search_bar_wrapper img {
+        width: 250px;
+        height: 80px;
+    }
+
     a {
         text-decoration: none;
+        color: white;
+        font-weight: bold;
     }
 
     #logo_search_bar_wrapper input[type=text] {
@@ -37,13 +91,12 @@ session_start();
     }
 
     #logo_search_bar_wrapper .search-container button:hover {
-        background: #ccc;
+        background: #050C9C;
     }
 
     .search-container {
-        width: 70%;
+        margin: 0px 15px 0px 0px;
         padding-left: 10px;
-        padding-top: 15px;
     }
 
     .search-container form {
@@ -52,7 +105,7 @@ session_start();
 
     #logo_search_bar_wrapper .search-container {
         float: none;
-        width: calc(100% - 400px);
+        width: 500px;
     }
 
     #logo_search_bar_wrapper input[type=text] {
@@ -74,68 +127,9 @@ session_start();
         padding: 14px;
     }
 
-    #logo_search_bar_wrapper a {
-        float: none;
-        text-align: left;
-        display: inline-block;
-        /* Đảm bảo phần tử cha co lại theo độ rộng của phần tử con */
-        width: auto;
-        /* Độ rộng tự động phù hợp với phần tử con */
-        margin: 0;
-        padding-right: 14px;
-        padding-left: 14px;
-        text-decoration: none;
-    }
-
     #logo_search_bar_wrapper input[type=text] {
         border: 1px solid #ccc;
         width: calc(100% - 45px);
-    }
-
-    #logo_search_bar_wrapper {
-        display: flex;
-        width: 100vw;
-        background-color: #00F7FF;
-        padding-top: 12px;
-        padding-bottom: 12px;
-    }
-
-    /* Thanh bảng chọn */
-    #wrapper {
-        display: flex;
-        width: 100vw;
-    }
-
-    #nav-container {
-        display: flex;
-        width: inherit;
-        background-color: #58BDFF;
-    }
-
-    .main-menu {
-        width: inherit;
-        display: inline-flex;
-        justify-content: flex-end;
-        list-style: none;
-        margin: 0;
-        /* bỏ đi các dấu chấm */
-        /* để các phần tử sát phải */
-    }
-
-    .main-menu .btn {
-        display: flex;
-        padding-left: 50px;
-        padding-right: 50px;
-        border: 1px solid #000;
-        height: 52px;
-        width: 100px;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .main-menu li:hover {
-        cursor: pointer;
-        background-color: #009688;
     }
 
     /* Thanh hình ảnh và slide tự động */
@@ -184,7 +178,7 @@ session_start();
 
     /* DANH MỤC */
     .list_container {
-        background-color: #00F7FF;
+        background-color: #3ABEF9;
         height: 150px;
         padding: 15px 15px 15px 15px;
         margin: 0;
@@ -223,14 +217,14 @@ session_start();
     }
 
     .elements_container a:hover {
-        background-color: #91F0F3;
+        background-color: #050C9C;
         cursor: pointer;
     }
 
     /* footer */
     .footer {
         justify-content: center;
-        background-color: #58BDFF;
+        background-color: #3572EF;
     }
 
     .footer-items {
@@ -239,6 +233,7 @@ session_start();
     }
 
     .contact-us {
+        color: white;
         justify-content: center;
         text-align: center;
         width: calc(100%/3);
@@ -252,17 +247,20 @@ session_start();
     }
 
     .about-us {
+        color: white;
         text-align: center;
         justify-content: center;
         width: calc(100%/3);
     }
 
     .address {
+        color: white;
         text-align: center;
         width: calc(100%/3);
     }
 
     .copy-right {
+        color: white;
         text-align: center;
         justify-content: center;
     }
@@ -275,11 +273,11 @@ session_start();
         right: 60px;
         border: 1px solid #000000;
         z-index: 1000;
-        background-color: white;
+        background-color: #3572EF;
     }
 
     .dropdown-container a {
-        color: black;
+        color: white;
         padding: 0px 20px 0px 20px;
         height: 50px;
         text-decoration: none;
@@ -291,11 +289,18 @@ session_start();
         display: flex;
         padding-left: 50px;
         padding-right: 50px;
-        border: 1px solid #000;
         height: 52px;
         width: 100px;
         justify-content: center;
         align-items: center;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+    }
+
+    .signup:hover {
+        background-color: #050C9C;
+        cursor: pointer;
     }
 
     .signup:hover .dropdown-container {
@@ -305,7 +310,7 @@ session_start();
     }
 
     .dropdown-container a:hover {
-        background-color: #009688;
+        background-color: #050C9C;
     }
 
     .userin4_container {
@@ -318,7 +323,7 @@ session_start();
     }
 
     .userin4_container:hover {
-        background-color: #009688;
+        background-color: #050C9C;
         cursor: pointer;
     }
 
@@ -333,13 +338,37 @@ session_start();
         /* dàn nội dung theo hàng dọc */
         flex-direction: column;
     }
+
+    .list {
+        display: flex;
+        height: 80px;
+        width: 800px;
+        align-items: center;
+    }
+
+    .list a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 160px;
+        height: 80px;
+        padding: 0px 10px 0px 10px;
+        /* margin: 10px; */
+        text-decoration: none;
+        color: white;
+        font-size: 15px;
+    }
+
+    .list a:hover {
+        background-color: #050C9C;
+        cursor: pointer;
+    }
 </style>
 
 <body>
     <div id="wrapper">
         <nav id="nav-container">
-            <a href="index.php" id="logo"><img src="img/logo2.jpg" alt=""></a>
-            <ul class="main-menu">
+            <div class="main-menu">
                 <?php
                 if (isset($_SESSION['user_info'])) {
                     $userInfo = $_SESSION['user_info'];
@@ -347,7 +376,7 @@ session_start();
                     $id_user = $userInfo['id_user'];
                     $hoten = $userInfo['hoten'];
                     echo '
-                    <li class="btn"><a href="">HỖ TRỢ</a></li>
+                    <a href="" class="btn">HỖ TRỢ</a>
                     <a href="" class="btn">ĐẶT TOUR</a>
                     ';
                     echo '<div class="userin4_container">';
@@ -362,26 +391,47 @@ session_start();
                     </div>
                     ';
                 } else {
-                    echo '<li class="btn"><a href="">HỖ TRỢ</a></li>';
-                    echo '<li class="signup"><a href="">ĐĂNG KÍ</a>
-                                <div class="dropdown-container">
-                                    <a href="company-signup.php" id="">TÀI KHOẢN DOANH NGHIỆP</a>
-                                    <a href="" id="">TÀI KHOẢN HƯỚNG DẪN VIÊN</a>
-                                    <a href="signup.php" id="">TÀI KHOẢN KHÁCH HÀNG</a>
-                                </div>
-                            </li>';
-                    echo '<li class="btn"><a href="login.php">ĐĂNG NHẬP</a></li>';
+                    echo '<a href="" class="btn">HỖ TRỢ</a>';
+                    echo '<div class="signup">
+                            <div>ĐĂNG KÍ</div>
+                            <div class="dropdown-container">
+                                <a href="signup.php" id="customer-account">TÀI KHOẢN KHÁCH HÀNG</a>
+                                <a href="tourguide-signup.php" id="instructor-account">TÀI KHOẢN HƯỚNG DẪN VIÊN</a>
+                                <a href="company-signup.php" id="company-account">TÀI KHOẢN DOANH NGHIỆP</a>
+                            </div>
+                        </div>';
+                    echo '<a href="login.php" class="btn">ĐĂNG NHẬP</a>';
                 }
                 ?>
-            </ul>
+            </div>
         </nav>
     </div>
     <!-- LOGO và THANH TÌM KIẾM -->
     <div id="logo_search_bar_wrapper">
-        <a href="index.php" id="logo"><img src="../img/logo2.jpg" alt=""></a>
+        <a href="index.php" id="logo"><img src="../img/mainlogo.png" alt=""></a>
+        <div class="list">
+            <a href="product_booktour.php">
+                <div>Tour</div>
+            </a>
+            <a href="product_booktourguide.php">
+                <div>Hướng dẫn viên</div>
+            </a>
+            <a href="product_destination.php">
+                <div>Điểm tham quan</div>
+            </a>
+            <a href="product_bookhotel.php">
+                <div>Khách sạn</div>
+            </a>
+            <a href="">
+                <div>Nhà hàng</div>
+            </a>
+            <a href="">
+                <div>Nhà xe</div>
+            </a>
+        </div>
         <div class="search-container">
             <form action="">
-                <input type="text" placeholder="Bạn muốn tìm gì? VD: 'khach san','nha xe gia re',..." name="search">
+                <input type="text" placeholder="Bạn muốn tìm gì?" name="search">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
@@ -404,46 +454,6 @@ session_start();
         <div class="img_container">
             <a href=""><img src="../img/nhaxethanhbuoi.jpg" alt=""></a>
             <a href=""><img src="../img/hotel.jpg" alt=""></a>
-        </div>
-    </div>
-    <!-- danh mục -->
-    <div class="list_container">
-        <div class="list_name">DANH MỤC</div>
-        <div class="elements_container">
-            <a href="">
-                <div class="element">
-                    <div class="element_icon"><i class="fa-solid fa-flag"></i></div>
-                    <div class="element_name">TOUR</div>
-                </div>
-            </a>
-
-            <a href="">
-                <div class="element">
-                    <div class="element_icon"><i class="fa-solid fa-bus"></i></div>
-                    <div class="element_name">NHÀ XE</div>
-                </div>
-            </a>
-
-            <a href="product_bookhotel.php">
-                <div class="element">
-                    <div class="element_icon"><i class="fa-regular fa-building"></i></div>
-                    <div class="element_name">KHÁCH SẠN</div>
-                </div>
-            </a>
-
-            <a href="">
-                <div class="element">
-                    <div class="element_icon"><i class="fa-solid fa-child-reaching"></i></div>
-                    <div class="element_name">H.DẪN VIÊN</div>
-                </div>
-            </a>
-
-            <a href="destination.php">
-                <div class="element">
-                    <div class="element_icon"><i class="fa-solid fa-map-location"></i></div>
-                    <div class="element_name">Đ.DU LỊCH</div>
-                </div>
-            </a>
         </div>
     </div>
 
