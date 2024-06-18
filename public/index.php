@@ -8,48 +8,12 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/reset1.css">
+    <link rel="stylesheet" href="../css/loginbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title>Trang chủ</title>
 </head>
 <style>
-    /* Thanh bảng chọn */
-    #wrapper {
-        display: flex;
-        width: 100vw;
-    }
-
-    #nav-container {
-        display: flex;
-        width: inherit;
-        background-color: #3572EF;
-    }
-
-    .main-menu {
-        width: inherit;
-        display: inline-flex;
-        justify-content: flex-end;
-        list-style: none;
-        margin: 0;
-        /* bỏ đi các dấu chấm */
-        /* để các phần tử sát phải */
-    }
-
-    .main-menu .btn {
-        display: flex;
-        padding-left: 50px;
-        padding-right: 50px;
-        height: 52px;
-        width: 100px;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .main-menu .btn:hover {
-        cursor: pointer;
-        background-color: #050C9C;
-    }
-
     /* Thanh logo và  tìm kiếm */
     #logo_search_bar_wrapper {
         display: flex;
@@ -97,10 +61,12 @@ session_start();
     .search-container {
         margin: 0px 15px 0px 0px;
         padding-left: 10px;
+        border-radius: 5px;
     }
 
     .search-container form {
         display: flex;
+        border-radius: 5px;
     }
 
     #logo_search_bar_wrapper .search-container {
@@ -115,6 +81,13 @@ session_start();
         width: 100%;
         margin: 0;
         padding: 14px;
+        border: 1px solid #ccc;
+        width: calc(100% - 45px);
+        border-radius: 50px;
+    }
+
+    #logo_search_bar_wrapper button[type=submit] {
+        border-radius: 50px;
     }
 
     #logo_search_bar_wrapper .search-container button {
@@ -127,33 +100,36 @@ session_start();
         padding: 14px;
     }
 
-    #logo_search_bar_wrapper input[type=text] {
-        border: 1px solid #ccc;
-        width: calc(100% - 45px);
-    }
-
     /* Thanh hình ảnh và slide tự động */
     .img_slide_container {
         display: flex;
+        flex-direction: row;
         height: 500px;
-        width: 110vw;
+        width: 100%;
         padding: 0;
-        margin: 0;
+        margin: 5px 5px 5px 5px;
     }
 
     .auto_slide {
         height: inherit;
         width: 60%;
+        /* margin: 5px 5px 5px 5px; */
+    }
+
+    .auto_slide img {
+        border-radius: 5px;
     }
 
     .img_container {
         height: inherit;
         width: 40%;
+        padding: 0px 0px 0px 5px;
     }
 
-    .img_container a img {
-        width: 500px;
+    .img_container img {
+        width: 100%;
         height: 250px;
+        border-radius: 5px;
     }
 
     /* slide tự động */
@@ -265,80 +241,6 @@ session_start();
         justify-content: center;
     }
 
-    .dropdown-container {
-        display: none;
-        position: absolute;
-        flex-direction: column;
-        top: 50px;
-        right: 60px;
-        border: 1px solid #000000;
-        z-index: 1000;
-        background-color: #3572EF;
-    }
-
-    .dropdown-container a {
-        color: white;
-        padding: 0px 20px 0px 20px;
-        height: 50px;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-    }
-
-    .main-menu .signup {
-        display: flex;
-        padding-left: 50px;
-        padding-right: 50px;
-        height: 52px;
-        width: 100px;
-        justify-content: center;
-        align-items: center;
-        text-decoration: none;
-        color: white;
-        font-weight: bold;
-    }
-
-    .signup:hover {
-        background-color: #050C9C;
-        cursor: pointer;
-    }
-
-    .signup:hover .dropdown-container {
-        display: flex;
-        /* dàn nội dung theo hàng dọc */
-        flex-direction: column;
-    }
-
-    .dropdown-container a:hover {
-        background-color: #050C9C;
-    }
-
-    .userin4_container {
-        border-left: 1px solid #000;
-        height: 52px;
-        width: 240px;
-        align-items: center;
-        position: relative;
-        display: inline-block;
-    }
-
-    .userin4_container:hover {
-        background-color: #050C9C;
-        cursor: pointer;
-    }
-
-    .userin4_container .info {
-        padding: 0;
-        margin: 0;
-        height: 0px;
-    }
-
-    .userin4_container:hover .dropdown-container {
-        display: flex;
-        /* dàn nội dung theo hàng dọc */
-        flex-direction: column;
-    }
-
     .list {
         display: flex;
         height: 80px;
@@ -380,14 +282,13 @@ session_start();
                     <a href="" class="btn">ĐẶT TOUR</a>
                     ';
                     echo '<div class="userin4_container">';
-                    echo '<div class="info">' . $id_user . '</div><br>';
-                    echo '<div class="info">' . $hoten . '</div><br>';
+                    echo '<div class="info">' . $hoten . '</div>';
                     echo '
                     <div class="dropdown-container">
                         <a href="../customer/request-list.php"
-                        onclick="my_request_form()">YÊU CẦU CỦA TÔI</a>
-                        <a href="">CHỈNH SỬA HỒ SƠ</a>
-                        <a href="" class="logout" onclick="log_out()">ĐĂNG XUẤT</a>
+                        onclick="my_request_form()"><i class="fa-solid fa-basket-shopping"></i>GIỎ HÀNG</a>
+                        <a href=""><i class="fa-solid fa-address-card"></i>CHỈNH SỬA HỒ SƠ</a>
+                        <a href="" class="logout" onclick="log_out()"><i class="fa-solid fa-right-from-bracket"></i>ĐĂNG XUẤT</a>
                     </div>
                     ';
                 } else {
@@ -408,7 +309,7 @@ session_start();
     </div>
     <!-- LOGO và THANH TÌM KIẾM -->
     <div id="logo_search_bar_wrapper">
-        <a href="index.php" id="logo"><img src="../img/mainlogo.png" alt=""></a>
+        <a href="index.php" id="logo"><img src="../img/logoglobal.jpg" alt=""></a>
         <div class="list">
             <a href="product_booktour.php">
                 <div>Tour</div>
@@ -440,20 +341,20 @@ session_start();
     <div class="img_slide_container">
         <div class="auto_slide">
             <div class="mySlides fade">
-                <img src="../img/tourdalat.jpg" style="width:100%; height:500px">
+                <img src="../img/img1.jpg" style="width:100%; height:500px">
             </div>
 
             <div class="mySlides fade">
-                <img src="../img/tourdanang.jpg" style="width:100%; height:500px">
+                <img src="../img/img2.jpg" style="width:100%; height:500px">
             </div>
 
             <div class="mySlides fade">
-                <img src="../img/tourphuquoc.png" style="width:100%; height:500px">
+                <img src="../img/img3.jpg" style="width:100%; height:500px">
             </div>
         </div>
         <div class="img_container">
-            <a href=""><img src="../img/nhaxethanhbuoi.jpg" alt=""></a>
-            <a href=""><img src="../img/hotel.jpg" alt=""></a>
+            <a href=""><img src="../img/img4.png" alt=""></a>
+            <a href=""><img src="../img/img5.jpg" alt=""></a>
         </div>
     </div>
 

@@ -6,30 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../css/reset1.css">
+  <link rel="stylesheet" href="../css/loginbar.css">
   <title>Đăng kí</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
 </head>
 <style>
-  .logo_search_bar_wrapper {
-    display: flex;
-    width: 100vw;
-    background-color: #FFBF78;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    justify-content: space-between;
-  }
-
-  .logo {
-    float: none;
-    /* Đảm bảo phần tử cha co lại theo độ rộng của phần tử con */
-    width: auto;
-    /* Độ rộng tự động phù hợp với phần tử con */
-    margin: 0;
-    padding-right: 14px;
-    padding-left: 14px;
-    text-decoration: none;
-  }
-
   .btn-back {
     border: 1px solid #000000;
     border-radius: 10px;
@@ -47,7 +27,7 @@
     background-color: #009688;
   }
 
-  .signup {
+  .signupf {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -74,17 +54,6 @@
     width: 450px;
   }
 
-  footer {
-    background-color: #58BDFF;
-    color: #000000;
-    text-align: center;
-    padding: 10px;
-    /* position: fixed; */
-    bottom: 0;
-    width: 100%;
-    height: 50px;
-  }
-
   .signup_signInButton {
     margin-top: 20px;
     height: 50px;
@@ -98,16 +67,28 @@
     cursor: pointer;
     background-color: #009688;
   }
+
+  footer{
+    display: flex;
+    color: white;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    background-color: #3572EF;
+    height: 100px;
+  }
 </style>
 
 <body>
-  <!-- LOGO và THANH TÌM KIẾM -->
-  <div class="logo_search_bar_wrapper">
-    <a href="index.php" class="logo"><img src="../img/logoglobal.jpg" alt=""></a>
-    <a class="btn-back" href="index.php">QUAY LẠI</a>
+  <div id="wrapper">
+    <nav id="nav-container">
+      <a href="index.php" id="logo"><img src="../img/logoglobal_dark.png" alt=""></a>
+      <div class="main-menu">
+      </div>
+    </nav>
   </div>
 
-  <div class="signup">
+  <div class="signupf">
     <div class="signup-container">
       <form class="signup-form" action="" method="POST">
         <h1>Đăng Ký</h1>

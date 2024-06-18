@@ -11,33 +11,39 @@
     form {
         display: flex;
         flex-direction: column;
-        margin: 20px 0px 0px 50px;
-        width: 50%;
+        border: 1px solid #000000;
+        border-radius: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding-left: 20px;
+        padding-bottom: 20px;
     }
 
     input {
         margin: 10px 0px;
-        padding: 5px;
-        height: 20px;
+        height: 30px;
+        width: 450px;
     }
 
     select {
         margin: 10px 0px;
-        padding: 5px;
         height: 30px;
+        width: 450px;
     }
 
-    .logo_search_bar_wrapper {
+    #logo_search_bar_wrapper {
         display: flex;
         width: 100vw;
-        background-color: #00F7FF;
+        background-color: #3572EF;
         padding-top: 12px;
         padding-bottom: 12px;
-        justify-content: space-between;
+        /* justify-content: space-between; */
     }
 
-    .logo {
+    #logo_search_bar_wrapper a {
         float: none;
+        text-align: left;
+        /* display: inline-block; */
         /* Đảm bảo phần tử cha co lại theo độ rộng của phần tử con */
         width: auto;
         /* Độ rộng tự động phù hợp với phần tử con */
@@ -47,29 +53,100 @@
         text-decoration: none;
     }
 
-    .btn-back {
-        border: 1px solid #000000;
-        border-radius: 10px;
-        background-color: #00F7FF;
-        margin: 0px 25px 0px 0px;
-        display: flex;
+    #logo_search_bar_wrapper img {
+        width: 250px;
+        height: 80px;
+    }
+
+    /* footer */
+    footer {
+        color: white;
+        font-weight: bold;
         justify-content: center;
-        align-items: center;
-        text-decoration: none;
-        width: 100px;
+        background-color: #3572EF;
+        margin: 0;
+        padding: 0;
+    }
+
+    .footer-items {
+        display: flex;
+        width: 100%;
+    }
+
+    .contact-us {
+        justify-content: center;
+        text-align: center;
+        width: calc(100%/3);
+    }
+
+    .contact-us i {
+        font-size: 25px;
+        margin-right: 12px;
+        cursor: pointer;
+        transition: var(--sub-color);
+    }
+
+    .about-us {
+        text-align: center;
+        justify-content: center;
+        width: calc(100%/3);
+    }
+
+    .address {
+        text-align: center;
+        width: calc(100%/3);
+    }
+
+    .copy-right {
+        text-align: center;
+        justify-content: center;
+    }
+
+    .login {
+        padding-left: 14px;
+    }
+
+    .btn-back {
+        background-color: #00F7FF;
+        margin-left: auto;
+        margin-right: 14px;
     }
 
     .btn-back:hover {
-        cursor: pointer;
         background-color: #009688;
+        /* màu nền thay đổi khi hover */
+        cursor: pointer;
+        /*đổi trỏ chuột hình bàn tay */
+    }
+
+    .login-form {
+        border: 1px solid #000000;
+        border-radius: 10px;
+        width: 500px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding-left: 20px;
+        padding-bottom: 20px;
+    }
+
+    .login_container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .login-form input {
+        height: 30px;
+        width: 450px;
     }
 </style>
 
 <body>
-    <div class="logo_search_bar_wrapper">
-        <a href="index.php" class="logo"><img src="../img/logo2.jpg" alt=""></a>
-        <a class="btn-back" href="index.php">QUAY LẠI</a>
+    <!-- LOGO và THANH TÌM KIẾM -->
+    <div id="logo_search_bar_wrapper">
+        <a href="index.php" id="logo"><img src="../img/logoglobal_dark.png" alt=""></a>
+        <button class="btn-back" onclick="btn_back()">QUAY LẠI</button>
     </div>
+
     <form action="" class="com-signup" method="post">
         <h1>Đăng kí tài khoản cho doanh nghiệp</h1>
         <label>Loại doanh nghiệp:</label>
@@ -96,6 +173,31 @@
         <input type="password" name="company_password_confirm" id="company_password_confirm" required>
         <div><button onclick="company_signup()">Đăng kí</button></div>
     </form>
+
+    <footer>
+        <div class="footer-items">
+            <div class="address">
+                <h2>Địa chỉ</h2>
+                <p>73 Nguyễn Huệ, phường 2 <br>thành phố Vĩnh Long, tỉnh Vĩnh Long</p>
+            </div>
+
+            <div class="about-us">
+
+            </div>
+
+            <div class="contact-us">
+                <h2>Liên hệ chúng tôi</h2>
+                <p>Website: http://elitastraver.com/ <br>Email: taivt4175@gmail.com</p>
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-youtube"></i>
+                <i class="fab fa-twitter"></i>
+            </div>
+        </div>
+
+        <div class="copy-right">
+            <p>&copy; Copyrights 2024. All rights reserved by Vu Thanh Tai</p>
+        </div>
+    </footer>
 </body>
 <script>
     function company_signup() {
@@ -108,7 +210,7 @@
         var company_email = document.getElementById('company_email').value;
         var company_password = document.getElementById('company_password').value;
         var company_password_confirm = document.getElementById('company_password_confirm').value;
-        var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*.?&]{8,}$/;
 
         if (com_type == 0) {
             alert('Vui lòng chọn loại doanh nghiệp để đăng kí!');

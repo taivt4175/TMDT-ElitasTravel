@@ -1,6 +1,4 @@
-<a?php
-session_start();
-?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,7 +66,7 @@ session_start();
         display: flex;
         flex-direction: column;
         margin: 5px 5px 5px 5px;
-        width: auto;
+        max-width: 262px;
         border: 1px solid #000;
         border-radius: 5px;
         font-size: 20px;
@@ -94,16 +92,51 @@ session_start();
     .tour-info {
         display: flex;
         flex-direction: column;
-        width: auto;
+        max-width: 260px;
+        text-overflow: ellipsis;
         padding: 5px;
+    }
+
+    .tour-info div {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .button-container {
+        display: flex;
+        width: 100%;
+    }
+
+    .tour-button {
+        width: 30%;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        border-radius: 5px;
+        margin: 0px 0px 0px 7px;
+    }
+
+    .tour-button:hover {
+        background-color: #00D4FF;
+        cursor: pointer;
+    }
+
+    i {
+        margin: 0px 5px 0px 5px;
     }
 </style>
 
 <body>
     <div id="wrapper">
         <nav id="nav-container">
+            <a href="index.php" id="logo"><img src="../img/logoglobal_dark.png" alt=""></a>
             <ul class="main-menu">
-            <?php
+                <?php
                 if (isset($_SESSION['user_info'])) {
                     $userInfo = $_SESSION['user_info'];
                     // Làm gì đó với $userInfo
@@ -114,14 +147,13 @@ session_start();
                     <a href="" class="btn">ĐẶT TOUR</a>
                     ';
                     echo '<div class="userin4_container">';
-                    echo '<div class="info">' . $id_user . '</div><br>';
-                    echo '<div class="info">' . $hoten . '</div><br>';
+                    echo '<div class="info">' . $hoten . '</div>';
                     echo '
                     <div class="dropdown-container">
                         <a href="../customer/request-list.php"
-                        onclick="my_request_form()">YÊU CẦU CỦA TÔI</a>
-                        <a href="">CHỈNH SỬA HỒ SƠ</a>
-                        <a href="" class="logout" onclick="log_out()">ĐĂNG XUẤT</a>
+                        onclick="my_request_form()"><i class="fa-solid fa-basket-shopping"></i>GIỎ HÀNG</a>
+                        <a href=""><i class="fa-solid fa-address-card"></i>CHỈNH SỬA HỒ SƠ</a>
+                        <a href="" class="logout" onclick="log_out()"><i class="fa-solid fa-right-from-bracket"></i>ĐĂNG XUẤT</a>
                     </div>
                     ';
                 } else {
@@ -144,29 +176,70 @@ session_start();
     <div class="mostbook-container">
         <h1>Đặt nhiều nhất</h1>
         <div class="tours-container">
-            <a href="" class="tour">
-                <div class="tour-img">
-                    <img src="../img/tourdalat.jpg" alt="">
-                </div>
-                <div class="tour-info">
-                    <div class="tour-id"><i class="fa-solid fa-barcode"></i>: VLDL0003</div>
-                    <div class="tour-name"><i class="fa-solid fa-location-dot"></i>: Vĩnh Long - Đà Lạt</div>
-                    <div class="tour-price"><i class="fa-solid fa-dollar-sign"></i>: 1000000</div>
-                </div>
-            </a>
 
-            <a href="" class="tour">
-                <div class="tour-img">
-                    <img src="../img/tourphuquoc.png" alt="">
-                </div>
-                <div class="tour-info">
-                    <div class="tour-id"><i class="fa-solid fa-barcode"></i>: VLPQ0033</div>
-                    <div class="tour-name"><i class="fa-solid fa-location-dot"></i>: Vĩnh Long - Phú Quốc</div>
-                    <div class="tour-price"><i class="fa-solid fa-dollar-sign"></i>: 2000000</div>
-                </div>
-            </a>
+            <?php
+            require ('../pscript/show_tour.php');
+            ?>
+            <!-- <a href="" class="tour">
+                    <div class="tour-img">
+                        <img src="../img/tourdalat.jpg" alt="">
+                    </div>
+                    <div class="tour-info">
+                        <div class="tour-id"><i class="fa-solid fa-barcode"></i>: VLDL0003</div>
+                        <div class="tour-name"><i class="fa-solid fa-location-dot"></i>: Vĩnh Long - Đà Lạt</div>
+                        <div class="tour-price"><i class="fa-solid fa-dollar-sign"></i>: 1000000</div>
+                    </div>
+                </a> -->
         </div>
     </div>
 </body>
+<script>
+    function thongtin(id_tour, id_company) {
+        // alert("Thông tin tour");
+        alert(id_tour + " and " + id_company);
+        window.location.href = 'chitietdichvu.php?madichvu=' + encodeURIComponent(id_tour) + '&id_user=' + encodeURIComponent(id_company);
+    }
+
+    function themvaogio(id_tour, id_company) {
+        if (confirm("Thêm vào giỏ?")) {
+            // const url = new URL(window.location.href);
+            // url.search = ''; // Xóa tất cả các tham số
+            // window.history.pushState({}, '', url);
+            const url = new URL(window.location.href);
+            url.searchParams.set('madichvu', id_tour);
+            url.searchParams.set('id_congty', id_company);
+            window.history.pushState({}, '', url);
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '../pscript/add_cart.php?madichvu=' + id_tour + '&id_congty=' + id_company, true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    alert(xhr.responseText);
+                }
+            };
+            xhr.send();
+            url.search = ''; // Xóa tất cả các tham số
+            window.history.pushState({}, '', url);
+        }
+    }
+
+    function dattour(id_tour,id_company) {
+        window.location.href = 'thanhtoan.php?madichvu=' + encodeURIComponent(id_tour) + '&id_congty=' + encodeURIComponent(id_company);
+    }
+
+    function log_out() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '../pscript/destroy_session.php', true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                alert(xhr.responseText);
+                window.location.href = '../public/product_booktour.php?reset=true';
+            }
+        };
+        xhr.send();
+    }
+</script>
 
 </html>
+<?php
+// print_r($_GET);
+?>

@@ -48,7 +48,14 @@ if ($result_check->num_rows > 0) {
                 header('Location: ../customer/index_company.php');
                 break;
             case 'CT':
-                echo "Người dùng là Công ty";
+                echo "Người dùng là KS";
+                $userInfo = [
+                    'id_user' => $row['id_user'],
+                    'hoten' => $row['hoten'],
+                ];
+                // Lưu vào session
+                $_SESSION['user_info'] = $userInfo;
+                header('Location: ../customer/index_company.php');
                 break;
             case 'NH':
                 echo "Người dùng là Nha hàng";

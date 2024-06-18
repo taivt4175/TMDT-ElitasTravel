@@ -46,61 +46,43 @@ session_start();
         resize: none;
         height: 100px;
     }
+
+    .chose-imgs {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
 </style>
 
 <body>
     <h1>Thêm dịch vụ</h1>
-    <form action="" method="post" class="add-service-form">
+    <form action="" method="post" class="add-service-form" enctype="multipart/form-data">
+        <label for="name">Mã dịch vụ:</label>
+        <input type="text" name="madichvu" id="madichvu">
+
         <label for="name">Tên dịch vụ:</label>
         <input type="text" name="name" id="name">
+
+        <label for="description">Mô tả dịch vụ:</label>
+        <textarea name="description" id="description"></textarea>
+
+        <label for="">Mô tả chi tiết:</label>
+        <textarea name="detail" id="detail"></textarea>
+
+        <label for="">Thêm hình ảnh: (Nhấn giữ "Ctrl" để chọn nhiều ảnh)</label>
+        <input type="file" name="fileUpload[]" id="fileUpload" multiple="multiple">
+        <div class="chose-imgs" id="chose-imgs" name="chose-img"></div>
+        
         <label for="price">Giá:</label>
         <input type="number" name="price" id="price">
+
         <label for="unit">Đơn vị tính:</label>
         <input type="text" name="unit" id="unit">
-        <label for="description">Mô tả:</label>
-        <textarea name="description" id="description"></textarea>
+
         <label for="">Tình trạng:</label>
         <input type="text" name="status" id="status">
+        
         <button onclick="addservice()">Thêm</button>
     </form>
 </body>
-<script>
-    document.getElementById('description').addEventListener('input', function () {
-        var description = document.getElementById('description');
-        var value = description.value;
-        var newValue = value.replace(/\n/g, '<br>');
-        description.value = newValue;
-    });
-
-    function addservice() {
-        var name = document.getElementById('name').value;
-        var price = document.getElementById('price').value;
-        var unit = document.getElementById('unit').value;
-        var description = document.getElementById('description').value;
-        if (price < 0 || price == '') {
-            alert('Giá không hợp lệ');
-            event.preventDefault();
-            return;
-        } else {
-            if (name == '' || unit == '' || description == '') {
-                alert('Vui lòng nhập đầy đủ thông tin');
-                event.preventDefault();
-                return;
-            }
-            else {
-                // Call the add_service_event.php using AJAX
-                var formData = new FormData(document.querySelector('.add-service-form'));
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', '../pscript/add_service_event.php', true);
-                xhr.onload = function () {
-                    if (xhr.status === 200) {
-                        alert(xhr.responseText);
-                    }
-                };
-                xhr.send(formData);
-            }
-        }
-    }
-</script>
-
 </html>

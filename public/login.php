@@ -14,7 +14,7 @@
   #logo_search_bar_wrapper {
     display: flex;
     width: 100vw;
-    background-color: #00F7FF;
+    background-color: #3572EF;
     padding-top: 12px;
     padding-bottom: 12px;
     /* justify-content: space-between; */
@@ -33,10 +33,17 @@
     text-decoration: none;
   }
 
+  #logo_search_bar_wrapper img {
+    width: 250px;
+    height: 80px;
+  }
+
   /* footer */
   footer {
+    color: white;
+    font-weight: bold;
     justify-content: center;
-    background-color: #58BDFF;
+    background-color: #3572EF;
     margin: 0;
     padding: 0;
   }
@@ -116,8 +123,8 @@
 <body>
   <!-- LOGO và THANH TÌM KIẾM -->
   <div id="logo_search_bar_wrapper">
-    <a href="index.php" id="logo"><img src="../img/logoglobal.jpg" alt=""></a>
-    <button class="btn-back">QUAY LẠI</button>
+    <a href="index.php" id="logo"><img src="../img/logoglobal_dark.png" alt=""></a>
+    <button class="btn-back" onclick="btn_back()">QUAY LẠI</button>
   </div>
   <!-- from login -->
   <div class="login">
@@ -170,3 +177,8 @@
 <!-- <script src="../js/main.js"></script> -->
 
 </html>
+<script>
+  function btn_back() {
+    window.location.href = "index.php";
+  }
+</script>

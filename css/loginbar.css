@@ -10,6 +10,11 @@
     background-color: #3572EF;
 }
 
+#nav-container img {
+    width: 250px;
+    height: 80px;
+}
+
 .main-menu {
     width: inherit;
     display: inline-flex;
@@ -27,7 +32,7 @@
     display: flex;
     padding-left: 50px;
     padding-right: 50px;
-    height: 52px;
+    height: 80px;
     width: 100px;
     justify-content: center;
     align-items: center;
@@ -42,7 +47,7 @@
     display: none;
     position: absolute;
     flex-direction: column;
-    top: 50px;
+    top: 75px;
     right: 60px;
     border: 1px solid #000000;
     z-index: 1000;
@@ -62,7 +67,7 @@
     display: flex;
     padding-left: 50px;
     padding-right: 50px;
-    height: 52px;
+    height: 80px;
     width: 100px;
     justify-content: center;
     align-items: center;
@@ -87,12 +92,15 @@
 }
 
 .userin4_container {
-    border-left: 1px solid #000;
-    height: 52px;
-    width: 240px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    padding-left: 50px;
+    padding-right: 50px;
+    height: 80px;
+    width: 100px;
+    justify-content: center;
     align-items: center;
-    position: relative;
-    display: inline-block;
 }
 
 .userin4_container:hover {
@@ -103,11 +111,92 @@
 .userin4_container .info {
     padding: 0;
     margin: 0;
-    height: 0px;
+    width: auto;
 }
 
 .userin4_container:hover .dropdown-container {
     display: flex;
     /* dàn nội dung theo hàng dọc */
     flex-direction: column;
+}
+
+i {
+    margin: 0px 10px 0px 0px;
+}
+
+/* footer */
+.footer {
+    justify-content: center;
+    background-color: #3572EF;
+}
+
+.footer-items {
+    display: flex;
+    width: 100%;
+}
+
+.contact-us {
+    color: white;
+    justify-content: center;
+    text-align: center;
+    width: calc(100%/3);
+}
+
+.contact-us i {
+    font-size: 25px;
+    margin-right: 12px;
+    cursor: pointer;
+    transition: var(--sub-color);
+}
+
+.about-us {
+    color: white;
+    text-align: center;
+    justify-content: center;
+    width: calc(100%/3);
+}
+
+.address {
+    color: white;
+    text-align: center;
+    width: calc(100%/3);
+}
+
+.copy-right {
+    color: white;
+    text-align: center;
+    justify-content: center;
+}
+
+.options:hover .dropdown-content {
+    display: flex;
+    /* dàn nội dung theo hàng dọc */
+    flex-direction: column;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    top: auto;
+    left: 200px;
+    border: 1px solid #000000;
+    z-index: 1000;
+    background-color: white;
+    border-radius: 10px;
+    width: 250px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 5px 0px 20px;
+    text-decoration: 0;
+    height: 50px;
+}
+
+.options:hover{
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #91F0F3;
 }

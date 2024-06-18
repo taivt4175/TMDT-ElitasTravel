@@ -6,7 +6,7 @@
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            echo '<option value="'.$row['id_tinh'].'">'.$row['id_tinh'].'-'.$row['tentinh'].'</option>';
+            echo '<option value="'.$row['id_tinh'].'">'.$row['tentinh'].'</option>';
         }
     }
     $conn->close();

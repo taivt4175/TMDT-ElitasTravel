@@ -1,3 +1,6 @@
+<?php
+ session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,7 +75,7 @@
         font-weight: bold;
     }
 
-    .des-info{
+    .des-info {
         margin: 5px 5px 5px 5px;
     }
 
@@ -101,6 +104,7 @@
 <body>
     <div id="wrapper">
         <nav id="nav-container">
+            <a href="index.php" id="logo"><img src="../img/logoglobal_dark.png" alt=""></a>
             <ul class="main-menu">
             <?php
                 if (isset($_SESSION['user_info'])) {
@@ -113,14 +117,13 @@
                     <a href="" class="btn">ĐẶT TOUR</a>
                     ';
                     echo '<div class="userin4_container">';
-                    echo '<div class="info">' . $id_user . '</div><br>';
-                    echo '<div class="info">' . $hoten . '</div><br>';
+                    echo '<div class="info">' . $hoten . '</div>';
                     echo '
                     <div class="dropdown-container">
                         <a href="../customer/request-list.php"
-                        onclick="my_request_form()">YÊU CẦU CỦA TÔI</a>
-                        <a href="">CHỈNH SỬA HỒ SƠ</a>
-                        <a href="" class="logout" onclick="log_out()">ĐĂNG XUẤT</a>
+                        onclick="my_request_form()"><i class="fa-solid fa-basket-shopping"></i>GIỎ HÀNG</a>
+                        <a href=""><i class="fa-solid fa-address-card"></i>CHỈNH SỬA HỒ SƠ</a>
+                        <a href="" class="logout" onclick="log_out()"><i class="fa-solid fa-right-from-bracket"></i>ĐĂNG XUẤT</a>
                     </div>
                     ';
                 } else {

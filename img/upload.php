@@ -1,31 +1,53 @@
 <?php
-$target_dir = "../img/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-$error = array();
-$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-// Check if image file is a actual image or fake image
-  if ($_FILES["fileToUpload"]["size"] > 5242880) {
-    $error['fileToUpload'] = "File quá lớn, vui lòng chọn file nhỏ hơn 5MB";
-  }
+$target_dir = "img/uploads/";
+$errors = array();  // Mảng để lưu trữ thông báo lỗi cho mỗi file
 
-  // Allow certain file formats
-  if (
-    $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif"
-  ) {
-    $error['fileToUpload'] = "Chỉ chấp nhận file ảnh định dạng JPG, JPEG, PNG & GIF";
-  }
+// Duyệt qua từng file được tải lên
+$total_files = count($_FILES['fileUpload']['name']);
+if ($total_files > 10) {
+  echo "Chỉ được phép tải lên tối đa 10 ảnh!";
+} else {
+  for ($i = 0; $i < $total_files; $i++) {
+    $original_name = basename($_FILES['fileUpload']['name'][$i]);
+    $imageFileType = strtolower(pathinfo($original_name, PATHINFO_EXTENSION));
+    $new_name = "MaDichVu" . "MaDoanhNghiep" . $original_name;
+    $target_file = $target_dir . $new_name;
 
-  if (file_exists($target_file)) {
-    $error['fileToUpload'] = "Ảnh đã tồn tại!";
-  }
+    // $target_file = $target_dir . basename($_FILES['fileUpload']['name'][$i]);
+    // $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $error = false;
 
-  if (empty($error)) {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-      echo "File " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " đã được tải lên.";
-    } else {
-      echo "Có lỗi xảy ra khi tải file lên.";
+    // Kiểm tra kích thước file
+    if ($_FILES['fileUpload']['size'][$i] > 5242880) {
+      $errors[$i] = "File '" . $original_name . "' quá lớn, vui lòng chọn file nhỏ hơn 5MB.";
+      $error = true;
     }
-  };
-// Check file size
+
+    // Kiểm tra định dạng file
+    if (!in_array($imageFileType, ['jpg', 'png', 'jpeg', 'gif'])) {
+      $errors[$i] = "File '" . $original_name . "' có định dạng không hợp lệ! . Vui lòng chọn file ảnh dạng .JPG, .JPEG, .PNG hoặc .GIF !";
+      $error = true;
+    }
+
+    // Kiểm tra file đã tồn tại chưa
+    if (file_exists($target_file)) {
+      $errors[$i] = "Ảnh '" . $original_name . "' đã tồn tại!";
+      $error = true;
+    }
+
+    // Nếu không có lỗi, tiến hành lưu file
+    if (!$error) {
+      if (!move_uploaded_file($_FILES['fileUpload']['tmp_name'][$i], $target_file)) {
+        $errors[$i] = "Có lỗi xảy ra khi tải file lên.";
+      } else {
+        $errors[$i] = "File '" . htmlspecialchars(basename($_FILES['fileUpload']['name'][$i])) . "' đã được tải lên thành công.";
+      }
+    }
+  }
+
+  // Hiển thị thông báo lỗi hoặc thành công cho mỗi file
+  foreach ($errors as $message) {
+    echo $message . "<br>";
+  }
+}
 ?>

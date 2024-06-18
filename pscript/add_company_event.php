@@ -14,6 +14,7 @@ switch ($com_type) {
         break;
     case 'CT':
         $com_type = 'CT';
+        $sql = "SELECT * FROM chitietct WHERE masothue = '$company_tax_code' AND trust='1'";
         break;
     case 'KS':
         $sql = "SELECT * FROM chitietks WHERE masothue = '$company_tax_code' AND trust='1'";
@@ -32,15 +33,17 @@ if (mysqli_num_rows($result) > 0) {
     $row = $result->fetch_assoc();
     $madoanhnghiep = $com_type . $row['new_id'];
     // Thêm vào bảng user
+    $password_md5 = md5($company_password);
     $stmt = $conn->prepare("INSERT INTO user (id_user, hoten, sdt, password, email) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssss", $madoanhnghiep, $company_name, $company_phone, md5($company_password), $company_email);
+    $stmt->bind_param("sssss", $madoanhnghiep, $company_name, $company_phone, $password_md5, $company_email);
     if ($stmt->execute()) {
         // Thêm vào bảng chitietkh
         $com_type = $conn->real_escape_string($com_type);
         switch ($com_type) {
             case 'CT':
-                $stmt2 = $conn->prepare("INSERT INTO chitietct (id_user) VALUES (?)");
-                $stmt2->bind_param("s", $madoanhnghiep);
+                $trust = 1;
+                $stmt2 = $conn->prepare("INSERT INTO chitietct (id_user,trust) VALUES (?, ?)");
+                $stmt2->bind_param("ss", $madoanhnghiep, $trust);
                 $name = "Công ty";
                 break;
             case 'NX':

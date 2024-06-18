@@ -7,113 +7,13 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../css/reset1.css">
+    <link rel="stylesheet" href="../css/loginbar.css">
     <title>Chào mừng bạn</title>
 </head>
 <style>
-    #wrapper {
-        display: flex;
-        width: 100%;
-        height: 100px;
-        background-color: #58BDFF;
-        align-items: center;
-    }
-
-    #nav-container {
-        display: flex;
-        width: inherit;
-        height: inherit;
-        background-color: #58BDFF;
-    }
-
-    #main-menu {
-        width: inherit;
-        display: inline-flex;
-        justify-content: flex-end;
-        list-style: none;
-        margin: 0;
-        /* bỏ đi các dấu chấm */
-        /* để các phần tử sát phải */
-    }
-
-    /* 
-    #main-menu li {
-        display: flex;
-        padding-left: 50px;
-        padding-right: 50px;
-        border: 1px solid #000;
-        height: 52px;
-        justify-content: center;
-        align-items: center;
-    } */
-
-    #main-menu #btn:hover {
-        cursor: pointer;
-        background-color: #009688;
-    }
-
-    #main-menu #btn {
-        display: flex;
-        padding-left: 50px;
-        padding-right: 50px;
-        border-left: 1px solid #000;
-        height: inherit;
-        width: 100px;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .userin4_container {
-        border-left: 1px solid #000;
-        height: inherit;
-        width: 200px;
-        align-items: center;
-        position: relative;
-        display: inline-block;
-    }
-
-    .userin4_container:hover {
-        background-color: #009688;
-        cursor: pointer;
-    }
-
-    .userin4_container .info {
-        padding: 0;
-        margin: 0;
-        height: 0px;
-    }
-
-    .dropdown-container {
-        display: NONE;
-        position: absolute;
-        background-color: white;
-        top: 70px;
-        z-index: 1000;
-    }
-
-    .userin4_container:hover .dropdown-container {
-        display: flex;
-        /* dàn nội dung theo hàng dọc */
-        flex-direction: column;
-
-    }
-
-    .dropdown-container a {
-        border-bottom: 1px solid #000;
-        border-left: 1px solid #000;
-        border-right: 1px solid #000;
-        padding: 10px 10px 10px 10px;
-    }
-
-    .dropdown-container a:hover {
-        cursor: pointer;
-        background-color: #009688;
-    }
-
-    a {
-        text-decoration: none;
-    }
-
     .functions-container {
         display: flex;
         width: 100%;
@@ -130,7 +30,7 @@ session_start();
     .function-view {
         border: 1px solid #000000;
         border-radius: 10px;
-        width: 1205px;
+        width: 1250px;
         height: 500px;
         margin: 10px 0px 0px 10px;
         overflow: auto;
@@ -150,77 +50,60 @@ session_start();
         cursor: pointer;
         background-color: #91F0F3;
     }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        flex-direction: column;
-        top: auto;
-        left: 120px;
-        border: 1px solid #000000;
-        border-radius: 10px;
-    }
-
-    .dropdown-content a {
-        color: black;
-        padding: 0px 20px 0px 20px;
-        height: 50px;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-    }
-
-    .dropdown:hover .dropdown-content {
-        display: flex;
-        background-color: white;
-    }
 </style>
 
 <body>
     <!-- THANH BẢNG CHỌN -->
     <div id="wrapper">
-        <a href="../public/index.php" id="logo"><img src="../img/logo2.jpg" alt=""></a>
         <nav id="nav-container">
-            <ul id="main-menu">
-                <a href="" id="btn">HỖ TRỢ</a>
-                <div class="userin4_container">
-                    <div class="userin4_container">
-                        <?php
-                        if (isset($_SESSION['user_info'])) {
-                            $userInfo = $_SESSION['user_info'];
-                            // Làm gì đó với $userInfo
-                            $id_user = $userInfo['id_user'];
-                            $hoten = $userInfo['hoten'];
-
-                            echo '<div class="info" id="id_user">' . $id_user . '</div><br>';
-                            echo '<div class="info" id="hoten">' . $hoten . '</div><br>';
-                        } else {
-                            echo '<div class="info" id="info">User không xác định!</div>';
-                        }
-                        ?>
-                        <div class="dropdown-container">
-                            <a href="">CHỈNH SỬA HỒ SƠ</a>
-                            <a href="#" onclick="logout()">ĐĂNG XUẤT</a>
-                        </div>
+            <a href="index_company.php" id="logo"><img src="../img/logoglobal_dark.png" alt=""></a>
+            <ul class="main-menu">
+                <?php
+                if (isset($_SESSION['user_info'])) {
+                    $userInfo = $_SESSION['user_info'];
+                    // Làm gì đó với $userInfo
+                    $id_user = $userInfo['id_user'];
+                    $hoten = $userInfo['hoten'];
+                    echo '
+                    <a href="" class="btn">HỖ TRỢ</a>
+                    ';
+                    echo '<div class="userin4_container">';
+                    echo '<div class="info">' . $hoten . '</div>';
+                    echo '
+                    <div class="dropdown-container">
+                        <a href=""><i class="fa-solid fa-address-card"></i>CHỈNH SỬA HỒ SƠ</a>
+                        <a class="logout" onclick="log_out()"><i class="fa-solid fa-right-from-bracket"></i>ĐĂNG XUẤT</a>
                     </div>
+                    ';
+                } else {
+                    echo '<a href="" class="btn">HỖ TRỢ</a>';
+                    echo '<div class="signup">
+                            <div>ĐĂNG KÍ</div>
+                            <div class="dropdown-container">
+                                <a href="signup.php" id="customer-account">TÀI KHOẢN KHÁCH HÀNG</a>
+                                <a href="tourguide-signup.php" id="instructor-account">TÀI KHOẢN HƯỚNG DẪN VIÊN</a>
+                                <a href="company-signup.php" id="company-account">TÀI KHOẢN DOANH NGHIỆP</a>
+                            </div>
+                        </div>';
+                    echo '<a href="login.php" class="btn">ĐĂNG NHẬP</a>';
+                }
+                ?>
             </ul>
         </nav>
     </div>
 
     <div class="functions-container">
         <div class="function-menu">
-            <div class="dropdown">
-                <a href="#" id="service_managerment" class="service_managerment">Quản lí dịch vụ của tôi</a>
+            <div id="service_managerment" class="options">
+                <div>Quản lí dịch vụ của tôi</div>
                 <div class="dropdown-content">
                     <a href="#" id="add_service" onclick="add_service();">Đăng tải dịch vụ</a>
                     <a href="#" id="mod_service">Chỉnh sửa dịch vụ</a>
-                    <a href="#" id="service_request">Yêu cầu dịch vụ</a>
-                    <a href="#" id="service_rate">Đánh giá từ khách hàng</a>
                 </div>
             </div>
 
-            <div class="dropdown">
-                <a href="#" id="more" class="more">Khác</a>
+            <div id="more" class="options">
+                <div>Khác</div>
                 <div class="dropdown-content">
                     <a href="#" id="customer_list">Danh sách khách hàng</a>
                     <a href="#" id="voucher">Voucher</a>
@@ -235,15 +118,30 @@ session_start();
 </body>
 <script>
     function add_service() {
-        var function_view = document.getElementById('function-view');
-        // Tải form add_service.php vào trong div function-view
-        function_view.innerHTML = '<iframe src="add_service.php" width="100%" height="100%"></iframe>';
+        var xhr = new XMLHttpRequest();  // Tạo đối tượng XMLHttpRequest
+        xhr.open('GET', 'add_service.php', true);  // Mở một yêu cầu GET đến 'add_customer.php'
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                document.getElementById('function-view').innerHTML = xhr.responseText;  // Đặt nội dung phản hồi vào div
+                var script1 = document.createElement('script'); //Gọi JS xử lí ngày tháng năm tạo user
+                script1.src = '../js/add_service.js';
+                document.head.appendChild(script1);
+            }
+        };
+        xhr.send();  // Gửi yêu cầu
     }
 
-    function logout() {
-        // Xóa session
-        // Chuyển hướng về trang login
-        window.location.href = '../public/index.php';
+    function log_out() {
+        window.location.href = '../public/index.php?reset=true';
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '../pscript/destroy_session.php', true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                alert(xhr.responseText);
+            }
+        };
+        xhr.send();
     }
 </script>
-</html >
+
+</html>
