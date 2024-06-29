@@ -7,6 +7,8 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tiny.cloud/1/912q1a2e24eshu7s8psp8vgdb2fgf1z2mpuggodsnx6qp1h7/tinymce/7/tinymce.min.js"
+        referrerpolicy="origin"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../css/reset1.css">
@@ -98,7 +100,7 @@ session_start();
                 <div>Quản lí dịch vụ của tôi</div>
                 <div class="dropdown-content">
                     <a href="#" id="add_service" onclick="add_service();">Đăng tải dịch vụ</a>
-                    <a href="#" id="mod_service">Chỉnh sửa dịch vụ</a>
+                    <a href="#" id="edit_service" onclick="edit_service();">Chỉnh sửa dịch vụ</a>
                 </div>
             </div>
 
@@ -125,6 +127,23 @@ session_start();
                 document.getElementById('function-view').innerHTML = xhr.responseText;  // Đặt nội dung phản hồi vào div
                 var script1 = document.createElement('script'); //Gọi JS xử lí ngày tháng năm tạo user
                 script1.src = '../js/add_service.js';
+                document.head.appendChild(script1);
+                var script2 = document.createElement('script');
+                script2.src = '../js/tinymce.js';
+                document.body.appendChild(script2);
+            }
+        };
+        xhr.send();  // Gửi yêu cầu
+    }
+
+    function edit_service() {
+        var xhr = new XMLHttpRequest();  // Tạo đối tượng XMLHttpRequest
+        xhr.open('GET', 'edit_service.php', true);  // Mở một yêu cầu GET đến 'add_customer.php'
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                document.getElementById('function-view').innerHTML = xhr.responseText;  // Đặt nội dung phản hồi vào div
+                var script1 = document.createElement('script'); 
+                script1.src = '../js/edit_service.js';
                 document.head.appendChild(script1);
             }
         };

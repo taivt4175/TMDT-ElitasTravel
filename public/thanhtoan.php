@@ -201,8 +201,14 @@ session_start();
             echo '<div class="service_detail_info">';
             echo '<div class="service_detail_id">Mã dịch vụ: ' . $madichvu . '</div>';
             echo '<div class="service_detail_name">Tên dịch vụ: ' . $row3['tendichvu'] . '</div>';
-            echo '<div class="service_detail_price">Giá: ' . $row3['gia'] . '</div>';
+            echo '<div class="service_detail_price">Giá trẻ em: ' . $row3['giatreem'] . 'VNĐ/vé</div>';
+            echo '<div class="service_detail_price">Giá người lớn: ' . $row3['gianguoilon'] . 'VNĐ/vé</div>';
             echo '<div class="service_detail_description">' . $row3['motachitiet'] . '</div>';
+            echo '<label for="person-price">Số lượng người lớn:</label>';
+            echo '<input type="number" id="person-price" value="">';
+            echo '<label for="child-price">Số lượng trẻ em:</label>';
+            echo '<input type="number" id="child-price" value="">';
+            echo '<button class="btn-pay" onclick="tinhtien()">Tính tiền</button>';
             echo '</div>';
             echo '</div>';
             echo '</div>';
@@ -211,7 +217,7 @@ session_start();
         </div>
         <div class="payment">
             <form method="post">
-                <h3>Tổng tiền: <?php echo $row3['gia']; ?>VND</h3>
+                <h3 id="total"></h3>
                 <label for="">Chọn phương thức thanh toán:</label>
                 <div class="payment-container">
                     <input type="radio" value="momo" name="paymethod">
@@ -234,9 +240,7 @@ session_start();
                     <i class="fa-solid fa-wallet"></i>
                     <div class="wallet">Số dư hiện tại: <?php echo $wallet; ?> VND </div>
                 </div>
-                <button class="btn-pay"
-                    onclick="pay(<?php echo $row3['gia'] . ', ' . $wallet . ', \'' . $madichvu . '\', \'' . $id_gio . '\',\''. $id_congty . '\''; ?>)">Thanh
-                    toán</button>
+                <button class="btn-pay" onclick="pay()">Thanh toán</button>
                 <button class="btn-cancel" onclick="cancel()">Hủy bỏ</button>
             </form>
         </div>
@@ -268,46 +272,67 @@ session_start();
     </div>
 </body>
 <script>
-    function pay(price, wallet, madichvu,id_gio , id_congty) {
-        alert(price + " " + wallet + " " + id_gio + " " + madichvu);
+    function pay() {
+        event.preventDefault();
+        wallet = <?php echo $wallet; ?>;
+        madichvu = '<?php echo $madichvu; ?>';
+        madoanhnghiep = '<?php echo $id_congty; ?>';
+        var sl_nguoilon = document.getElementById("person-price").value;
+        var sl_treem = document.getElementById("child-price").value;
+        if (total == 0 || Number.isInteger(total) == false) {
+            alert("Vui lòng tính tiền trước khi thanh toán!");
+            return;
+        }
+        else {
+            data = {
+                total: total,
+                wallet: wallet,
+                madichvu: madichvu,
+                madoanhnghiep: madoanhnghiep,
+                sl_nguoilon: sl_nguoilon,
+                sl_treem: sl_treem
+            };
+            alert(data.total + " " + data.wallet + " " + data.madichvu + " " + data.madoanhnghiep);
+        }
+
         var methodElement = document.querySelector('input[name="paymethod"]:checked');
         if (!methodElement) {
             alert("Vui lòng chọn phương thức thanh toán!");
             return;
         }
-        var method = methodElement.value;
-        if (method == "wallet") {
-            if (wallet < price) {
-                alert("Số dư trong ví không đủ!");
-                return;
-            }
+        if (data.wallet < data.total) {
+            alert("Số dư trong ví không đủ!");
+            return;
+        }
+        else {
             var confirm = window.confirm("Bạn có chắc chắn muốn thanh toán bằng ví không?");
             if (confirm) {
                 // const url = new URL(window.location.href);
                 // url.search = ''; // Xóa tất cả các tham số
                 // window.history.pushState({}, '', url);
                 var xhr = new XMLHttpRequest();
-                xhr.open('GET', '../pscript/paybywallet.php?price=' + price + '&wallet=' + wallet + '&id_gio=' + id_gio + '&madichvu=' + madichvu + '&id_congty=' + id_congty, true);
+                xhr.open('POST', '../pscript/paybywallet.php');
                 xhr.onload = function () {
                     if (xhr.status === 200) {
                         alert(xhr.responseText);
                     }
                 };
-                xhr.send();
+                // xhr.send(data);
+                xhr.send(JSON.stringify(data));
             }
         }
-        if (method == "momo") {
-            alert("Thanh toán thành công!");
-        }
-        if (method == "vnpay") {
-            alert("Thanh toán thành công!");
-        }
-        if (method == "mastercard") {
-            alert("Thanh toán thành công!");
-        }
-        if (method == "paypal") {
-            alert("Thanh toán thành công!");
-        }
+        // if (method == "momo") {
+        //     alert("Thanh toán thành công!");
+        // }
+        // if (method == "vnpay") {
+        //     alert("Thanh toán thành công!");
+        // }
+        // if (method == "mastercard") {
+        //     alert("Thanh toán thành công!");
+        // }
+        // if (method == "paypal") {
+        //     alert("Thanh toán thành công!");
+        // }
     }
 
     function cancel() {
@@ -322,6 +347,25 @@ session_start();
     // function my_request_form() {
     //     window.location.href = "request-list.php";
     // }
+
+    function tinhtien() {
+        event.preventDefault();
+        var sl_nguoilon = document.getElementById("person-price").value;
+        var sl_treem = document.getElementById("child-price").value;
+        if (sl_nguoilon == "" && sl_treem == "" || sl_nguoilon == 0 && sl_treem == 0) {
+            alert("Số lượng không hợp lệ!");
+        }
+        else {
+            if (sl_nguoilon < sl_treem && sl_nguoilon < 4) {
+                alert("Yêu cầu ít nhất 4 người lớn nếu số lượng trẻ em đông!");
+            }
+            else {
+                total = sl_nguoilon * <?php echo $row3['gianguoilon']; ?> + sl_treem * <?php echo $row3['giatreem']; ?>;
+                alert("Tổng tiền cần thanh toán: " + total + " VND");
+                document.getElementById("total").innerHTML = "Tổng tiền thanh toán: " + total + " VND";
+            }
+        }
+    }
 </script>
 
 </html>

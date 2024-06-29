@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/reset1.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
-    <title>Chỉnh sửa thông tin khách hàng</title>
+    <title>Danh sách dịch vụ</title>
 </head>
 <style>
-    /* .function-view {
+        /* .function-view {
         width: auto;
         height: 500px;
         margin: 10px 0px 0px 10px;
@@ -110,10 +107,9 @@
         flex-direction: column;
     }
 </style>
-
 <body>
-    <form action="" method="post" class="function-view-2" style="overflow: auto; ">
-        <h1>Danh sách khách hàng</h1>
+<form action="" method="post" class="function-view-2" style="overflow: auto; ">
+        <h1>Danh sách dịch vụ</h1>
 
         <div class="filter">
             <label for="">Lọc: </label>
@@ -133,26 +129,17 @@
     </div>
     <table>
         <tr>
-            <th>Mã khách hàng</th>
-            <th>Họ tên</th>
-            <th>Ngày sinh</th>
-            <th>Giới tính</th>
-            <th>Số điện thoại</th>
-            <th>Email</th>
-            <th>CCCD/Hộ chiếu</th>
-            <th>Số lượng E-coin</th>
-            <th>STK MOMO</th>
-            <th>STK BIDV</th>
-            <th>STK MasterCard</th>
-            <th>Mật khẩu</th>
-            <th>Trạng thái tài khoản</th>
-            <th>Sai mật khẩu</th>
+            <th>Mã dịch vụ</th>
+            <th>Tên dịch vụ</th>
+            <th>Mã doanh nghiệp</th>
+            <th>Tên doanh nghiệp</th>
+            <th>Giá người lớn</th>
+            <th>Giá trẻ em</th>
             <th>Chức năng</th>
         </tr>
         <?php
-        require ('../pscript/show_customerlist_event.php');
+        require ('../pscript/show_service_event.php');
         ?>
     </table>
 </body>
-
 </html>

@@ -287,7 +287,8 @@ session_start();
                     <div class="dropdown-container">
                         <a href="../customer/request-list.php"
                         onclick="my_request_form()"><i class="fa-solid fa-basket-shopping"></i>GIỎ HÀNG</a>
-                        <a href=""><i class="fa-solid fa-address-card"></i>CHỈNH SỬA HỒ SƠ</a>
+                        <a href="../customer/tourdadat.php"><i class="fa-solid fa-shopping-bag"></i>TOUR ĐÃ ĐẶT</a>
+                        <a href="../public/chinhsuathongtincanhan.php"><i class="fa-solid fa-address-card"></i>CHỈNH SỬA HỒ SƠ</a>
                         <a href="" class="logout" onclick="log_out()"><i class="fa-solid fa-right-from-bracket"></i>ĐĂNG XUẤT</a>
                     </div>
                     ';
@@ -405,6 +406,7 @@ session_start();
         xhr.onload = function () {
             if (xhr.status === 200) {
                 alert(xhr.responseText);
+                window.location.href = '../public/index.php?reset=true';
             }
         };
         xhr.send();

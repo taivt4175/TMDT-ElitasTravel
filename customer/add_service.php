@@ -52,6 +52,7 @@ session_start();
         flex-wrap: wrap;
         margin-top: 10px;
     }
+
 </style>
 
 <body>
@@ -69,12 +70,18 @@ session_start();
         <label for="">Mô tả chi tiết:</label>
         <textarea name="detail" id="detail"></textarea>
 
+        <label for="">Lịch trình chi tiết:</label>
+        <textarea name="lichtrinhchitiet" class="schedule" cols="5000" rows="5000"></textarea>
+
         <label for="">Thêm hình ảnh: (Nhấn giữ "Ctrl" để chọn nhiều ảnh)</label>
         <input type="file" name="fileUpload[]" id="fileUpload" multiple="multiple">
         <div class="chose-imgs" id="chose-imgs" name="chose-img"></div>
+
+        <label for="price">Giá người lớn:</label>
+        <input type="number" name="person-price" id="price">
         
-        <label for="price">Giá:</label>
-        <input type="number" name="price" id="price">
+        <label for="price">Giá trẻ em:</label>
+        <input type="number" name="child-price" id="price">
 
         <label for="unit">Đơn vị tính:</label>
         <input type="text" name="unit" id="unit">

@@ -5,11 +5,13 @@ $madichvu = $_POST['madichvu'];
 $name = $_POST['name'];
 $description = $_POST['description'];
 $detail = $_POST['detail'];
-$price = $_POST['price'];
+$personprice = $_POST['person-price'];
+$childprice = $_POST['child-price'];
 $unit = $_POST['unit'];
 $status = $_POST['status'];
 $userInfo = $_SESSION['user_info'];
 $id_user = $userInfo['id_user'];
+$lichtrinhchitiet = $_POST['lichtrinhchitiet'];
 $fileUpload = "";
 
 $target_dir = "../img/uploads/";
@@ -65,11 +67,12 @@ if ($total_files > 10) {
     }
 
     if (!$error) {
-        $sql = "INSERT INTO dichvu(madichvu,tendichvu,id_user,motadichvu,motachitiet,gia,donvitinh,tinhtrang,hinhanh) VALUES 
-                ('$madichvu','$name','$id_user','$description','$detail','$price','$unit','$status','$fileUpload')";
+        $sql = "INSERT INTO dichvu(madichvu,tendichvu,id_user,motadichvu,motachitiet,lichtrinhchitiet,gianguoilon,giatreem,donvitinh,tinhtrang,hinhanh) VALUES 
+                ('$madichvu','$name','$id_user','$description','$detail','$lichtrinhchitiet','$personprice','$childprice','$unit','$status','$fileUpload')";
         $result = mysqli_query($conn, $sql);
         if ($result) {
             echo 'Thêm dịch vụ thành công';
+            echo 'Nội dung trong textarea là: '. $lichtrinhchitiet;
         } else {
             echo 'Thêm dịch vụ thất bại';
         }

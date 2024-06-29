@@ -18,7 +18,8 @@ if ($data) {
     $stk_momo = $data['stk_momo'];
     $stk_bidv = $data['stk_bidv'];
     $mastercard = $data['mastercard'];
-    $first = $data['first'];
+    $wrongpass = $data['wrongpass'];
+    $account_status = $data['account_status'];
     $password = $data['password'];
 
     // Cập nhật dữ liệu vào cơ sở dữ liệu
@@ -29,15 +30,16 @@ if ($data) {
                 sdt = '$sdt',
                 email = '$email',
                 cccd = '$cccd',
-                password = '$password'
+                password = '$password',
+                wrongpass = '$wrongpass',
+                account_status = '$account_status'
                 WHERE id_user = '$id_user'";
 
     $sql_chitietkh = "UPDATE chitietkh SET
                 sl_ecoin = '$sl_ecoin',
                 stk_momo = '$stk_momo',
                 stk_bidv = '$stk_bidv',
-                mastercard = '$mastercard',
-                first = '$first'
+                mastercard = '$mastercard'
                 WHERE id_user = '$id_user'";
 
     if ($conn->query($sql_user) === TRUE && $conn->query($sql_chitietkh) === TRUE) {

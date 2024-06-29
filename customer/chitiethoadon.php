@@ -1,5 +1,5 @@
 <?php
- session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../css/loginbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <title>Điểm du lịch</title>
+    <title>Danh sách hóa đơn</title>
 </head>
 <style>
     /* thanh filter */
@@ -44,60 +44,47 @@
 
     a {
         text-decoration: none;
-        color: black;
     }
 
-    .most-dest-wrapper {
+    i {
+        margin: 0px 5px 0px 5px;
+    }
+
+    .container {
         display: flex;
         flex-direction: column;
-        /* align-items: center; */
-        padding: 5px 5px 5px 5px;
-        margin: 5px 5px 5px 5px;
-        width: 100%;
-        overflow: auto;
-        border: 1px solid #000;
+        /* justify-content: center;
+        align-items: center; */
+        margin: 10px 10px 10px 10px;
+        border: 1px solid black;
     }
 
-    .destination-container {
+    .hoadon {
         display: flex;
-        flex-wrap: wrap;
-        /* justify-content: center; */
-    }
-
-    .destination {
-        display: inline-block;
-        flex-direction: column;
-        border: 1px solid #000;
-        align-items: center;
-        margin: 5px;
-        width: auto;
+        flex-direction: row;
+        justify-content: space-between;
         font-size: 20px;
-        font-weight: bold;
+        margin: 5px 5px 5px 5px;
+        border: 1px solid black;
     }
 
-    .des-info {
+    .thongtin {
+        display: flex;
+        flex-direction: column;
         margin: 5px 5px 5px 5px;
     }
 
-    .des-img {
+    .button {
         display: flex;
+        flex-direction: column;
+        margin: 5px 5px 5px 5px;
         justify-content: center;
         align-items: center;
-        width: 230px;
-        height: 200px;
-        border: 1px solid #000;
-        margin: 5px 5px 10px 5px;
     }
 
-    .des-img img {
-        width: 100%;
-        height: 100%;
-    }
-
-    .des-info {
-        display: flex;
-        flex-direction: column;
-        /* align-items: center; */
+    .button button {
+        font-size: 20px;
+        margin: 5px 5px 5px 5px;
     }
 </style>
 
@@ -106,7 +93,7 @@
         <nav id="nav-container">
             <a href="index.php" id="logo"><img src="../img/logoglobal_dark.png" alt=""></a>
             <ul class="main-menu">
-            <?php
+                <?php
                 if (isset($_SESSION['user_info'])) {
                     $userInfo = $_SESSION['user_info'];
                     // Làm gì đó với $userInfo
@@ -143,51 +130,16 @@
             </ul>
         </nav>
     </div>
-    <!-- filter-bar -->
-    <div class="filter-bar">
-        <div>Lọc:</div>
-        <select name="tinh-filter" id="tinh-filter" class="tinh-filter" onchange="updateHuyen()">
-            <?php
-            require ('../pscript/des_filter_event1.php');
-            ?>
-        </select>
-        <select name="quanhuyen-filter" id="quanhuyen-filter" class="quanhuyen-filter">
-            <?php
-            require ('../pscript/des_filter_event2.php');
-            ?>
-        </select>
-    </div>
-
-    <div class="most-dest-wrapper">
-        <h1>Xem nhiều nhất</h1>
-        <div class="destination-container">
-            <a href="" class="destination">
-                <div class="des-img">
-                    <img src="../img/uploads/phuquoc.jpg" alt="">
-                </div>
-                <div class="des-info">
-                    <div class="des-id"><i class="fa-solid fa-barcode"></i>: PQ0033</div>
-                    <div class="des-name"><i class="fa-solid fa-location-dot"></i> : Phú Quốc</div>
-                    <div class="seen"><i class="fa-solid fa-eye"></i>: 233</div>
-                </div>
-            </a>
-
-            <a href="" class="destination">
-                <div class="des-img">
-                    <img src="../img/uploads/vinhsang.jpg" alt="">
-                </div>
-                <div class="des-info">
-                    <div class="des-id"><i class="fa-solid fa-barcode"></i> : VLD0127</div>
-                    <div class="des-name"><i class="fa-solid fa-location-dot"></i> : KDL Vinh Sang</div>
-                    <div class="seen"><i class="fa-solid fa-eye"></i>: 349</div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="des-container">
-        <h1>ĐIỂM DU LỊCH</h1>
+    <!-- chi tiết hóa đơn -->
+    <div class="container">
+        <?php
+            require ('../pscript/hienthichitiethd.php');
+        ?>
     </div>
 </body>
-
+<script>
+    function chitietdv(madichvu, madoanhnghiep) {
+        window.location.href = '../public/chitietdichvu.php?madichvu=' + madichvu + '&madoanhnghiep=' + madoanhnghiep;
+    }
+</script>
 </html>

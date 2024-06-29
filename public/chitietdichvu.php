@@ -153,7 +153,7 @@ session_start();
     <div class="service_detail_container">
         <?php
         require ('../pscript/product-detail-show.php')
-            ?>
+        ?>
     </div>
 
     <div class="footer">

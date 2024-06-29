@@ -140,7 +140,7 @@
       </form>
     </div>
   </div>
-  <!-- <script src="../js/signup.js"></script> -->
+  <script src="../js/signup1.js"></script>
   <script src="../js/signup2.js"></script>
   <script>
     function sign_up_z() {

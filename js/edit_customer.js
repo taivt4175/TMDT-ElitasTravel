@@ -39,11 +39,6 @@ function check_input_data(data) {
 
     // Kiểm tra mật khẩu
 
-    // Kiểm tra nạp lần đầu
-    if (!data.first || (data.first !== "Chưa" && data.first !== "Rồi")) {
-        return "Nạp lần đầu chỉ nhận giá trị 'Chưa' hoặc 'Rồi'.";
-    }
-
     return "Dữ liệu hợp lệ";
 }
 
@@ -65,8 +60,9 @@ function editCustomer(id) {
         data.stk_momo = cells[7].textContent;
         data.stk_bidv = cells[8].textContent;
         data.mastercard = cells[9].textContent;
-        data.first = cells[10].textContent;
-        data.password = cells[11].textContent;
+        data.password = cells[10].textContent;
+        data.account_status = cells[11].textContent;
+        data.wrongpass = cells[12].textContent;
 
         console.log(data);
 

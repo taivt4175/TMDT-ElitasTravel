@@ -33,6 +33,12 @@ if ($result_check->num_rows > 0) {
                 // Thực hiện các hành động cho Tour Guide
                 break;
             case 'AD':
+                $userInfo = [
+                    'id_user' => $row['id_user'],
+                    'hoten' => $row['hoten'],
+                ];
+                // Lưu vào session
+                $_SESSION['user_info'] = $userInfo;
                 echo "Người dùng là Admin";
                 header('Location: ../admin/adminform.php');
                 // Thực hiện các hành động cho Admin
@@ -71,6 +77,19 @@ if ($result_check->num_rows > 0) {
         echo ('Tài khoản đã bị khóa!Vào mục "HỖ TRỢ" để biết thêm thông tin!');
     }
 } else {
-    echo ('Sai tên đăng nhập hoặc mật khẩu!');
+    $sql_check = "SELECT * FROM user WHERE email = '$email'";
+    $result_check = $conn->query($sql_check);
+    if ($result_check->num_rows == 0) {
+        echo ('Tài khoản không tồn tại!');
+    } else {
+        $row = $result_check->fetch_assoc();
+        $wrongpasscount = $row['wrongpass'] + 1;
+        $sql_update = "UPDATE user SET wrongpass = " . $wrongpasscount . " WHERE email = '$email'";
+        $conn->query($sql_update);
+        $sql_check = "SELECT * FROM user WHERE email = '$email'";
+        $result_check = $conn->query($sql_check);
+        $row = $result_check->fetch_assoc();
+        echo ('Sai tên đăng nhập hoặc mật khẩu! Tài khoản này đã bị sai mật khẩu ' . $row['wrongpass'] . ' lần!');
+    }
 }
 ?>

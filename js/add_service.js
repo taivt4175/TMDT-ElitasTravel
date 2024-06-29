@@ -13,6 +13,7 @@ document.getElementById('detail').addEventListener('input', function () {
 });
 
 function addservice() {
+    tinymce.triggerSave(); // Thêm dòng này để lưu nội dung TinyMCE
     var name = document.getElementById('name').value;
     var price = document.getElementById('price').value;
     var unit = document.getElementById('unit').value;

@@ -1,21 +1,17 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/loginbar.css">
     <link rel="stylesheet" href="../css/reset1.css">
     <title>Admin</title>
 </head>
 <style>
-    .logo-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #58BDFF;
-        height: 100px;
-    }
-
     .functions-container {
         display: flex;
         width: 100%;
@@ -79,8 +75,43 @@
 </style>
 
 <body>
-    <div class="logo-container">
-        <div><img src="../img/logo2.jpg" alt=""></div>
+    <!-- THANH BẢNG CHỌN -->
+    <div id="wrapper">
+        <nav id="nav-container">
+            <a href="adminform.php" id="logo"><img src="../img/logoglobal_dark.png" alt=""></a>
+            <ul class="main-menu">
+                <?php
+                if (isset($_SESSION['user_info'])) {
+                    $userInfo = $_SESSION['user_info'];
+                    // Làm gì đó với $userInfo
+                    $id_user = $userInfo['id_user'];
+                    $hoten = $userInfo['hoten'];
+                    echo '
+                    <a href="" class="btn">HỖ TRỢ</a>
+                    ';
+                    echo '<div class="userin4_container">';
+                    echo '<div class="info">' . $hoten . '</div>';
+                    echo '
+                    <div class="dropdown-container">
+                        <a href=""><i class="fa-solid fa-address-card"></i>CHỈNH SỬA HỒ SƠ</a>
+                        <a class="logout" onclick="log_out()"><i class="fa-solid fa-right-from-bracket"></i>ĐĂNG XUẤT</a>
+                    </div>
+                    ';
+                } else {
+                    echo '<a href="" class="btn">HỖ TRỢ</a>';
+                    echo '<div class="signup">
+                            <div>ĐĂNG KÍ</div>
+                            <div class="dropdown-container">
+                                <a href="signup.php" id="customer-account">TÀI KHOẢN KHÁCH HÀNG</a>
+                                <a href="tourguide-signup.php" id="instructor-account">TÀI KHOẢN HƯỚNG DẪN VIÊN</a>
+                                <a href="company-signup.php" id="company-account">TÀI KHOẢN DOANH NGHIỆP</a>
+                            </div>
+                        </div>';
+                    echo '<a href="login.php" class="btn">ĐĂNG NHẬP</a>';
+                }
+                ?>
+            </ul>
+        </nav>
     </div>
 
     <div class="functions-container">
@@ -90,8 +121,6 @@
                 <div class="dropdown-content">
                     <a href="#" id="add_customer" onclick="calladdCustomer()">Thêm khách hàng</a>
                     <a href="#" id="mod_customer" onclick="callmodCustomer()">Chỉnh sửa thông tin khách hàng</a>
-                    <a href="#" id="addd_service">Thêm dịch vụ</a>
-                    <a href="#" id="mod_service">Dịch vụ sử dụng</a>
                 </div>
             </div>
 
@@ -100,43 +129,13 @@
                 <div class="dropdown-content">
                     <a href="#" id="add_customer" onclick="calladdtourguide()">Thêm hướng dẫn viên</a>
                     <a href="#" id="mod_customer" onclick="callmodtourguide()">Chỉnh sửa thông tin hướng dẫn viên</a>
-                    <a href="#" id="mod_customer">Lịch trình hướng dẫn viên</a>
                 </div>
             </div>
 
             <div class="dropdown">
-                <a href="#" id="qlkh" class="qlkh">Quản lí khách sạn</a>
+                <a href="#" id="qlkh" class="qlkh">Quản lí Tour</a>
                 <div class="dropdown-content">
-                    <a href="#" id="add_customer">Thêm khách sạn</a>
-                    <a href="#" id="mod_customer">Chỉnh sửa thông tin khách sạn</a>
-                    <a href="#" id="mod_customer">Đặt khách sạn</a>
-                    <a href="#" id="mod_customer">Khách sạn đã đặt</a>
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <a href="#" id="qlkh" class="qlkh">Quản lí nhà hàng</a>
-                <div class="dropdown-content">
-                    <a href="#" id="add_customer">Thêm khách hàng</a>
-                    <a href="#" id="mod_customer">Chỉnh sửa thông tin khách hàng</a>
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <a href="#" id="qlkh" class="qlkh">Quản lí tour</a>
-                <div class="dropdown-content">
-                    <a href="#" id="add_tour" onclick="calladdtour()">Thêm Tour</a>
-                    <a href="#" id="mod_tour">Chỉnh Tour</a>
-                    <a href="#" id="request-list">Danh sách đặt tour</a>
-                </div>
-            </div>
-
-            <div class="dropdown">
-                <a href="#" id="qlkh" class="qlkh">Quản lí nhân viên</a>
-                <div class="dropdown-content">
-                    <a href="#" id="add_customer">Thêm nhân viên</a>
-                    <a href="#" id="mod_customer">Chỉnh sửa thông tin nhân viên</a>
-                    <a href="#" id="mod_customer">Phát lương</a>
+                    <a href="#" id="mod_customer">Chỉnh sửa dịch vụ</a>
                 </div>
             </div>
 
@@ -145,7 +144,44 @@
         <div class="function-view" id="function-view">
         </div>
     </div>
+    <div class="footer">
+        <div class="footer-items">
+            <div class="address">
+                <h2>Địa chỉ</h2>
+                <p>73 Nguyễn Huệ, phường 2 <br>thành phố Vĩnh Long, tỉnh Vĩnh Long</p>
+            </div>
+
+            <div class="about-us">
+
+            </div>
+
+            <div class="contact-us">
+                <h2>Liên hệ chúng tôi</h2>
+                <p>Website: http://elitastraver.com/ <br>Email: taivt4175@gmail.com</p>
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-youtube"></i>
+                <i class="fab fa-twitter"></i>
+            </div>
+        </div>
+
+        <div class="copy-right">
+            <p>&copy; Copyrights 2024. All rights reserved by Vu Thanh Tai</p>
+        </div>
+    </div>
 </body>
 <script src="../js/adminform.js"></script>
+<script>
+    function log_out() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '../pscript/destroy_session.php', true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                alert(xhr.responseText);
+                window.location.href = '../public/index.php?reset=true';
+            }
+        };
+        xhr.send();
+    }
+</script>
 
 </html>

@@ -1,6 +1,6 @@
 <?php
 require ('../connector/connect.php');
-$sql = "SELECT u.id_user, u.hoten, u.gioitinh, u.ngaysinh, u.sdt, u.cccd, u.password, u.email
+$sql = "SELECT u.id_user, u.hoten, u.gioitinh, u.ngaysinh, u.sdt, u.cccd, u.password, u.email, u.wrongpass, u.account_status
             ,k.sl_ecoin, k.stk_momo, k.stk_bidv, k.mastercard, k.first
             FROM user u
             INNER JOIN chitietkh k ON u.id_user = k.id_user
@@ -17,7 +17,6 @@ if ($result->num_rows > 0) {
         $stkbidv_display = $row['stk_bidv'] == 0 ? 'Chưa thiết lập' : $row['stk_bidv'];
         $mastercard = $row['mastercard'] == 0 ? 'Chưa thiết lập' : $row['mastercard'];
         $cccd_display = $row['cccd'] == 0 ? 'Chưa thiết lập' : $row['cccd'];
-        $first = $row['first'] == 0 ? 'Chưa' : 'Rồi';
         echo "<tr data-id='" . $row['id_user'] . "'>";
         echo "<td>" . $row['id_user'] . "</td>";
         echo "<td contenteditable='true'>" . $row['hoten'] . "</td>";
@@ -30,8 +29,9 @@ if ($result->num_rows > 0) {
         echo "<td contenteditable='true'>" . $stkmomo_display . "</td>";
         echo "<td contenteditable='true'>" . $stkbidv_display . "</td>";
         echo "<td contenteditable='true'>" . $mastercard . "</td>";
-        echo "<td contenteditable='true'>" . $first . "</td>";
         echo "<td contenteditable='true'>" . $row['password'] . "</td>";
+        echo "<td contenteditable='true'>" . $row['account_status'] . "</td>";
+        echo "<td contenteditable='true'>" . $row['wrongpass'] . "</td>";
         echo "<td>
                 <button onclick='editCustomer(\"" . $row['id_user'] . "\")'>Edit</button>
                 <button onclick='confirmDelete(\"" . $row['id_user'] . "\")'>Delete</button> 

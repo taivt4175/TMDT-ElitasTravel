@@ -9,13 +9,14 @@ if ($result->num_rows > 0) {
         $anh = explode(";", $img_string);
         $img = $anh[0];
         echo '<div class="tour">
-                    <a href="" class="tour-img">
+                    <a onclick="thongtin(\'' . $row['madichvu'] . '\', \'' . $row['id_user'] . '\')" class="tour-img">
                         <img src="' . $img . '" alt="">
                     </a>
                     <div class="tour-info">
                         <div class="tour-id"><i class="fa-solid fa-barcode"></i>: ' . $row['madichvu'] . '</div>
                         <div class="tour-name"><i class="fa-solid fa-location-dot"></i>: ' . $row['tendichvu'] . '</div>
-                        <div class="tour-price"><i class="fa-solid fa-dollar-sign"></i>: ' . $row['gia'] . '</div>';
+                        <div class="tour-price"><i class="fa-solid fa-dollar-sign"></i>: ' . $row['giatreem'] . '</div>
+                        <div class="tour-price"><i class="fa-solid fa-dollar-sign"></i>: ' . $row['gianguoilon'] . '</div>';
         if (isset($_SESSION['user_info'])) {
             echo '<div class="button-container">
                                 <button class="tour-button" onclick="thongtin(\'' . $row['madichvu'] . '\', \'' . $row['id_user'] . '\')"><i class="fa-solid fa-info-circle"></i></button>

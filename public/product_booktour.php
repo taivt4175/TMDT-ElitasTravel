@@ -152,6 +152,7 @@
                     <div class="dropdown-container">
                         <a href="../customer/request-list.php"
                         onclick="my_request_form()"><i class="fa-solid fa-basket-shopping"></i>GIỎ HÀNG</a>
+                        <a href="../customer/tourdadat.php"><i class="fa-solid fa-shopping-bag"></i>DỊCH VỤ ĐÃ ĐẶT</a>
                         <a href=""><i class="fa-solid fa-address-card"></i>CHỈNH SỬA HỒ SƠ</a>
                         <a href="" class="logout" onclick="log_out()"><i class="fa-solid fa-right-from-bracket"></i>ĐĂNG XUẤT</a>
                     </div>
@@ -194,10 +195,10 @@
     </div>
 </body>
 <script>
-    function thongtin(id_tour, id_company) {
+    function thongtin(madichvu, madoanhnghiep) {
         // alert("Thông tin tour");
-        alert(id_tour + " and " + id_company);
-        window.location.href = 'chitietdichvu.php?madichvu=' + encodeURIComponent(id_tour) + '&id_user=' + encodeURIComponent(id_company);
+        alert(madichvu + " and " + madoanhnghiep);
+        window.location.href = 'chitietdichvu.php?madichvu=' + encodeURIComponent(madichvu) + '&madoanhnghiep=' + encodeURIComponent(madoanhnghiep);
     }
 
     function themvaogio(id_tour, id_company) {
